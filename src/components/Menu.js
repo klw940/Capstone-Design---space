@@ -54,7 +54,7 @@ class Menu extends Component{
                               <NavLink href="/">로그인</NavLink>
                           </NavItem>
                           <NavItem>
-                              <NavLink href="/">회원가입</NavLink>
+                              <NavLink tag={Link} to="/sign-up">회원가입</NavLink>
                           </NavItem>
                           <UncontrolledDropdown nav inNavbar>
                               <DropdownToggle nav caret>

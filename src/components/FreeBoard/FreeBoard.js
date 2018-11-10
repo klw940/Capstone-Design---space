@@ -1,18 +1,32 @@
 import React, { Component } from 'react';
+import axios from "axios";
+
+let server_addr = "ec2-52-32-190-25.us-west-2.compute.amazonaws.com:3000"
 
 class FreeBoard extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
+			TableData2: [],
 			TableData: [
 				{number:"1", title:"hello", writer:"mingi", date:"2018-02-10", hits:"1"},
 				{number:"2", title:"hello", writer:"mingi", date:"2018-02-10", hits:"1"}
 			],
 			PageNumber: [
 				{page_number:"1"},
-				{page_nubmer:"2"}
+				{page_number:"2"},
+				{page_number:"3"}
 			]
 		};
+	}
+
+	componentDidMount() {
+		axios.get(server_addr+'/board_list',{ headers: { 'Access-Control-Request-Origin': '*','crossDomain': true, 'Content-Type': 'application/json', 'Access-Control-Allow-Headers': 'X-PINGOTHER'}})
+		.then( res => {this.setState({TableData2:res});
+			console.log(this.state.TableData2)
+		})
+		.catch( res => { console.log("error");
+		});
 	}
 
 	render(){
@@ -40,26 +54,33 @@ class FreeBoard extends Component{
 		</tbody>
 	</table>
 	<div class="text-center">
-		<ul class="pagination">
+		<div>
 			{this.state.PageNumber.map((page, i) =>{
 			return (<PageNumber page_number={page.page_number}/>);
 			})}
-		</ul>
+		</div>
 	</div>
 	</div>
         );
     }
 }
 
-
 class TableRow extends Component{
 	constructor(props){
 		super(props);
-		this.state = {showBoard:false};
+		this.state = {
+			showBoard:false,
+			comment:null
+		};
 		this.handleShow = this.handleShow.bind(this);
 	}
 	handleShow(){
 		if(this.state.showBoard){
+			axios.get(server_addr+'/board_detail', {
+				params: {number:"1"}
+			})
+			.then( res => {console.log(res)})
+			.catch( res => {console.log(res)});
 			this.setState({showBoard:false});
 		}
 		else{
@@ -77,7 +98,7 @@ class TableRow extends Component{
 			<td>{this.props.hits}</td>
 			</tr>
 			<tr hidden = {!this.state.showBoard}>
-				<td colspan="5">hi</td>
+				<td colSpan="5">comment</td>
 			</tr>
 			</>
 		);
@@ -87,7 +108,7 @@ class TableRow extends Component{
 class PageNumber extends Component{
 	render(){
 		return(
-			<li>{this.props.page_number}</li>
+			<span>{this.props.page_number}&nbsp;</span>
 		);
 	}
 }

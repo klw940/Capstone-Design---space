@@ -6,6 +6,7 @@ import Buy from "./Buy/Buy";
 import Sale from "./Sale/Sale";
 import FreeBoard from "./FreeBoard/FreeBoard";
 import QnABoard from "./QnABoard/QnABoard";
+import SignUp from "./SignUp/SignUp";
 
 const Content = () =>{
     return(
@@ -16,6 +17,7 @@ const Content = () =>{
             <Route path="/sale" component={Sale}/>
             <Route path="/qna-board" component={QnABoard}/>
             <Route path="/free-board" component={FreeBoard}/>
+            <Route path="/sign-up" component={SignUp}/>
         </Switch>
     )
 }
