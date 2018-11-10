@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 
 class DiyList extends Component{
+
     render(){
+
         return(
             <div>
-                List
+                <h2>List</h2>
+                {this.state.list}
             </div>
-
         );
     }
 }

@@ -7,17 +7,26 @@ import {
     Row,
     } from 'reactstrap'
 class Diy extends Component{
+    state ={
+        category: ''
+    }
+    categoryInput = (data) => {
+        this.setState({
+            category: data
+        })
+        console.log(this.state.category);
+    }
     render(){
         return(
             <Container>
                 <Row>
                     <Col align="center">
-                        <img width="300" src="https://www.costco.co.kr/medias/sys_master/images/ha9/hc0/10418540740638.jpg"/>
+                        Image
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <DiyCategory align="left"/>
+                        <DiyCategory onInput={this.categoryInput} align="left"/>
                     </Col>
                     <Col>
                         <DiyList align="right"/>

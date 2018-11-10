@@ -1,6 +1,6 @@
 import React from 'react';
 import { CSSTransitionGroup } from 'react-transition-group';
-import '../style/HomeStyle.css';
+import '../../style/HomeStyle.css';
 import { Jumbotron } from 'reactstrap';
 
 const Home = () =>{
