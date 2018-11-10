@@ -68,7 +68,6 @@ class TableRow extends Component{
 	}
 	render(){
 		return(
-			<>
 			<tr>
 			<td>{this.props.number}</td>
 			<td onClick={this.handleShow}>{this.props.title}</td>
@@ -77,9 +76,8 @@ class TableRow extends Component{
 			<td>{this.props.hits}</td>
 			</tr>
 			<tr hidden = {!this.state.showBoard}>
-				<td colspan="5">hi</td>
+				hi
 			</tr>
-			</>
 		);
 	}
 }
