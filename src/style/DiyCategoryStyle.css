@@ -18,6 +18,11 @@
     height: 1.6em;
     border-radius: 4px;
 }
+.category-content{
+    border: 1px solid black;
+    padding: 8px;
+    margin: 8px;
+}
 .category-list li.selected:hover {
     background-color: #BBD8DC;
     color: white;

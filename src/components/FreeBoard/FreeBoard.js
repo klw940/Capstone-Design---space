@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios";
 
-let server_addr = "ec2-52-32-190-25.us-west-2.compute.amazonaws.com:3000"
+let server_addr = "http://ec2-52-32-190-25.us-west-2.compute.amazonaws.com:3001"
 
 class FreeBoard extends Component{
     constructor(props){
@@ -9,19 +9,16 @@ class FreeBoard extends Component{
         this.state = {
             TableData2: [],
             TableData: [
-                {number:"1", title:"hello", writer:"mingi", date:"2018-02-10", hits:"1"},
-                {number:"2", title:"hello", writer:"mingi", date:"2018-02-10", hits:"1"}
+                {number:'', title:'', writer:'', date:'', hits:''}
             ],
             PageNumber: [
-                {page_number:"1"},
-                {page_number:"2"},
-                {page_number:"3"}
+                {page_number:''}
             ]
         };
     }
 
     componentDidMount() {
-        axios.get(server_addr+'/board_list',{ headers: { 'Access-Control-Request-Origin': '*','crossDomain': true, 'Content-Type': 'application/json', 'Access-Control-Allow-Headers': 'X-PINGOTHER'}})
+        axios.get(server_addr+'/board_list')
             .then( res => {this.setState({TableData2:res});
                 console.log(this.state.TableData2)
             })
@@ -60,9 +57,7 @@ class FreeBoard extends Component{
                         })}
                     </div>
                 </div>
-                <a href="/Write-Free-Board" className="btn btn-default">글 작성</a>
             </div>
-
         );
     }
 }
