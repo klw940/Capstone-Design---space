@@ -1,23 +1,20 @@
 /*import React from 'react';
 import renderer from 'react-test-renderer';
-import  Content from './Content';
-import  Menu from './Menu';
-
-describe('component', () => {
-    describe('Content', () => {
+describe('', () => {
+    describe('', () => {
         let component = null;
         it('renders correctly', () => {
-            component = renderer.create(<Content/>);
+            component = renderer.create(</>);
         });
         it('matches snapshot', () => {
             const tree = component.toJSON();
             expect(tree).toMatchSnapshot();
         });
     });
-    describe('Menu', () => {
+    describe('', () => {
         let component = null;
         it('renders correctly', () => {
-            component = renderer.create(<Menu/>);
+            component = renderer.create(</>);
         });
         it('matches snapshot', () => {
             const tree = component.toJSON();

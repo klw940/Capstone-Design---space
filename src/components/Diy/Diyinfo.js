@@ -14,6 +14,9 @@ class DiyInfo extends Component {
             id: 0
         },
     }
+    newWindow = () => {
+        window.open('http://localhost:3000/'+{}, 'sharer', 'toolbar=0,status=0,width=548,height=325');
+    }
     selectPart = () => {
         const { info,
                 selectMotor,
@@ -48,7 +51,7 @@ class DiyInfo extends Component {
                 <img src={img} width="100%" alt={name}/>
                     </Col>
                     <Col>
-                <div><b>{name}</b></div>
+                <div onClick={this.newWindow}><b>{name}</b></div>
                 <div>{contents}</div>
                     </Col>
                 </Row>
