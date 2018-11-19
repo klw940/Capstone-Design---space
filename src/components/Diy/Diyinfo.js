@@ -45,7 +45,7 @@ class DiyInfo extends Component {
             <div style={style} onClick={this.selectPart}>
                 <Row>
                     <Col md="3" xs="4" sm="5">
-                <img src={img} width="100%"/>
+                <img src={img} width="100%" alt={name}/>
                     </Col>
                     <Col>
                 <div><b>{name}</b></div>

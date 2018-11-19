@@ -30,7 +30,7 @@ class DiyCategory extends Component{
                     <div className="category-content">
                         <Row>
                             <Col md="3" xs="4" sm="5">
-                                <img src={selectedMotor.img} width="100%"/>
+                                <img src={selectedMotor.img} width="100%" alt={selectedMotor.name}/>
                             </Col>
                             <Col>
                                 <div><b>{selectedMotor.name}</b></div>
@@ -42,7 +42,7 @@ class DiyCategory extends Component{
                     <div className="category-content">
                         <Row>
                             <Col md="3" xs="4" sm="5">
-                                <img src={selectedWings.img} width="100%"/>
+                                <img src={selectedWings.img} width="100%" alt={selectedWings.name}/>
                             </Col>
                             <Col>
                                 <div><b>{selectedWings.name}</b></div>
@@ -54,7 +54,7 @@ class DiyCategory extends Component{
                     <div className="category-content">
                         <Row>
                             <Col md="3" xs="4" sm="5">
-                                <img src={selectedFrame.img} width="100%"/>
+                                <img src={selectedFrame.img} width="100%" alt={selectedFrame.name}/>
                             </Col>
                             <Col>
                                 <div><b>{selectedFrame.name}</b></div>
@@ -66,7 +66,7 @@ class DiyCategory extends Component{
                     <div className="category-content">
                         <Row>
                             <Col md="3" xs="4" sm="5">
-                                <img src={selectedControlBoard.img} width="100%"/>
+                                <img src={selectedControlBoard.img} width="100%" alt= {selectedControlBoard.name}/>
                             </Col>
                             <Col>
                                 <div><b>{selectedControlBoard.name}</b></div>
@@ -78,7 +78,7 @@ class DiyCategory extends Component{
                     <div className="category-content">
                         <Row>
                             <Col md="3" xs="4" sm="5">
-                                <img src={selectedEsc.img} width="100%"/>
+                                <img src={selectedEsc.img} width="100%" alt={selectedEsc.name}/>
                             </Col>
                             <Col>
                                 <div><b>{selectedEsc.name}</b></div>
@@ -90,7 +90,7 @@ class DiyCategory extends Component{
                     <div className="category-content">
                         <Row>
                             <Col md="3" xs="4" sm="5">
-                                <img src={selectedBattery.img} width="100%"/>
+                                <img src={selectedBattery.img} width="100%" alt={selectedBattery.name}/>
                             </Col>
                             <Col>
                                 <div><b>{selectedBattery.name}</b></div>
@@ -102,7 +102,7 @@ class DiyCategory extends Component{
                     <div className="category-content">
                         <Row>
                             <Col md="3" xs="4" sm="5">
-                                <img src={selectedAntenna.img} width="100%"/>
+                                <img src={selectedAntenna.img} width="100%" alt={selectedAntenna.name}/>
                             </Col>
                             <Col>
                                 <div><b>{selectedAntenna.name}</b></div>
