@@ -6,39 +6,60 @@ class Login extends Component{
     constructor(props){
         super(props);
         this.state = {
-            id:'',
-            password:'',
+            ServerAddr: "http://ec2-52-32-190-25.us-west-2.compute.amazonaws.com:3001",
+            checkId:'',
+            checkPassword:'',
+            data: [
+                {
+                    id:'',
+                    password:'',
+                    email: '',
+                    role: '',}
+            ],
         };
     }
-    handleChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
+
+    componentDidMount() {
+        axios.get(this.state.ServerAddr+'/member')
+            .then( res => {this.setState({
+                data: res.data
+                })
+            })
+            .catch( res => { console.log("error");
+            });
     }
+
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state);
         this.setState({
-            id: '',
-            password: ''
+            [e.target.name]: e.target.value
+        });
+        this.setState({
+            checkId: '',
+            checkPassword: ''
         })
     }
+    /*
+    check = () =>{
+        if(!this.state.Id.filter( id => {})) {
+          //
+        };
+    }*/
     render(){
+        console.log(this.state.data);
         return(
             <div>
             <Form inline onSubmit={this.handleSubmit}>
                 <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                     <Label for="ID" className="mr-sm-2"><h2>ID</h2></Label>
-                    <Input type="text" name="id" value={this.state.id} onChange={this.handleChange}/>
+                    <Input type="text" name="checkId"/>
                 </FormGroup>
                 <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                     <Label for="Password" className="mr-sm-2"><h2>Password</h2></Label>
-                    <Input type="password" name="password" value={this.state.password} onChange={this.handleChange}/>
+                    <Input type="password" name="checkPassword"/>
                 </FormGroup>
                 <Button type = "submit">Sign in</Button>
             </Form>
-                <h5>{this.state.id}</h5>
-                <h5>{this.state.password}</h5>
             </div>
         );
     }

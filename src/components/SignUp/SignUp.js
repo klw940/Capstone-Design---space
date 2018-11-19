@@ -5,7 +5,8 @@ class SignUp extends Component{
         name: '',
         mail: '',
         id: '',
-        password: ''
+        password: '',
+        role:'',
     }
     handleChange = (e) => {
         this.setState({
@@ -19,12 +20,19 @@ class SignUp extends Component{
             name: '',
             mail: '',
             id: '',
-            password: ''
+            password: '',
+            role: '',
         })
     }
     render() {
         return (
             <div>
+                <h1>회원가입</h1>
+                <select value={this.state.role} onChange={this.handleChange.bind(this)} name = "role">
+                    <option value=""></option>
+                    <option value="구매자">구매자</option>
+                    <option value="판매자">판매자</option>
+                </select>
             <form onSubmit={this.handleSubmit}>
                 <input
                     placeholder="이름"

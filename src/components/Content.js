@@ -8,6 +8,7 @@ import FreeBoard from "./FreeBoard/FreeBoard";
 import QnABoard from "./QnABoard/QnABoard";
 import Login from "./Login/Login"
 import SignUp from "./SignUp/SignUp";
+import Pay from "./Pay/Pay"
 import antenna_sale from "./Sale/antenna_sale";
 import battery_sale from "./Sale/battery_sale";
 import cb_sale from "./Sale/cb_sale";
@@ -26,6 +27,7 @@ const Content = () =>{
             <Route path="/free-board" component={FreeBoard}/>
             <Route path="/login" component={Login}/>
             <Route path="/sign-up" component={SignUp}/>
+            <Route path="/pay" component={Pay}/>
             <Route path="/antenna_sale" component={antenna_sale}/>
             <Route path="/battery_sale" component={battery_sale}/>
             <Route path="/cb_sale" component={cb_sale}/>

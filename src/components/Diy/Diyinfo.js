@@ -8,14 +8,15 @@ class DiyInfo extends Component {
     static defaultProps = {
         info: {
             img: '',
+            price: '',
             part: '',
-            name: '이름',
-            contents: '내용',
+            name: '',
+            description: '',
             id: 0
         },
     }
     newWindow = () => {
-        window.open('http://localhost:3000/'+{}, 'sharer', 'toolbar=0,status=0,width=548,height=325');
+        window.open('http://localhost:3000/', 'sharer', 'toolbar=0,status=0,width=548,height=325');
     }
     selectPart = () => {
         const { info,
@@ -42,19 +43,22 @@ class DiyInfo extends Component {
             margin: '8px'
         };
         const {
-            img, part, name, contents, id
+            name, img, description, price
         } = this.props.info;
         return (
-            <div style={style} onClick={this.selectPart}>
-                <Row>
-                    <Col md="3" xs="4" sm="5">
-                <img src={img} width="100%" alt={name}/>
-                    </Col>
-                    <Col>
-                <div onClick={this.newWindow}><b>{name}</b></div>
-                <div>{contents}</div>
-                    </Col>
-                </Row>
+            <div style={style}>
+                <div onClick={this.newWindow}>
+                    <Row>
+                        <Col md="3" xs="4" sm="5">
+                    <img src={img} width="100%" alt={name}/>
+                        </Col>
+                        <Col>
+                    <div><b>{name}</b>  {price}원</div>
+                    <div>{description}</div>
+                        </Col>
+                    </Row>
+                </div>
+                <button onClick={this.selectPart}>선택</button>
             </div>
         );
     }

@@ -34,7 +34,7 @@ class DiyCategory extends Component{
                             </Col>
                             <Col>
                                 <div><b>{selectedMotor.name}</b></div>
-                                <div>{selectedMotor.contents}</div>
+                                <div>{selectedMotor.description}</div>
                             </Col>
                         </Row>
                     </div>
@@ -46,7 +46,7 @@ class DiyCategory extends Component{
                             </Col>
                             <Col>
                                 <div><b>{selectedWings.name}</b></div>
-                                <div>{selectedWings.contents}</div>
+                                <div>{selectedWings.description}</div>
                             </Col>
                         </Row>
                     </div>
@@ -58,7 +58,7 @@ class DiyCategory extends Component{
                             </Col>
                             <Col>
                                 <div><b>{selectedFrame.name}</b></div>
-                                <div>{selectedFrame.contents}</div>
+                                <div>{selectedFrame.description}</div>
                             </Col>
                         </Row>
                     </div>
@@ -70,7 +70,7 @@ class DiyCategory extends Component{
                             </Col>
                             <Col>
                                 <div><b>{selectedControlBoard.name}</b></div>
-                                <div>{selectedControlBoard.contents}</div>
+                                <div>{selectedControlBoard.description}</div>
                             </Col>
                         </Row>
                     </div>
@@ -82,7 +82,7 @@ class DiyCategory extends Component{
                             </Col>
                             <Col>
                                 <div><b>{selectedEsc.name}</b></div>
-                                <div>{selectedEsc.contents}</div>
+                                <div>{selectedEsc.description}</div>
                             </Col>
                         </Row>
                     </div>
@@ -94,7 +94,7 @@ class DiyCategory extends Component{
                             </Col>
                             <Col>
                                 <div><b>{selectedBattery.name}</b></div>
-                                <div>{selectedBattery.contents}</div>
+                                <div>{selectedBattery.description}</div>
                             </Col>
                         </Row>
                     </div>
@@ -106,7 +106,7 @@ class DiyCategory extends Component{
                             </Col>
                             <Col>
                                 <div><b>{selectedAntenna.name}</b></div>
-                                <div>{selectedAntenna.contents}</div>
+                                <div>{selectedAntenna.description}</div>
                             </Col>
                         </Row>
                     </div>

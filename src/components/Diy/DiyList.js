@@ -4,8 +4,17 @@ import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
 class DiyList extends Component{
     static defaultProps = {
+        category: '',
         data: [],
+        selectMotor: () => console.warn('selectMotor not defined'),
+        selectWings: () => console.warn('selectWings not defined'),
+        selectFrame: () => console.warn(' selectFrame not defined'),
+        selectControlBoard: () => console.warn('selectControlBoard not defined'),
+        selectEsc: () => console.warn('selectEsc not defined'),
+        selectBattery: () => console.warn('selectBattery not defined'),
+        selectAntenna: () => console.warn('selectAntenna not defined'),
     }
+
     render(){
         const { category,
                 data,
@@ -110,9 +119,9 @@ class DiyList extends Component{
                             4
                         </PaginationLink>
                     </PaginationItem>
-                    <PaginationItem>
+                        <PaginationItem>
                         <PaginationLink href="#">
-                            5
+                           5
                         </PaginationLink>
                     </PaginationItem>
                     <PaginationItem>
