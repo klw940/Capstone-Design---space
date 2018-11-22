@@ -20,21 +20,9 @@ class DiyInfo extends Component {
     }
     selectPart = () => {
         const { info,
-                selectMotor,
-                selectWings,
-                selectFrame,
-                selectControlBoard,
-                selectEsc,
-                selectBattery,
-                selectAntenna,
+                selectParts,
                 } = this.props;
-        if(info.part === 1) selectMotor(info);
-        else if(info.part === 2) selectWings(info);
-        else if(info.part === 3) selectFrame(info);
-        else if(info.part === 4) selectControlBoard(info);
-        else if(info.part === 5) selectEsc(info);
-        else if(info.part === 6) selectBattery(info);
-        else if(info.part === 7) selectAntenna(info);
+        selectParts(info.part, info);
     }
     render() {
         const style = {

@@ -1,26 +1,20 @@
 import React, { Component } from 'react';
-import '../../style/DiyCategoryStyle.css';
 import {
     Row,
     Col,
 } from 'reactstrap';
 
-class DiyCategory extends Component{
+class DiyChoice extends Component{
     static defaultProps = {
-            data: '',
+        data: '',
     }
-
-    handleClick = (e) => {
-        this.props.inputCategory(e.target.value);
-    }
-
     render(){
         const { selectedParts } = this.props;
         return(
             <div className="category">
                 <h2>Category</h2>
                 <ul className="category-list">
-                    <li onClick={this.handleClick} value="1">Motor</li>
+                    <li value="1">Motor</li>
                     <div className="category-content">
                         <Row>
                             <Col md="3" xs="4" sm="5">
@@ -32,7 +26,7 @@ class DiyCategory extends Component{
                             </Col>
                         </Row>
                     </div>
-                    <li onClick={this.handleClick} value="2">Wings</li>
+                    <li value="2">Wings</li>
                     <div className="category-content">
                         <Row>
                             <Col md="3" xs="4" sm="5">
@@ -44,7 +38,7 @@ class DiyCategory extends Component{
                             </Col>
                         </Row>
                     </div>
-                    <li onClick={this.handleClick} value="3">Frame</li>
+                    <li value="3">Frame</li>
                     <div className="category-content">
                         <Row>
                             <Col md="3" xs="4" sm="5">
@@ -56,7 +50,7 @@ class DiyCategory extends Component{
                             </Col>
                         </Row>
                     </div>
-                    <li onClick={this.handleClick} value="4">Control Board</li>
+                    <li value="4">Control Board</li>
                     <div className="category-content">
                         <Row>
                             <Col md="3" xs="4" sm="5">
@@ -68,7 +62,7 @@ class DiyCategory extends Component{
                             </Col>
                         </Row>
                     </div>
-                    <li onClick={this.handleClick} value="5">ESC</li>
+                    <li value="5">ESC</li>
                     <div className="category-content">
                         <Row>
                             <Col md="3" xs="4" sm="5">
@@ -80,7 +74,7 @@ class DiyCategory extends Component{
                             </Col>
                         </Row>
                     </div>
-                    <li onClick={this.handleClick} value="6">Battery</li>
+                    <li value="6">Battery</li>
                     <div className="category-content">
                         <Row>
                             <Col md="3" xs="4" sm="5">
@@ -92,7 +86,7 @@ class DiyCategory extends Component{
                             </Col>
                         </Row>
                     </div>
-                    <li onClick={this.handleClick} value="7">Antenna</li>
+                    <li value="7">Antenna</li>
                     <div className="category-content">
                         <Row>
                             <Col md="3" xs="4" sm="5">
@@ -110,4 +104,4 @@ class DiyCategory extends Component{
     }
 }
 
-export default DiyCategory;
+export default DiyChoice;

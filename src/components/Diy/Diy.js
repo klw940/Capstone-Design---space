@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import DiyList from './DiyList';
-import DiyCategory from './DiyCategory';
-import {Link} from "react-router-dom";
+import DiyChoice from './DiyChoice';
+import DiyModel from './DiyModel';
+import DiyStep from './DiyStep'
 import axios from "axios";
-//import { Map, List } from 'immutable';
-
-import custom_image from '../../image/custom.png';
+import { Map, List } from 'immutable';
 
 import {
     Container,
@@ -16,9 +15,8 @@ import {
 class Diy extends Component{
     state = {
         ServerAddr: "http://ec2-52-32-190-25.us-west-2.compute.amazonaws.com:3001",
-        category: 1,
-        info: [
-            {
+        info: List([
+            Map({
               name: '',
               image: '',
               price: '',
@@ -33,164 +31,189 @@ class Diy extends Component{
               rating: '',
               frameMaterial: '',
               wingMaterial: '',
-            },
-        ],
-        selectedMotor: [
-            {
+            }),
+        ]),
+        selectedParts: Map({
+            motor: Map({
                 id: '',
                 part: '',
                 img: '',
                 name: '',
                 description: '',
-            }
-        ],
-        selectedWings: [
-            {
+            }),
+            wings: Map({
                 id: '',
                 part: '',
                 img: '',
                 name: '',
                 description: '',
-            }
-        ],
-        selectedFrame: [
-            {
+            }),
+            frame: Map({
                 id: '',
                 part: '',
                 img: '',
                 name: '',
                 description: '',
-            }
-        ],
-        selectedControlBoard: [
-            {
+            }),
+            controlBoard: Map({
                 id: '',
                 part: '',
                 img: '',
                 name: '',
                 description: '',
-            }
-        ],
-        selectedEsc: [
-            {
+            }),
+            esc: Map({
                 id: '',
                 part: '',
                 img: '',
                 name: '',
                 description: '',
-            }
-        ],
-        selectedBattery: [
-            {
+            }),
+            battery: Map({
                 id: '',
                 part: '',
                 img: '',
                 name: '',
                 description: '',
-            }
-        ],
-        selectedAntenna: [
-            {
+            }),
+            antenna: Map({
                 id: '',
                 part: '',
                 img: '',
                 name: '',
                 description: '',
-            }
-        ],
+            }),
+        }),
     }
-    categoryInput = (data) => {
+
+    categoryInput = (input) => {
         this.setState({
-            category: data
+            category: input
+        });
+    }
+
+    selectParts = (select, input) => {
+        const { data } = this.state.selectedParts;
+
+        switch(select){
+            case 1:
+                this.setState({
+                    selectedParts: data.set('motor', input)
+                })
+                break;
+            case 2:
+                this.setState({
+                    selectedParts: data.set('wings', input)
+                })
+                break;
+            case 3:
+                this.setState({
+                    selectedParts: data.set('frame', input)
+                })
+                break;
+            case 4:
+                this.setState({
+                    selectedParts: data.set('controlBoard', input)
+                })
+                break;
+            case 5:
+                this.setState({
+                    selectedParts: data.set('esc', input)
+                })
+                break;
+            case 6:
+                this.setState({
+                    selectedParts: data.set('battery', input)
+                })
+                break;
+            case 7:
+                this.setState({
+                    selectedParts: data.set('antenna', input)
+                })
+                break;
+        }
+    }
+    selectWings = (input) => {
+        const { data } = this.state
+
+        this.setState({
+            selectedParts: data.set('wings', input)
         })
     }
-    selectMotor = (data) => {
+    selectFrame = (input) => {
+        const { data } = this.state
+
         this.setState({
-            selectedMotor: data
+            selectedParts: data.set('frame', input)
         })
     }
-    selectWings = (data) => {
+    selectControlBoard = (input) => {
+        const { data } = this.state
+
         this.setState({
-            selectedWings: data
+            selectedParts: data.set('controlBoard', input)
         })
     }
-    selectFrame = (data) => {
+    selectEsc = (input) => {
+        const { data } = this.state
+
         this.setState({
-            selectedFrame: data
+            selectedParts: data.set('esc', input)
         })
     }
-    selectControlBoard = (data) => {
+    selectBattery = (input) => {
+        const { data } = this.state
+
         this.setState({
-            selectedControlBoard: data
+            selectedParts: data.set('battery', input)
         })
     }
-    selectEsc = (data) => {
+    selectAntenna = (input) => {
+        const { data } = this.state
+
         this.setState({
-            selectedEsc: data
-        })
-    }
-    selectBattery = (data) => {
-        this.setState({
-            selectedBattery: data
-        })
-    }
-    selectAntenna = (data) => {
-        this.setState({
-            selectedAntenna: data
+            selectedParts: data.set('antenna', input)
         })
     }
 
+    refreshPage(){
+        window.location.reload();
+    }
     componentDidMount() {
         axios.get(this.state.ServerAddr+'/drone')
             .then( res => {this.setState({
                 info: res.data
+                })
             })
-            })
-            .catch( res => { console.log("error");
+            .catch( res => {
+                console.log("error");
             });
     }
+
     render(){
-        console.log(this.state.info);
         return(
             <Container>
-                <br/>
                 <Row>
                     <Col align="center">
-                        <img src={custom_image} alt="home_image" width="30%"/>
+                        <DiyModel/>
                     </Col>
                 </Row>
-                <br/>
                 <Row>
-                    <Col algin="center">
-                        <DiyCategory
-                            inputCategory={this.categoryInput}
-                            selectedMotor= {this.state.selectedMotor}
-                            selectedWings = {this.state.selectedWings}
-                            selectedFrame = {this.state.selectedFrame}
-                            selectedControlBoard = {this.state.selectedControlBoard}
-                            selectedEsc = {this.state.selectedEsc}
-                            selectedBattery = {this.state.selectedBattery}
-                            selectedAntenna = {this.state.selectedAntenna}
+                    <Col>
+                        <DiyStep
+                            data = {this.state.info}
+                            selectParts = {this.selectParts}
                         />
                     </Col>
                     <Col>
-                        <DiyList
-                            category = {this.state.category}
-                            data = {this.state.info}
-                            selectMotor = {this.selectMotor}
-                            selectWings = {this.selectWings}
-                            selectFrame = {this.selectFrame}
-                            selectControlBoard = {this.selectControlBoard}
-                            selectEsc = {this.selectEsc}
-                            selectBattery = {this.selectBattery}
-                            selectAntenna = {this.selectAntenna}
+                        <DiyChoice
+                            inputCategory={this.categoryInput}
+                            selectedParts= {this.state.selectedParts}
                         />
                     </Col>
                 </Row>
                 <Row>
-                    <Link to="/pay">
-                        <button>선택 완료</button>
-                    </Link>
+                    < button onClick = {this.refreshPage} >다시하기</button>
                 </Row>
             </Container>
         );
@@ -198,3 +221,20 @@ class Diy extends Component{
 }
 
 export default Diy;
+/*
+*
+                <Row>
+                    <Col>
+                        <DiyList
+                            category = {this.state.category}
+                            data = {this.state.info}
+                            selectParts = {this.selectParts}
+            //                selectWings = {this.selectWings}
+              //              selectFrame = {this.selectFrame}
+                //            selectControlBoard = {this.selectControlBoard}
+                  //          selectEsc = {this.selectEsc}
+                    //        selectBattery = {this.selectBattery}
+                      //      selectAntenna = {this.selectAntenna}
+                        />
+                    </Col>
+                </Row>*/

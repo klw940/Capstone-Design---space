@@ -20,7 +20,7 @@ class FreeBoard extends Component{
     componentDidMount() {
         axios.get(this.state.ServerAddr+'/board_list')
             .then( res => {this.setState({TableData: res.data})
-
+                console.log(res);
             })
             .catch( res => { console.log("error");
             });
