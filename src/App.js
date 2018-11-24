@@ -3,7 +3,12 @@ import Menu from './components/Menu';
 import Content from './components/Content';
 
 class App extends Component {
-    render() {
+    constructor(){
+        super();
+        this.state = {
+        }
+    }
+    render(){
         return (
             <div>
                 <Menu/>

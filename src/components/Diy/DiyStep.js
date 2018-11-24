@@ -1,24 +1,28 @@
-import React, { Component } from 'react';
-import { Wizard, Steps, Step } from 'react-albus';
+import React, {Component} from 'react';
+import {Step, Steps, Wizard} from 'react-albus';
 import DiyList from './DiyList';
-import {
-    Container,
-    Col,
-    Row,
-    Button,
-} from 'reactstrap'
-
+import {Button, Collapse, } from 'reactstrap'
 import {Link} from "react-router-dom";
 
 class DiyStep extends Component{
-    state = {
-        frame: 3,
-        wings: 2,
-        motor: 1,
-        cb: 4,
-        esc: 5,
-        battery: 6,
-        antenna: 7,
+    constructor(props) {
+        super(props);
+        this.state = {
+            frame: 3,
+            wings: 2,
+            motor: 1,
+            cb: 4,
+            esc: 5,
+            battery: 6,
+            antenna: 7,
+            step1Show: false,
+            step2Show: false,
+            step3Show: false,
+            step4Show: false,
+            step5Show: false,
+            step6Show: false,
+            step7Show: false,
+        };
     }
 
     categoryStep = (e) => {
@@ -27,7 +31,36 @@ class DiyStep extends Component{
         });
     }
 
+    nextShow1 = () => {
+        this.setState({ step1Show: true});
+    }
+
+    nextShow2 = () => {
+        this.setState({ step2Show: true });
+    }
+
+    nextShow3 = () => {
+        this.setState({ step3Show: true });
+    }
+
+    nextShow4 = () => {
+        this.setState({ step4Show: true });
+    }
+
+    nextShow5 = () => {
+        this.setState({ step5Show: true});
+    }
+
+    nextShow6 = () => {
+        this.setState({ step6Show: true});
+    }
+
+    nextShow7 = () => {
+        this.setState({ step7Show: true});
+    }
+
     render(){
+
         const { info, selectParts } = this.props;
         return(
             <Wizard align="center">
@@ -36,8 +69,8 @@ class DiyStep extends Component{
                         id="step0"
                         render={({ next }) => (
                             <div>
-                                <h1>DIY 시작하기</h1>
-                                <Button onClick={next}>Next</Button>
+                                <h1>DIY Drone</h1>
+                                <Button onClick={next}>시작하기</Button>
                             </div>
                         )}
                     />
@@ -45,12 +78,15 @@ class DiyStep extends Component{
                         id="step1"
                         render={({ next }) => (
                             <div>
-                                <DiyStep1
+                                <DiyList
                                     category = {this.state.frame}
                                     info = {info}
                                     selectParts = {selectParts}
+                                    show = {this.nextShow1}
                                 />
-                                <Button onClick={next}>Next</Button>
+                                <Collapse isOpen={this.state.step1Show}>
+                                    <Button onClick={next}>Next</Button>
+                                </Collapse>
                             </div>
                         )}
                     />
@@ -58,12 +94,15 @@ class DiyStep extends Component{
                         id="step2"
                         render={({ next }) => (
                             <div>
-                                <DiyStep2
+                                <DiyList
                                     category = {this.state.wings}
                                     info = {info}
                                     selectParts = {selectParts}
+                                    show = {this.nextShow2}
                                 />
-                                <Button onClick={next}>Next</Button>
+                                <Collapse isOpen={this.state.step2Show}>
+                                    <Button onClick={next}>Next</Button>
+                                </Collapse>
                             </div>
                         )}
                     />
@@ -72,13 +111,15 @@ class DiyStep extends Component{
                         render={({ next }) => (
                             <div>
                                 <div>
-                                    <DiyStep3
-                                        category1 = {this.state.cb}
-                                        category2 = {this.state.esc}
+                                    <DiyList
+                                        category = {this.state.cb}
                                         info = {info}
                                         selectParts = {selectParts}
+                                        show = {this.nextShow3}
                                     />
-                                    <Button onClick={next}>Next</Button>
+                                    <Collapse isOpen={this.state.step3Show}>
+                                        <Button onClick={next}>Next</Button>
+                                    </Collapse>
                                 </div>
                             </div>
                         )}
@@ -87,141 +128,70 @@ class DiyStep extends Component{
                         id="step4"
                         render={({ next }) => (
                             <div>
-                                <DiyStep4
-                                    category1 = {this.state.battery}
-                                    category2 = {this.state.antenna}
+                                <DiyList
+                                    category = {this.state.esc}
                                     info = {info}
                                     selectParts = {selectParts}
+                                    show = {this.nextShow4}
                                 />
-                                <Button onClick={next}>Next</Button>
+                                <Collapse isOpen={this.state.step4Show}>
+                                    <Button onClick={next}>Next</Button>
+                                </Collapse>
                             </div>
                         )}
                     />
                     <Step
-                    id="step5"
-                    render={({ }) => (
-                        <div>
-                            <DiyStep5
-                                category = {this.state.motor}
-                                info = {info}
-                                selectParts = {selectParts}
-                            />
-                            <Link to="/pay">
-                                <Button>선택 완료</Button>
-                            </Link>
-                        </div>
-                    )}
-                />
+                        id="step5"
+                        render={({ next }) => (
+                            <div>
+                                <DiyList
+                                    category = {this.state.battery}
+                                    info = {info}
+                                    selectParts = {selectParts}
+                                    show = {this.nextShow5}
+                                />
+                                <Collapse isOpen={this.state.step5Show}>
+                                    <Button onClick={next}>Next</Button>
+                                </Collapse>
+                            </div>
+                        )}
+                    />
+                    <Step
+                        id="step6"
+                        render={({ next }) => (
+                            <div>
+                                <DiyList
+                                    category = {this.state.antenna}
+                                    info = {info}
+                                    selectParts = {selectParts}
+                                    show = {this.nextShow6}
+                                />
+                                <Collapse isOpen={this.state.step6Show}>
+                                    <Button onClick={next}>Next</Button>
+                                </Collapse>
+                            </div>
+                        )}
+                    />
+                    <Step
+                        id="step7"
+                        render={({ }) => (
+                            <div>
+                                <DiyList
+                                    category = {this.state.motor}
+                                    info = {info}
+                                    selectParts = {selectParts}
+                                    show = {this.nextShow7}
+                                />
+                                <Collapse isOpen={this.state.step7Show}>
+                                    <Link to="/pay">
+                                        <Button>선택 완료</Button>
+                                    </Link>
+                                </Collapse>
+                            </div>
+                        )}
+                    />
                 </Steps>
             </Wizard>
-        );
-    }
-}
-class DiyStep1 extends Component {
-    render(){
-        const { category, info, selectParts } = this.props;
-        return(
-            <div>
-                <h1>Frame List</h1>
-                <DiyList
-                    category = {category}
-                    info = {info}
-                    selectParts = {selectParts}
-                />
-            </div>
-        );
-    }
-}
-class DiyStep2 extends Component {
-    render(){
-        const { category, info, selectParts } = this.props;
-        return(
-            <div>
-                <h1>Wings List</h1>
-                <DiyList
-                    category = {category}
-                    info = {info}
-                    selectParts = {selectParts}
-                />
-            </div>
-        );
-    }
-}
-class DiyStep3 extends Component {
-    render(){
-        const { category1,
-            category2,
-            info,
-            selectParts } = this.props;
-        return(
-            <div>
-                <Container>
-                    <Row>
-                        <Col>
-                            <h1>ControlBoard List</h1>
-                            <DiyList
-                                category = {category1}
-                                info = {info}
-                                selectParts = {selectParts}
-                            />
-                        </Col>
-                        <Col>
-                            <h1>ESC List</h1>
-                            <DiyList
-                                category = {category2}
-                                info = {info}
-                                selectParts = {selectParts}
-                            />
-                        </Col>
-                    </Row>
-                </Container>
-            </div>
-        );
-    }
-}
-
-class DiyStep4 extends Component {
-    render(){
-        const { category1, category2, info, selectParts } = this.props;
-        return(
-            <div>
-                <Container>
-                    <Row>
-                        <Col>
-                            <h1>Battery List</h1>
-                            <DiyList
-                                category = {category1}
-                                info = {info}
-                                selectParts = {selectParts}
-                            />
-                        </Col>
-                        <Col>
-                            <h1>Antenna List</h1>
-                            <DiyList
-                                category = {category2}
-                                info = {info}
-                                selectParts = {selectParts}
-                            />
-                        </Col>
-                    </Row>
-                </Container>
-            </div>
-        );
-    }
-}
-
-class DiyStep5 extends Component {
-    render(){
-        const { category, info, selectParts } = this.props;
-        return(
-            <div>
-                <h1>Motor List</h1>
-                <DiyList
-                    category = {category}
-                    info = {info}
-                    selectParts = {selectParts}
-                />
-            </div>
         );
     }
 }

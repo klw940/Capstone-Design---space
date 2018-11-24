@@ -35,6 +35,7 @@ class DiyList extends Component{
         const { category,
                 info,
                 selectParts,
+                show,
         } = this.props;
 
         const list = info.filter(info => info.part === category).map(
@@ -42,10 +43,22 @@ class DiyList extends Component{
                     key={info.id}
                     info={info}
                     selectParts={selectParts}
+                    show = {show}
                 />)
             )
         return(
             <div>
+                {
+                    ( () => {
+                        if(category === 1) return(<h1>Motor List</h1>);
+                        else if(category === 2) return(<h1>Wings List</h1>);
+                        else if(category === 3) return(<h1>Frame List</h1>);
+                        else if(category === 4) return(<h1>ControlBoard List</h1>);
+                        else if(category === 5) return(<h1>ESC List</h1>);
+                        else if(category === 6) return(<h1>Battery List</h1>);
+                        else if(category === 7) return(<h1>Antenna List</h1>);
+                    })()
+                }
                 {list}
             </div>
         );
