@@ -19,6 +19,11 @@ class DiyInfo extends Component {
         this.setState({ collapse: !this.state.collapse });
     }
 
+    openInNewTab = () => {
+        var win = window.open('http://localhost:3000', '_blank');
+        win.focus();
+    }
+
     selectPart = () => {
         const { info,
             selectParts,
@@ -48,7 +53,7 @@ class DiyInfo extends Component {
                     <div style={select} onClick={this.toggle}>
                         <Row>
                             <Col xs="4">
-                                <img src={info.image} width="100%"/>
+                                <img src={info.image} width="50%"/>
                             </Col>
                             <Col>
                                 <div><b>{info.name}</b>  {info.price}원</div>
@@ -76,9 +81,8 @@ class DiyInfo extends Component {
                         </Collapse>
                 </Card>
                 <Button onClick={this.selectPart}>선택</Button>
-                <Button>리뷰</Button>
+                <Button onClick={this.openInNewTab}>리뷰</Button>
             </div>
-
         );
     }
 }

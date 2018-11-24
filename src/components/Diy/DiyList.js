@@ -1,51 +1,37 @@
 import React, { Component } from 'react';
 import DiyInfo from './Diyinfo';
-
-import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
+import { Pagination, Icon } from 'semantic-ui-react';
 
 class DiyList extends Component{
-    static defaultProps = {
-        data: [],
-    }
-
     constructor(){
         super();
-        this.dataSet = [...Array(Math.ceil(500 + Math.random() * 500))].map(
-            (a, i) => "Record " + (i + 1)
-        );
-        this.pageSize = 50;
-        this.pageCount = Math.ceil(this.dataSet.length/this.pageSize);
-
         this.state = {
-          currentPage: 0
+            pageCount: 5,
+            activePage: 1
         };
     };
 
-    handleClick(e, index) {
-
-        e.preventDefault();
-
-        this.setState({
-            currentPage: index
-        });
-
-    }
+    handlePaginationChange = (e, { activePage }) => this.setState({ activePage })
 
     render(){
         const { category,
-                info,
-                selectParts,
-                show,
+            selectParts,
+            info,
+            show,
         } = this.props;
 
-        const list = info.filter(info => info.part === category).map(
-                info => (<DiyInfo
-                    key={info.id}
-                    info={info}
-                    selectParts={selectParts}
-                    show = {show}
-                />)
-            )
+        let frontIndex= this.state.pageCount*(this.state.activePage-1);
+        let backIndex = this.state.pageCount*this.state.activePage;
+
+        const list = info.filter(info => info.part === category).filter((info, index) => (index >= frontIndex && index < backIndex)).map(
+            info => (<DiyInfo
+                key={info._id}
+                info={info}
+                selectParts={selectParts}
+                show = {show}
+            />)
+        );
+
         return(
             <div>
                 {
@@ -60,56 +46,20 @@ class DiyList extends Component{
                     })()
                 }
                 {list}
+                <Pagination
+                    defaultActivePage={1}
+                    firstItem={{ content: <Icon name='angle double left' />, icon: true }}
+                    lastItem={{ content: <Icon name='angle double right' />, icon: true }}
+                    prevItem={{ content: <Icon name='angle left' />, icon: true }}
+                    nextItem={{ content: <Icon name='angle right' />, icon: true }}
+                    onPageChange={this.handlePaginationChange}
+                    totalPages={Math.ceil(info.filter(info => info.part === category).length/5)}
+                    style = {{marginLeft: 'auto', marginRight: 'auto'}}
+                />
             </div>
+
         );
     }
 }
 
 export default DiyList;
-
-/*
-{this.dataSet
-    .slice(
-        currentPage * this.pageSize,
-        (currentPage + 1) * this.pageSize
-    )
-    .map((data, i) =>
-        <div className="data-slice" key={i}>
-            {data}
-        </div>
-    )}
-<div className="pagination-wrapper">
-
-    <Pagination aria-label="Page navigation example">
-
-        <PaginationItem disabled={currentPage <= 0}>
-
-            <PaginationLink
-                onClick={e => this.handleClick(e, currentPage - 1)}
-                previous
-                href="#"
-            />
-
-        </PaginationItem>
-
-        {[...Array(this.pagesCount)].map((page, i) =>
-            <PaginationItem active={i === currentPage} key={i}>
-                <PaginationLink onClick={e => this.handleClick(e, i)} href="#">
-                    {i + 1}
-                </PaginationLink>
-            </PaginationItem>
-        )}
-
-        <PaginationItem disabled={currentPage >= this.pagesCount - 1}>
-
-            <PaginationLink
-                onClick={e => this.handleClick(e, currentPage + 1)}
-                next
-                href="#"
-            />
-
-        </PaginationItem>
-
-    </Pagination>
-
-</div>*/

@@ -17,7 +17,9 @@
     "react-scripts": "2.1.1",
     "react-slick": "^0.23.2",
     "react-transition-group": "^1.2.1",
-    "reactstrap": "^6.5.0"
+    "reactstrap": "^6.5.0",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.83.0"
   },
   "scripts": {
     "start": "react-scripts start",

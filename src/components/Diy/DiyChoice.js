@@ -13,7 +13,7 @@ class DiyChoice extends Component{
         const { selectedParts } = this.props;
         return(
             <div className="category">
-                <h2>Category</h2>
+                <h2>목록</h2>
                 <ul className="category-list">
                     <li value="1">Motor</li>
                     <Card className="category-content">

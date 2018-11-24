@@ -8,9 +8,9 @@ class DiyStep extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            frame: 3,
-            wings: 2,
             motor: 1,
+            wings: 2,
+            frame: 3,
             cb: 4,
             esc: 5,
             battery: 6,
