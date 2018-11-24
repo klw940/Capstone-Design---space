@@ -18,11 +18,11 @@ class DiyChoice extends Component{
                     <div className="category-content">
                         <Row>
                             <Col md="3" xs="4" sm="5">
-                                <img src={selectedParts.getIn(['motor','img'])} width="100%" alt={selectedParts.getIn(['motor','name'])}/>
+                                <img src={selectedParts.get('motor').image} width="100%" alt={selectedParts.get('motor').name}/>
                             </Col>
                             <Col>
-                                <div><b>{selectedParts.getIn(['motor','name'])}</b></div>
-                                <div>{selectedParts.getIn(['motor','description'])}</div>
+                                <div><b>{selectedParts.get('motor').name}</b></div>
+                                <div>{selectedParts.get('motor').description}</div>
                             </Col>
                         </Row>
                     </div>
@@ -30,11 +30,11 @@ class DiyChoice extends Component{
                     <div className="category-content">
                         <Row>
                             <Col md="3" xs="4" sm="5">
-                                <img src={selectedParts.getIn(['wings','img'])} width="100%" alt={selectedParts.getIn(['wings','name'])}/>
+                                <img src={selectedParts.get('wings').image} width="100%" alt={selectedParts.get('wings').name}/>
                             </Col>
                             <Col>
-                                <div><b>{selectedParts.getIn(['wings','name'])}</b></div>
-                                <div>{selectedParts.getIn(['wings','description'])}</div>
+                                <div><b>{selectedParts.get('wings').name}</b></div>
+                                <div>{selectedParts.get('wings').description}</div>
                             </Col>
                         </Row>
                     </div>
@@ -42,11 +42,11 @@ class DiyChoice extends Component{
                     <div className="category-content">
                         <Row>
                             <Col md="3" xs="4" sm="5">
-                                <img src={selectedParts.getIn(['frame','img'])} width="100%" alt={selectedParts.getIn(['frame','name'])}/>
+                                <img src={selectedParts.get('frame').image} width="100%" alt={selectedParts.get('frame').name}/>
                             </Col>
                             <Col>
-                                <div><b>{selectedParts.getIn(['frame','name'])}</b></div>
-                                <div>{selectedParts.getIn(['frame','description'])}</div>
+                                <div><b>{selectedParts.get('frame').name}</b></div>
+                                <div>{selectedParts.get('frame').description}</div>
                             </Col>
                         </Row>
                     </div>
@@ -54,11 +54,11 @@ class DiyChoice extends Component{
                     <div className="category-content">
                         <Row>
                             <Col md="3" xs="4" sm="5">
-                                <img src={selectedParts.getIn(['controlBoard','img'])} width="100%" alt= {selectedParts.getIn(['controlBoard','name'])}/>
+                                <img src={selectedParts.get('controlBoard').image} width="100%" alt= {selectedParts.get('controlBoard').name}/>
                             </Col>
                             <Col>
-                                <div><b>{selectedParts.getIn(['controlBoard','name'])}</b></div>
-                                <div>{selectedParts.getIn(['controlBoard','description'])}</div>
+                                <div><b>{selectedParts.get('controlBoard').name}</b></div>
+                                <div>{selectedParts.get('controlBoard').description}</div>
                             </Col>
                         </Row>
                     </div>
@@ -66,11 +66,11 @@ class DiyChoice extends Component{
                     <div className="category-content">
                         <Row>
                             <Col md="3" xs="4" sm="5">
-                                <img src={selectedParts.getIn(['esc','img'])} width="100%" alt={selectedParts.getIn(['esc','name'])}/>
+                                <img src={selectedParts.get('esc').image} width="100%" alt={selectedParts.get('esc').name}/>
                             </Col>
                             <Col>
-                                <div><b>{selectedParts.getIn(['esc','name'])}</b></div>
-                                <div>{selectedParts.getIn(['esc','description'])}</div>
+                                <div><b>{selectedParts.get('esc').name}</b></div>
+                                <div>{selectedParts.get('esc').description}</div>
                             </Col>
                         </Row>
                     </div>
@@ -78,11 +78,11 @@ class DiyChoice extends Component{
                     <div className="category-content">
                         <Row>
                             <Col md="3" xs="4" sm="5">
-                                <img src={selectedParts.getIn(['battery','img'])}  width="100%" alt={selectedParts.getIn(['battery','name'])}/>
+                                <img src={selectedParts.get('battery').image}  width="100%" alt={selectedParts.get('battery').name}/>
                             </Col>
                             <Col>
-                                <div><b>{selectedParts.getIn(['battery','name'])}</b></div>
-                                <div>{selectedParts.getIn(['battery','description'])}</div>
+                                <div><b>{selectedParts.get('battery').name}</b></div>
+                                <div>{selectedParts.get('battery').description}</div>
                             </Col>
                         </Row>
                     </div>
@@ -90,11 +90,11 @@ class DiyChoice extends Component{
                     <div className="category-content">
                         <Row>
                             <Col md="3" xs="4" sm="5">
-                                <img src={selectedParts.getIn(['antenna','img'])}  width="100%" alt={selectedParts.getIn(['antenna','name'])}/>
+                                <img src={selectedParts.get('antenna').image}  width="100%" alt={selectedParts.get('antenna').name}/>
                             </Col>
                             <Col>
-                                <div><b>{selectedParts.getIn(['antenna','name'])}</b></div>
-                                <div>{selectedParts.getIn(['antenna','description'])}</div>
+                                <div><b>{selectedParts.get('antenna').name}</b></div>
+                                <div>{selectedParts.get('antenna').description}</div>
                             </Col>
                         </Row>
                     </div>

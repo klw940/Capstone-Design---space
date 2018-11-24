@@ -4,7 +4,7 @@ import DiyChoice from './DiyChoice';
 import DiyModel from './DiyModel';
 import DiyStep from './DiyStep'
 import axios from "axios";
-import { Map, List } from 'immutable';
+import { Map, List, Record } from 'immutable';
 
 import {
     Container,
@@ -12,11 +12,28 @@ import {
     Row,
     } from 'reactstrap'
 
+const Parts = Record({
+    name: '',
+    image: '',
+    price: '',
+    weight: '',
+    long_length: '',
+    short_length: '',
+    store: '',
+    description: '',
+    part: '',
+    thrust: '',
+    HOU: '',
+    rating: '',
+    frameMaterial: '',
+    wingMaterial: '',
+});
+
 class Diy extends Component{
     state = {
         ServerAddr: "http://ec2-52-32-190-25.us-west-2.compute.amazonaws.com:3001",
         info: List([
-            Map({
+            Parts({
               name: '',
               image: '',
               price: '',
@@ -34,7 +51,7 @@ class Diy extends Component{
             }),
         ]),
         selectedParts: Map({
-            motor: Map({
+            motor: Parts({
                 name: '',
                 image: '',
                 price: '',
@@ -50,7 +67,7 @@ class Diy extends Component{
                 frameMaterial: '',
                 wingMaterial: '',
             }),
-            wings: Map({
+            wings: Parts({
                 name: '',
                 image: '',
                 price: '',
@@ -66,7 +83,7 @@ class Diy extends Component{
                 frameMaterial: '',
                 wingMaterial: '',
             }),
-            frame: Map({
+            frame: Parts({
                 name: '',
                 image: '',
                 price: '',
@@ -82,7 +99,7 @@ class Diy extends Component{
                 frameMaterial: '',
                 wingMaterial: '',
             }),
-            controlBoard: Map({
+            controlBoard: Parts({
                 name: '',
                 image: '',
                 price: '',
@@ -98,7 +115,7 @@ class Diy extends Component{
                 frameMaterial: '',
                 wingMaterial: '',
             }),
-            esc: Map({
+            esc: Parts({
                 name: '',
                 image: '',
                 price: '',
@@ -114,7 +131,7 @@ class Diy extends Component{
                 frameMaterial: '',
                 wingMaterial: '',
             }),
-            battery: Map({
+            battery: Parts({
                 name: '',
                 image: '',
                 price: '',
@@ -130,7 +147,7 @@ class Diy extends Component{
                 frameMaterial: '',
                 wingMaterial: '',
             }),
-            antenna: Map({
+            antenna: Parts({
                 name: '',
                 image: '',
                 price: '',
@@ -149,53 +166,96 @@ class Diy extends Component{
         }),
     }
 
-    categoryInput = (input) => {
-        this.setState({
-            category: input
-        });
-    }
-
     selectParts = (select, input) => {
-        const { data } = this.state;
-        console.log(input);
+        const { selectedParts } = this.state;
+
         switch(select){
             case 1:
                 this.setState({
-                    selectedParts: data.set('motor', input)
+                    selectedParts: selectedParts.set('motor', input)
                 })
                 break;
             case 2:
                 this.setState({
-                    selectedParts: data.set('wings', input)
+                    selectedParts: selectedParts.set('wings', input)
                 })
                 break;
             case 3:
                 this.setState({
-                    selectedParts: data.set('frame', input)
+                        selectedParts: selectedParts.set('frame', input)
                 })
                 break;
             case 4:
                 this.setState({
-                    selectedParts: data.set('controlBoard', input)
+                    selectedParts: selectedParts.set('controlBoard', input)
                 })
                 break;
             case 5:
                 this.setState({
-                    selectedParts: data.set('esc', input)
+                    selectedParts: selectedParts.set('esc', input)
                 })
                 break;
             case 6:
                 this.setState({
-                    selectedParts: data.set('battery', input)
+                    selectedParts: selectedParts.set('battery', input)
                 })
                 break;
             case 7:
                 this.setState({
-                    selectedParts: data.set('antenna', input)
+                    selectedParts: selectedParts.set('antenna', input)
                 })
                 break;
         }
     }
+
+    refreshPage(){
+        window.location.reload();
+    }
+
+    componentDidMount() {
+
+        axios.get(this.state.ServerAddr+'/drone')
+            .then( res => {this.setState({
+                info: res.data
+                })
+            })
+            .catch( res => {
+                console.log("error");
+            });
+    }
+
+    render(){
+        return(
+            <Container>
+                <Row>
+                    <Col align="center">
+                        <DiyModel/>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <DiyStep
+                            info = {this.state.info}
+                            selectParts = {this.selectParts}
+                        />
+                    </Col>
+                        <DiyChoice
+                            selectedParts = {this.state.selectedParts}
+                        />
+                    <Col>
+                    </Col>
+                </Row>
+                <Row>
+                    < button onClick = {this.refreshPage} >다시하기</button>
+                </Row>
+            </Container>
+        );
+    }
+}
+
+export default Diy;
+/*
+*
     selectWings = (input) => {
         const { data } = this.state
 
@@ -239,54 +299,6 @@ class Diy extends Component{
         })
     }
 
-    refreshPage(){
-        window.location.reload();
-    }
-
-    componentDidMount() {
-        axios.get(this.state.ServerAddr+'/drone')
-            .then( res => {this.setState({
-                info: res.data
-                })
-            })
-            .catch( res => {
-                console.log("error");
-            });
-    }
-
-    render(){
-        return(
-            <Container>
-                <Row>
-                    <Col align="center">
-                        <DiyModel/>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <DiyStep
-                            data = {this.state.info}
-                            selectParts = {this.selectParts}
-                        />
-                    </Col>
-                    <Col>
-                        <DiyChoice
-                            inputCategory={this.categoryInput}
-                            selectedParts= {this.state.selectedParts}
-                        />
-                    </Col>
-                </Row>
-                <Row>
-                    < button onClick = {this.refreshPage} >다시하기</button>
-                </Row>
-            </Container>
-        );
-    }
-}
-
-export default Diy;
-/*
-*
                 <Row>
                     <Col>
                         <DiyList

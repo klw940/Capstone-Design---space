@@ -6,13 +6,6 @@ import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 class DiyList extends Component{
     static defaultProps = {
         data: [],
-        selectMotor: () => console.warn('selectMotor not defined'),
-        selectWings: () => console.warn('selectWings not defined'),
-        selectFrame: () => console.warn(' selectFrame not defined'),
-        selectControlBoard: () => console.warn('selectControlBoard not defined'),
-        selectEsc: () => console.warn('selectEsc not defined'),
-        selectBattery: () => console.warn('selectBattery not defined'),
-        selectAntenna: () => console.warn('selectAntenna not defined'),
     }
 
     constructor(){
@@ -40,94 +33,20 @@ class DiyList extends Component{
 
     render(){
         const { category,
-                data,
+                info,
                 selectParts,
-          //      selectWings,
-            //    selectFrame,
-              //  selectControlBoard,
-              //  selectEsc,
-              //  selectBattery,
-               // selectAntenna,
         } = this.props;
 
-        const setList = (part) => {
-            data.filter(info => info.part === part).map(
+        const list = info.filter(info => info.part === category).map(
                 info => (<DiyInfo
                     key={info.id}
                     info={info}
                     selectParts={selectParts}
                 />)
             )
-        }
-
-        const motorList  = data.filter(info => info.part === 1).map(
-            info => (<DiyInfo
-                key={info.id}
-                info={info}
-                selectParts={selectParts}
-            />)
-        );
-        const wingsList = data.filter(info => info.part === 2).map(
-            info => (
-                <DiyInfo
-                    key={info.id}
-                    info={info}
-                    selectParts={selectParts}
-                />)
-        );
-        const frameList = data.filter(info => info.part === 3).map(
-            info => (
-                <DiyInfo
-                    key={info.id}
-                    info={info}
-                    selectParts={selectParts}
-                />)
-        );
-        const controlBoardList = data.filter(info => info.part === 4).map(
-            info => (
-                <DiyInfo
-                    key={info.id}
-                    info={info}
-                    selectParts={selectParts}
-                />)
-        );
-        const escList = data.filter(info => info.part === 5).map(
-            info => (
-                <DiyInfo
-                    key={info.id}
-                    info={info}
-                    selectParts={selectParts}
-                />)
-        );
-        const batteryList = data.filter(info => info.part === 6).map(
-            info => (
-                <DiyInfo
-                    key={info.id}
-                    info={info}
-                    selectParts={selectParts}
-                />)
-        );
-        const antennaList = data.filter(info => info.part === 7).map(
-            info => (
-                <DiyInfo
-                    key={info.id}
-                    info={info}
-                    selectParts={selectParts}
-                />)
-        );
         return(
             <div>
-                {
-                    (() => {
-                        if(category === 1)return (<div>{motorList}</div>);
-                        else if(category === 2) return (<div>{wingsList}</div>);
-                        else if(category === 3) return (<div>{frameList}</div>);
-                        else if(category === 4) return (<div>{controlBoardList}}</div>);
-                        else if(category === 5) return (<div>{escList}</div>);
-                        else if(category === 6) return (<div>{batteryList}</div>);
-                        else if(category === 7) return (<div>{antennaList}</div>);
-                    })()
-                }
+                {list}
             </div>
         );
     }

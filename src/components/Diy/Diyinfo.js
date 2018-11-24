@@ -9,22 +9,23 @@ class DiyInfo extends Component {
     newWindow = () => {
         window.open('http://localhost:3000/', 'sharer', 'toolbar=0,status=0,width=548,height=325');
     }
+
     selectPart = () => {
         const { info,
                 selectParts,
                 } = this.props;
         selectParts(info.part, info);
     }
+
     render() {
         const style = {
             border: '1px solid black',
             padding: '8px',
             margin: '8px'
         };
-        const {
-            info,
-        } = this.props;
-        console.log(info);
+
+        const { info } = this.props;
+
         return (
             <div style={style}>
                 <div onClick={this.newWindow}>
