@@ -2,18 +2,27 @@ import React, { Component } from 'react';
 import {
     Row,
     Col,
-    } from 'reactstrap';
+    Button,
+    Collapse,
+    Card,
+    CardBody,
+} from 'reactstrap';
 
 class DiyInfo extends Component {
+    constructor(props) {
+        super(props);
+        this.toggle = this.toggle.bind(this);
+        this.state = { collapse: false };
+    }
 
-    newWindow = () => {
-        window.open('http://localhost:3000/', 'sharer', 'toolbar=0,status=0,width=548,height=325');
+    toggle() {
+        this.setState({ collapse: !this.state.collapse });
     }
 
     selectPart = () => {
         const { info,
-                selectParts,
-                } = this.props;
+            selectParts,
+        } = this.props;
         selectParts(info.part, info);
     }
 
@@ -27,20 +36,39 @@ class DiyInfo extends Component {
         const { info } = this.props;
 
         return (
-            <div style={style}>
-                <div onClick={this.newWindow}>
+            <Card style={style}>
+                <div onClick={this.toggle}>
                     <Row>
-                        <Col md="3" xs="4" sm="5">
-                    <img src={info.image} width="100%" alt={info.name}/>
+                        <Col xs="4">
+                            <img src={info.image} width="100%"/>
                         </Col>
                         <Col>
                             <div><b>{info.name}</b>  {info.price}원</div>
                             <div>{info.description}</div>
+
                         </Col>
                     </Row>
+                    <Collapse isOpen={this.state.collapse}>
+                        <Card>
+                            <CardBody>
+                                <h3>{info.name}</h3>
+                                가격: {info.price}
+                                무게: {info.weight}
+                                재고량: {info.store}
+                                {info.long_length}
+                                {info.short_length}
+                                {info.thrust}
+                                {info.HOU}
+                                {info.rating}
+                                {info.frameMaterial}
+                                {info.wingMaterial}
+                                {info.description}
+                            </CardBody>
+                        </Card>
+                    </Collapse>
                 </div>
-                <button onClick={this.selectPart}>선택</button>
-            </div>
+                <Button onClick={this.selectPart}>선택</Button>
+            </Card>
         );
     }
 }
