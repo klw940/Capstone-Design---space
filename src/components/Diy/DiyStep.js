@@ -1,20 +1,23 @@
 import React, {Component} from 'react';
 import {Step, Steps, Wizard} from 'react-albus';
 import DiyList from './DiyList';
-import {Button, Collapse, } from 'reactstrap'
+import { Collapse, } from 'reactstrap'
+import {
+    Button,
+} from 'semantic-ui-react';
 import {Link} from "react-router-dom";
 
 class DiyStep extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            motor: 1,
+            frame: 1,
             wings: 2,
-            frame: 3,
-            cb: 4,
-            esc: 5,
-            battery: 6,
-            antenna: 7,
+            cb: 3,
+            esc: 4,
+            battery: 5,
+            antenna: 6,
+            motor: 7,
             step1Show: false,
             step2Show: false,
             step3Show: false,
@@ -23,12 +26,6 @@ class DiyStep extends Component{
             step6Show: false,
             step7Show: false,
         };
-    }
-
-    categoryStep = (e) => {
-        this.setState({
-            category: e.target.value
-        });
     }
 
     nextShow1 = () => {

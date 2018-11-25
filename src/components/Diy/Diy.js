@@ -6,11 +6,9 @@ import axios from "axios";
 import { Map, List, Record} from 'immutable';
 
 import {
-    Container,
-    Col,
-    Row,
+    Grid,
     Button,
-    } from 'reactstrap'
+} from 'semantic-ui-react';
 
 const Parts = Record({
     name: '',
@@ -187,7 +185,7 @@ class Diy extends Component{
                 break;
             case 3:
                 this.setState({
-                        selectedParts: selectedParts.set('frame', input)
+                    selectedParts: selectedParts.set('frame', input)
                 })
                 this.inputSelectParts(input);
                 break;
@@ -232,7 +230,7 @@ class Diy extends Component{
         axios.get(this.state.ServerAddr+'/drone')
             .then( res => {this.setState({
                 info: res.data
-                })
+            })
             })
             .catch( res => {
                 console.log("error");
@@ -241,31 +239,27 @@ class Diy extends Component{
 
     render(){
         return(
-            <Container>
-                <Row>
-                    <Col align="center">
-                        <DiyModel/>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
+            <Grid>
+                <Grid.Column>
+                    <DiyModel/>
+                </Grid.Column>
+                <Grid.Row>
+                    <Grid.Column width="10">
                         <DiyStep
                             info = {this.state.info}
                             selectParts = {this.selectParts}
                         />
-                    </Col>
-                    <Col xs="3">
+                    </Grid.Column>
+                    <Grid.Column width="6">
                         <DiyChoice
                             selectedParts = {this.state.selectedParts}
                         />
-                    </Col>
-                </Row>
-                <Row>
-                    <Col align="center">
-                        <Button onClick = {this.refreshPage} >다시하기</Button>
-                    </Col>
-                </Row>
-            </Container>
+                    </Grid.Column>
+                </Grid.Row>
+                <Grid.Column>
+                    <Button onClick = {this.refreshPage} >다시하기</Button>
+                </Grid.Column>
+            </Grid>
         );
     }
 }

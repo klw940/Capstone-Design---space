@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
+import { Collapse, } from 'reactstrap'
 import {
-    Row,
-    Col,
+    Item,
     Button,
-    Collapse,
-    Card,
-    CardBody,
-} from 'reactstrap';
+} from 'semantic-ui-react';
 
 class DiyInfo extends Component {
     constructor(props) {
@@ -48,41 +45,37 @@ class DiyInfo extends Component {
         const { info } = this.props;
 
         return (
-            <div style={style}>
-                <Card>
-                    <div style={select} onClick={this.toggle}>
-                        <Row>
-                            <Col xs="4">
-                                <img src={info.image} width="50%"/>
-                            </Col>
-                            <Col>
-                                <div><b>{info.name}</b>  {info.price}원</div>
-                                <div>{info.description}</div>
-                            </Col>
-                        </Row>
-                    </div>
-                        <Collapse isOpen={this.state.collapse}>
-                            <Card>
-                                <CardBody>
-                                    <h3>{info.name}</h3>
-                                    가격: {info.price}
-                                    무게: {info.weight}
-                                    재고량: {info.store}
-                                    {info.long_length}
-                                    {info.short_length}
-                                    {info.thrust}
-                                    {info.HOU}
-                                    {info.rating}
-                                    {info.frameMaterial}
-                                    {info.wingMaterial}
-                                    {info.description}
-                                </CardBody>
-                            </Card>
-                        </Collapse>
-                </Card>
-                <Button onClick={this.selectPart}>선택</Button>
-                <Button onClick={this.openInNewTab}>리뷰</Button>
-            </div>
+            <Item.Group style={style}>
+                <Item style={select} onClick={this.toggle}>
+                    <Item.Image  src={info.image} size='tiny'/>
+                    <Item.Content>
+                        <Item.Header><b>{info.name}</b> </Item.Header>
+                        <Item.Meta content={info.price}/>
+                        <Item.Description>{info.description}
+                            <Collapse isOpen={this.state.collapse}>
+                                가격: {info.price}
+                                무게: {info.weight}
+                                재고량: {info.store}
+                                길이 : {info.long_length} / {info.short_length}
+                                {
+                                    ( () =>{
+                                        if(info.part ==='7') return (<div>추력 : {info.thrust}</div>);
+                                        else if(info.part ==='1') return (<div>프레임재질 : {info.frameMaterial}</div>);
+                                        else if(info.part ==='2') return (<div>날개재질 : {info.wingMaterial}</div>);
+                                        else if(info.part ==='5') return (<div>사용시간 : {info.HOU}</div>);
+                                        else if(info.part ==='6') return (<div>수신거리 : {info.rating}</div>);
+                                    } )()
+                                }
+                                상세설명 : {info.description}
+                            </Collapse>
+                        </Item.Description>
+                        <Item.Extra>
+                            <Button onClick={this.selectPart}>선택</Button>
+                            <Button onClick={this.openInNewTab}>리뷰</Button>
+                        </Item.Extra>
+                    </Item.Content>
+                </Item>
+            </Item.Group>
         );
     }
 }

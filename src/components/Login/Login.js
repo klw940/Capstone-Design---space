@@ -1,65 +1,81 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+//Container, Row, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import login_image from '../../image/custom.png';
+import {Link} from "react-router-dom";
 
 class Login extends Component{
     constructor(props){
         super(props);
         this.state = {
-            ServerAddr: "http://ec2-52-32-190-25.us-west-2.compute.amazonaws.com:3001",
-            checkId:'',
-            checkPassword:'',
-            data: [
-                {
-                    id:'',
-                    password:'',
-                    email: '',
-                    role: '',}
-            ],
-        };
+            id:'',
+            password:''
+        }
     }
 
-    componentDidMount() {
-        axios.get(this.state.ServerAddr+'/member')
-            .then( res => {this.setState({
-                data: res.data
-                })
+    login = (e) => {
+        e.preventDefault();
+        console.log(this.state);
+        let ServerAddr = 'http://ec2-52-32-190-25.us-west-2.compute.amazonaws.com:3001';
+        axios.post(ServerAddr+'/login',this.state)
+            .then( res => {
+                console.log(res.data.success);
+                if(res.data.success){
+                    sessionStorage.setItem('dtoken',res.data.token);
+                    console.log(sessionStorage.getItem('dtoken'));
+                    /*여기에 로그인 성공시메인으로 자동  화면 전환 해야하는 코드 추가 할 것*/
+                }
             })
-            .catch( res => { console.log("error");
+            .catch( res => {
+                console.log(res);
             });
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault();
+    handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         });
-        this.setState({
-            checkId: '',
-            checkPassword: ''
-        })
     }
-    /*
-    check = () =>{
-        if(!this.state.Id.filter( id => {})) {
-          //
-        };
-    }*/
+
     render(){
-        console.log(this.state.data);
         return(
-            <div>
-            <Form inline onSubmit={this.handleSubmit}>
-                <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                    <Label for="ID" className="mr-sm-2"><h2>ID</h2></Label>
-                    <Input type="text" name="checkId"/>
-                </FormGroup>
-                <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                    <Label for="Password" className="mr-sm-2"><h2>Password</h2></Label>
-                    <Input type="password" name="checkPassword"/>
-                </FormGroup>
-                <Button type = "submit">Sign in</Button>
-            </Form>
+            <div className='login-form'>
+                <style>{`
+      body > div,
+      body > div > div,
+      body > div > div > div.login-form {
+        height: 100%;
+      }
+    `}</style>
+                <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
+                    <Grid.Column style={{ maxWidth: 450 }}>
+                        <Header as='h2' color='black' textAlign='center'>
+                            <Image src={login_image} /> 네 맘대로 드론
+                        </Header>
+                        <Form size='large' onSubmit={this.login}>
+                            <Segment stacked>
+                                <Form.Input fluid icon='user' name="id" iconPosition='left' placeholder='ID' onChange={this.handleChange}/>
+                                <Form.Input
+                                    fluid
+                                    name="password"
+                                    icon='lock'
+                                    iconPosition='left'
+                                    placeholder='Password'
+                                    type='password'
+                                    onChange={this.handleChange}
+                                />
+
+                                <Button color='black' fluid size='large'>
+                                    Login
+                                </Button>
+                            </Segment>
+                        </Form>
+                        <Message>
+                            처음이신가요?<br/><a href='/sign-up'>Sign Up</a>
+                        </Message>
+                    </Grid.Column>
+                </Grid>
             </div>
         );
     }

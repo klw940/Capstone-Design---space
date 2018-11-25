@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import custom_image from '../../image/custom.png';
-
+import{
+    Image,
+} from 'semantic-ui-react';
 class DiyModel extends Component{
     render(){
         return(
             <div>
-                <img src={custom_image} alt="home_image" width="30%"/>
+                <Image src={custom_image} size='medium' rounded centered/>
             </div>
         );
     }
