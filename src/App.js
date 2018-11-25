@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
-//import DesktopContainer from './components/DesktopContainer';
+import DesktopContainer from './components/DesktopContainer';
 import Content from './components/Content';
-import Menu from './components/Menu'
+//import Menu from './components/Menu'
 
 class App extends Component {
     constructor(){
@@ -10,8 +10,7 @@ class App extends Component {
     render(){
         return (
             <div>
-                <Menu/>
-                <Content/>
+                <DesktopContainer/>
             </div>
         );
     }

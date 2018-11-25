@@ -46,6 +46,7 @@ class DiyList extends Component{
                     })()
                 }
                 {list}
+                <div align="center">
                 <Pagination
                     defaultActivePage={1}
                     firstItem={{ content: <Icon name='angle double left' />, icon: true }}
@@ -56,6 +57,7 @@ class DiyList extends Component{
                     totalPages={Math.ceil(info.filter(info => info.part === category).length/5)}
                     style = {{marginLeft: 'auto', marginRight: 'auto'}}
                 />
+                </div>
             </div>
 
         );

@@ -8,6 +8,9 @@ import { Map, List, Record} from 'immutable';
 import {
     Grid,
     Button,
+    Segment,
+    Divider,
+    Container
 } from 'semantic-ui-react';
 
 const Parts = Record({
@@ -173,52 +176,48 @@ class Diy extends Component{
         switch(select){
             case 1:
                 this.setState({
-                    selectedParts: selectedParts.set('motor', input)
+                    selectedParts: selectedParts.set('frame', input)
                 })
-                this.inputSelectParts(input);
                 break;
             case 2:
                 this.setState({
                     selectedParts: selectedParts.set('wings', input)
                 })
-                this.inputSelectParts(input);
                 break;
             case 3:
                 this.setState({
-                    selectedParts: selectedParts.set('frame', input)
+                    selectedParts: selectedParts.set('controlBoard', input)
                 })
-                this.inputSelectParts(input);
                 break;
             case 4:
                 this.setState({
-                    selectedParts: selectedParts.set('controlBoard', input)
+                    selectedParts: selectedParts.set('esc', input)
                 })
-                this.inputSelectParts(input);
                 break;
             case 5:
                 this.setState({
-                    selectedParts: selectedParts.set('esc', input)
+                    selectedParts: selectedParts.set('battery', input)
                 })
-                this.inputSelectParts(input);
                 break;
             case 6:
                 this.setState({
-                    selectedParts: selectedParts.set('battery', input)
+                    selectedParts: selectedParts.set('antenna', input)
                 })
-                this.inputSelectParts(input);
                 break;
             case 7:
                 this.setState({
-                    selectedParts: selectedParts.set('antenna', input)
+                    selectedParts: selectedParts.set('motor', input)
                 })
-                this.inputSelectParts(input);
                 break;
         }
     }
 
-    inputSelectParts = (input) => {
+    postSelectParts = (input) => {
         axios.post(this.state.ServerAddr+'/drone', input)
-            .then( res => { console.log(res) })
+            .then( res => { this.setState({
+                info: res.data
+            })
+            })
             .catch( res => { console.log(res) });
     }
 
@@ -266,27 +265,35 @@ class Diy extends Component{
 
     render(){
         return(
-            <Grid>
-                <Grid.Column>
+                <Container>
+                    <Grid>
+                        <Grid.Row Columns={1}>
+                <Grid.Column width={16}>
                     <DiyModel/>
                 </Grid.Column>
-                <Grid.Row>
-                    <Grid.Column width="10">
+                        </Grid.Row>
+                <Grid.Row Columns={2}>
+                    <Grid.Column width = "10">
                         <DiyStep
                             info = {this.state.info}
                             selectParts = {this.selectParts}
+                            selectedParts = {this.state.selectedParts}
+                            postSelectParts = {this.postSelectParts}
                         />
                     </Grid.Column>
-                    <Grid.Column width="6">
+                    <Grid.Column width = "6">
                         <DiyChoice
                             selectedParts = {this.state.selectedParts}
                         />
                     </Grid.Column>
                 </Grid.Row>
-                <Grid.Column>
+                        <Grid.Row Columns={1}>
+                <Grid.Column >
                     <Button onClick = {this.refreshPage} >다시하기</Button>
                 </Grid.Column>
-            </Grid>
+                        </Grid.Row>
+                    </Grid>
+                </Container>
         );
     }
 }

@@ -23,10 +23,10 @@ const Content = () =>{
             <Route path="/diy" component={Diy}/>
             <Route path="/buy" component={Buy}/>
             <Route path="/sale" component={Sale}/>
-            <Route path="/qna-board" component={QnABoard}/>
-            <Route path="/free-board" component={FreeBoard}/>
+            <Route path="/qnaBoard" component={QnABoard}/>
+            <Route path="/freeBoard" component={FreeBoard}/>
             <Route path="/login" component={Login}/>
-            <Route path="/sign-up" component={SignUp}/>
+            <Route path="/sign_up" component={SignUp}/>
             <Route path="/pay" component={Pay}/>
             <Route path="/antenna_sale" component={antenna_sale}/>
             <Route path="/battery_sale" component={battery_sale}/>
