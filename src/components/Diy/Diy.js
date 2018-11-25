@@ -236,6 +236,33 @@ class Diy extends Component{
                 console.log("error");
             });
     }
+    nextShow1 = () => {
+        this.setState({ step1Show: true});
+    }
+
+    nextShow2 = () => {
+        this.setState({ step2Show: true });
+    }
+
+    nextShow3 = () => {
+        this.setState({ step3Show: true });
+    }
+
+    nextShow4 = () => {
+        this.setState({ step4Show: true });
+    }
+
+    nextShow5 = () => {
+        this.setState({ step5Show: true});
+    }
+
+    nextShow6 = () => {
+        this.setState({ step6Show: true});
+    }
+
+    nextShow7 = () => {
+        this.setState({ step7Show: true});
+    }
 
     render(){
         return(
