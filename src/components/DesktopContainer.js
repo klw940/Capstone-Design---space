@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Content from './Content';
 import {
@@ -15,50 +14,8 @@ import {
     Segment,
     Sidebar,
     Visibility,
-} from 'semantic-ui-react'
-
-const HomepageHeading = ({ mobile }) => (
-    <Container text>
-        <Header
-            as='h1'
-            content='DiY Drone'
-            inverted
-            style={{
-                fontSize: mobile ? '2em' : '4em',
-                fontWeight: 'normal',
-                marginBottom: 0,
-                marginTop: mobile ? '1.5em' : '3em',
-            }}
-        />
-        <Header
-            as='h4'
-            content='SPACE'
-            style={{
-                fontSize: mobile ? '1em' : '1.2em',
-                fontWeight: 'normal',
-                marginTop: mobile ? '0.5em' : '1.5em',
-            }}
-        />
-        <Header
-            as='h2'
-            content='자신만의 드론을 만들어 보세요'
-            inverted
-            style={{
-                fontSize: mobile ? '1.5em' : '1.7em',
-                fontWeight: 'normal',
-                marginTop: mobile ? '0.5em' : '1.5em',
-            }}
-        />
-        <Button primary size='huge'>
-            자신만의 드론 만들기
-            <Icon name='right arrow' />
-        </Button>
-    </Container>
-)
-
-HomepageHeading.propTypes = {
-    mobile: PropTypes.bool,
-}
+} from 'semantic-ui-react';
+import {Link} from "react-router-dom";
 
 class DesktopContainer extends Component {
     constructor(props) {
@@ -70,7 +27,6 @@ class DesktopContainer extends Component {
     showFixedMenu = () => this.setState({ fixed: true })
 
     render() {
-        const { children } = this.props
         const { fixed } = this.state
 
         return (
@@ -81,46 +37,46 @@ class DesktopContainer extends Component {
                     onBottomPassedReverse={this.hideFixedMenu}
                 >
                     <Segment
-                        inverted
-                        textAlign='center'
-                        style={{ minHeight: 700, padding: '1em 0em' }}
-                        vertical
-                    >
+                    inverted
+                    textAlign='center'
+                    vertical
+                >
                         <Menu
                             fixed={fixed ? 'top' : null}
-                            inverted={!fixed}
+                            inverted
                             pointing={!fixed}
                             secondary={!fixed}
                             size='large'
                         >
                             <Container>
-                                <Menu.Item as='a' active>
+                                <Menu.Item as={Link} to='/' active>
                                     DiY Drone
                                 </Menu.Item>
-                                <Menu.Item as='a'>드론견적</Menu.Item>
-                                <Menu.Item as='a'>부품구매</Menu.Item>
-                                <Menu.Item as='a'>부품판매</Menu.Item>
-                                <Menu.Item as='a'>자유게시판</Menu.Item>
-                                <Menu.Item as='a'>QnA게시판</Menu.Item>
+                                <Menu.Item as={Link} to='/diy'>드론견적</Menu.Item>
+                                <Menu.Item as={Link} to='/buy'>부품구매</Menu.Item>
+                                <Menu.Item as={Link} to='/sale'>부품판매</Menu.Item>
+                                <Menu.Item as={Link} to='/freeBoard'>자유게시판</Menu.Item>
+                                <Menu.Item as={Link} to='/qnaBoard'>QnA게시판</Menu.Item>
                                 <Menu.Item position='right'>
-                                    <Button as='a' inverted={!fixed}>
+                                    <Button as={Link} to='/login' inverted={!fixed}>
                                         Log in
                                     </Button>
-                                    <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
+                                    <Button as={Link} to='/sign_up' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
                                         Sign Up
                                     </Button>
                                 </Menu.Item>
                             </Container>
                         </Menu>
-                        <HomepageHeading />
                     </Segment>
+                    <br/>
+                        <Content />
                 </Visibility>
-                {children}
             </Responsive>
         )
     }
 }
-
+export default DesktopContainer;
+/*
 DesktopContainer.propTypes = {
     children: PropTypes.node,
 }
@@ -180,7 +136,7 @@ class MobileContainer extends Component {
                                     </Menu.Item>
                                 </Menu>
                             </Container>
-                            <HomepageHeading mobile />
+                            <Content />
                         </Segment>
 
                         {children}
@@ -191,10 +147,10 @@ class MobileContainer extends Component {
     }
 }
 
+c
 MobileContainer.propTypes = {
     children: PropTypes.node,
 }
-
 const ResponsiveContainer = ({ children }) => (
     <div>
         <DesktopContainer>{children}</DesktopContainer>
@@ -204,9 +160,7 @@ const ResponsiveContainer = ({ children }) => (
 
 ResponsiveContainer.propTypes = {
     children: PropTypes.node,
-}
-
-const HomepageLayout = () => (
+}onst HomepageLayout = () => (
     <ResponsiveContainer>
         <Segment style={{ padding: '8em 0em' }} vertical>
             <Grid container stackable verticalAlign='middle'>
@@ -329,4 +283,4 @@ const HomepageLayout = () => (
         </Segment>
     </ResponsiveContainer>
 )
-export default HomepageLayout;
+export default HomepageLayout;*/

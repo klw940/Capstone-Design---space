@@ -57,8 +57,7 @@ class DiyStep extends Component{
     }
 
     render(){
-
-        const { info, selectParts } = this.props;
+        const { info, selectParts, postSelectParts, selectedParts} = this.props;
         return(
             <Wizard align="center">
                 <Steps>
@@ -82,7 +81,7 @@ class DiyStep extends Component{
                                     show = {this.nextShow1}
                                 />
                                 <Collapse isOpen={this.state.step1Show}>
-                                    <Button onClick={next}>Next</Button>
+                                    <Button onClick={() => {console.log(selectedParts.get('frame')); next(); postSelectParts(selectedParts.get('frame'))}}>Next</Button>
                                 </Collapse>
                             </div>
                         )}
@@ -98,7 +97,7 @@ class DiyStep extends Component{
                                     show = {this.nextShow2}
                                 />
                                 <Collapse isOpen={this.state.step2Show}>
-                                    <Button onClick={next}>Next</Button>
+                                    <Button onClick={() => {next(); postSelectParts({selectedParts}.wings)}}>Next</Button>
                                 </Collapse>
                             </div>
                         )}
@@ -115,7 +114,7 @@ class DiyStep extends Component{
                                         show = {this.nextShow3}
                                     />
                                     <Collapse isOpen={this.state.step3Show}>
-                                        <Button onClick={next}>Next</Button>
+                                        <Button onClick={() => {next(); postSelectParts({selectedParts}.controlBoard)}}>Next</Button>
                                     </Collapse>
                                 </div>
                             </div>
@@ -132,7 +131,7 @@ class DiyStep extends Component{
                                     show = {this.nextShow4}
                                 />
                                 <Collapse isOpen={this.state.step4Show}>
-                                    <Button onClick={next}>Next</Button>
+                                    <Button onClick={() => {next(); postSelectParts({selectedParts}.esc)}}>Next</Button>
                                 </Collapse>
                             </div>
                         )}
@@ -148,7 +147,7 @@ class DiyStep extends Component{
                                     show = {this.nextShow5}
                                 />
                                 <Collapse isOpen={this.state.step5Show}>
-                                    <Button onClick={next}>Next</Button>
+                                    <Button onClick={() => {next(); postSelectParts({selectedParts}.battery)}}>Next</Button>
                                 </Collapse>
                             </div>
                         )}
@@ -164,14 +163,14 @@ class DiyStep extends Component{
                                     show = {this.nextShow6}
                                 />
                                 <Collapse isOpen={this.state.step6Show}>
-                                    <Button onClick={next}>Next</Button>
+                                    <Button onClick={() => {next(); postSelectParts({selectedParts}.antenna)}}>Next</Button>
                                 </Collapse>
                             </div>
                         )}
                     />
                     <Step
                         id="step7"
-                        render={({ }) => (
+                        render={({ next }) => (
                             <div>
                                 <DiyList
                                     category = {this.state.motor}
@@ -181,7 +180,7 @@ class DiyStep extends Component{
                                 />
                                 <Collapse isOpen={this.state.step7Show}>
                                     <Link to="/pay">
-                                        <Button>선택 완료</Button>
+                                        <Button onClick={() => {postSelectParts({selectedParts}.motor)}}>선택 완료</Button>
                                     </Link>
                                 </Collapse>
                             </div>
