@@ -8,6 +8,9 @@ import { Map, List, Record} from 'immutable';
 import {
     Grid,
     Button,
+    Segment,
+    Divider,
+    Container
 } from 'semantic-ui-react';
 
 const Parts = Record({
@@ -183,7 +186,7 @@ class Diy extends Component{
                 break;
             case 3:
                 this.setState({
-                    selectedParts: selectedParts.set('controlBoarad', input)
+                    selectedParts: selectedParts.set('controlBoard', input)
                 })
                 break;
             case 4:
@@ -235,12 +238,15 @@ class Diy extends Component{
 
     render(){
         return(
-            <Grid>
-                <Grid.Column>
+                <Container>
+                    <Grid>
+                        <Grid.Row Columns={1}>
+                <Grid.Column width={16}>
                     <DiyModel/>
                 </Grid.Column>
-                <Grid.Row>
-                    <Grid.Column width="10">
+                        </Grid.Row>
+                <Grid.Row Columns={2}>
+                    <Grid.Column width = "10">
                         <DiyStep
                             info = {this.state.info}
                             selectParts = {this.selectParts}
@@ -248,16 +254,19 @@ class Diy extends Component{
                             postSelectParts = {this.postSelectParts}
                         />
                     </Grid.Column>
-                    <Grid.Column width="6">
+                    <Grid.Column width = "6">
                         <DiyChoice
                             selectedParts = {this.state.selectedParts}
                         />
                     </Grid.Column>
                 </Grid.Row>
-                <Grid.Column>
+                        <Grid.Row Columns={1}>
+                <Grid.Column >
                     <Button onClick = {this.refreshPage} >다시하기</Button>
                 </Grid.Column>
-            </Grid>
+                        </Grid.Row>
+                    </Grid>
+                </Container>
         );
     }
 }

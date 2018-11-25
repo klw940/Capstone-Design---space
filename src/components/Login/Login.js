@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios";
-//Container, Row, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
-import login_image from '../../image/custom.png';
+import login_image from '../../image/drone.png';
 import {Link} from "react-router-dom";
 
 class Login extends Component{
@@ -25,6 +24,7 @@ class Login extends Component{
                     sessionStorage.setItem('dtoken',res.data.token);
                     console.log(sessionStorage.getItem('dtoken'));
                     /*여기에 로그인 성공시메인으로 자동  화면 전환 해야하는 코드 추가 할 것*/
+
                 }
             })
             .catch( res => {
@@ -72,7 +72,7 @@ class Login extends Component{
                             </Segment>
                         </Form>
                         <Message>
-                            처음이신가요?<br/><a href='/sign-up'>Sign Up</a>
+                            처음이신가요?<br/><a href='/sign_up'>Sign Up</a>
                         </Message>
                     </Grid.Column>
                 </Grid>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import custom_image from '../../image/custom.png';
+import custom_image from '../../image/drone.png';
 import{
     Image,
 } from 'semantic-ui-react';

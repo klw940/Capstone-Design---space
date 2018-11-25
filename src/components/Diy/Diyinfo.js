@@ -3,6 +3,7 @@ import { Collapse, } from 'reactstrap'
 import {
     Item,
     Button,
+    Divider,
 } from 'semantic-ui-react';
 
 class DiyInfo extends Component {
@@ -46,27 +47,30 @@ class DiyInfo extends Component {
 
         return (
             <Item.Group style={style}>
-                <Item style={select} onClick={this.toggle}>
+                <Item >
                     <Item.Image  src={info.image} size='tiny'/>
-                    <Item.Content>
-                        <Item.Header><b>{info.name}</b> </Item.Header>
-                        <Item.Meta content={info.price}/>
-                        <Item.Description>{info.description}
+                    <Item.Content >
+                        <Item.Header style={select} onClick={this.toggle}><b>{info.name}</b> </Item.Header>
+                        <Item.Description style={select} onClick={this.toggle}>{info.price}원<br/>{info.description}
+                            <Divider fitted />
                             <Collapse isOpen={this.state.collapse}>
-                                가격: {info.price}
-                                무게: {info.weight}
-                                재고량: {info.store}
-                                길이 : {info.long_length} / {info.short_length}
+                                무게: {info.weight} g
+                                <br/>
+                                재고량: {info.store} 개
+                                <br/>
+                                길이 : {info.long_length} cm / {info.short_length} cm
+                                <br/>
+                                높이 : {info.height} cm
+                                <br/>
                                 {
                                     ( () =>{
-                                        if(info.part ==='7') return (<div>추력 : {info.thrust}</div>);
-                                        else if(info.part ==='1') return (<div>프레임재질 : {info.frameMaterial}</div>);
-                                        else if(info.part ==='2') return (<div>날개재질 : {info.wingMaterial}</div>);
-                                        else if(info.part ==='5') return (<div>사용시간 : {info.HOU}</div>);
-                                        else if(info.part ==='6') return (<div>수신거리 : {info.rating}</div>);
+                                        if(info.part === 7) return (<div>추력 : {info.thrust} g</div>);
+                                        else if(info.part === 1) return (<div>프레임재질 : {info.frameMaterial}</div>);
+                                        else if(info.part === 2) return (<div>날개재질 : {info.wingMaterial}</div>);
+                                        else if(info.part === 5) return (<div>사용시간 : {info.HOU} 분</div>);
+                                        else if(info.part === 6) return (<div>수신거리 : {info.rating} m</div>);
                                     } )()
                                 }
-                                상세설명 : {info.description}
                             </Collapse>
                         </Item.Description>
                         <Item.Extra>

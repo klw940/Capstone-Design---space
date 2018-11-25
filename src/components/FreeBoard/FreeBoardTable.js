@@ -24,7 +24,6 @@ class FreeTableRow extends Component{
         }
     }
     render(){
-        console.log(this.props.data);
         const {
             Date, hits, number, title, writer
         } = this.props.data;
