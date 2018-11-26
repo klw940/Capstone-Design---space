@@ -6,7 +6,7 @@ import {
     Divider,
 } from 'semantic-ui-react';
 
-class DiyInfo extends Component {
+class BuyInfo extends Component {
     constructor(props) {
         super(props);
         this.toggle = this.toggle.bind(this);
@@ -21,16 +21,6 @@ class DiyInfo extends Component {
         var win = window.open('http://localhost:3000', '_blank');
         win.focus();
     }
-
-    selectPart = () => {
-        const { info,
-            selectParts,
-            show,
-        } = this.props;
-        selectParts(info.part, info);
-        show();
-    }
-
     render() {
         const style = {
             border: '2px solid gray',
@@ -47,7 +37,7 @@ class DiyInfo extends Component {
 
         return (
             <Item.Group style={style}>
-                <Item>
+                <Item >
                     <Item.Image  src={info.image} size='tiny'/>
                     <Item.Content >
                         <Item.Header style={select} onClick={this.toggle}><b>{info.name}</b> </Item.Header>
@@ -73,10 +63,6 @@ class DiyInfo extends Component {
                                 }
                             </Collapse>
                         </Item.Description>
-                        <Item.Extra>
-                            <Button onClick={this.selectPart}>선택</Button>
-                            <Button onClick={this.openInNewTab}>리뷰</Button>
-                        </Item.Extra>
                     </Item.Content>
                 </Item>
             </Item.Group>
@@ -84,4 +70,4 @@ class DiyInfo extends Component {
     }
 }
 
-export default DiyInfo;
+export default BuyInfo;

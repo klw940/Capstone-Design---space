@@ -3,6 +3,9 @@ import {Step, Steps, Wizard} from 'react-albus';
 import DiyList from './DiyList';
 import { Collapse, } from 'reactstrap'
 import {
+    Segment,
+    Header,
+    Icon,
     Button,
 } from 'semantic-ui-react';
 import {Link} from "react-router-dom";
@@ -65,8 +68,8 @@ class DiyStep extends Component{
                         id="step0"
                         render={({ next }) => (
                             <div>
-                                <h1>DIY Drone</h1>
-                                <Button onClick={next}>시작하기</Button>
+                                <h1><Icon name='search' />DiY Drone</h1>
+                                <Button onClick={next} primary>시작하기</Button>
                             </div>
                         )}
                     />

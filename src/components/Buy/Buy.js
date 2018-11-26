@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import {Button, Tab} from 'semantic-ui-react';
 import axios from "axios";
-import DiyList from '../Diy/DiyList';
+import BuyList from './BuyList';
 import {List, Map, Record} from "immutable/dist/immutable";
-import { Collapse, } from 'reactstrap'
 
 const Parts = Record({
     name: '',
@@ -21,15 +20,6 @@ const Parts = Record({
     frameMaterial: '',
     wingMaterial: '',
 });
-const panes = [
-    { menuItem: 'Motor', render: () => <Tab.Pane>Motor</Tab.Pane> },
-    { menuItem: 'Wings', render: () => <Tab.Pane>Wings</Tab.Pane> },
-    { menuItem: 'Frame', render: () => <Tab.Pane>Frame</Tab.Pane> },
-    { menuItem: 'Control Board', render: () => <Tab.Pane>Control Board</Tab.Pane> },
-    { menuItem: 'ESC', render: () => <Tab.Pane>ESC</Tab.Pane> },
-    { menuItem: 'Battery', render: () => <Tab.Pane>Battery</Tab.Pane> },
-    { menuItem: 'Antenna', render: () => <Tab.Pane>Antenna</Tab.Pane> },
-];
 
 class Buy extends Component{
     constructor() {
@@ -125,7 +115,7 @@ class Buy extends Component{
             .catch( res => { console.log(res) });
     }
     componentDidMount() {
-        axios.get(this.state.ServerAddr+'/drone')
+        axios.get(this.state.ServerAddr+'/buy')
             .then( res => {this.setState({
                 info: res.data
             })
@@ -163,18 +153,51 @@ class Buy extends Component{
     }
 
     render(){
+        const panes = [
+            { menuItem: 'Motor', render: () =>
+                    <Tab.Pane><BuyList
+                        category = {this.state.motor}
+                        info = {this.state.info}
+                        selectParts = {this.selectParts}
+                    /> </Tab.Pane> },
+            { menuItem: 'Wings', render: () => <Tab.Pane><BuyList
+                    category = {this.state.wings}
+                    info = {this.state.info}
+                    selectParts = {this.selectParts}
+                /></Tab.Pane> },
+            { menuItem: 'Frame', render: () => <Tab.Pane><BuyList
+                    category = {this.state.frame}
+                    info = {this.state.info}
+                    selectParts = {this.selectParts}
+                /></Tab.Pane> },
+            { menuItem: 'Control Board', render: () => <Tab.Pane><BuyList
+                    category = {this.state.cb}
+                    info = {this.state.info}
+                    selectParts = {this.selectParts}
+                /></Tab.Pane> },
+            { menuItem: 'ESC', render: () => <Tab.Pane><BuyList
+                    category = {this.state.esc}
+                    info = {this.state.info}
+                    selectParts = {this.selectParts}
+                /></Tab.Pane> },
+            { menuItem: 'Battery', render: () => <Tab.Pane><BuyList
+                    category = {this.state.battery}
+                    info = {this.state.info}
+                    selectParts = {this.selectParts}
+                /></Tab.Pane> },
+            { menuItem: 'Antenna', render: () => <Tab.Pane><BuyList
+                    category = {this.state.antenna}
+                    info = {this.state.info}
+                    selectParts = {this.selectParts}
+                /></Tab.Pane> },
+        ];
         return(
             <div>
-            <DiyList
-        category = {this.state.motor}
-        info = {this.state.info}
-        selectParts = {this.selectParts}
-        show = {this.nextShow1}
-        />
-        <Collapse isOpen={this.state.step1Show}>
-            </Collapse>
-        </div>
-    );
+                <Tab panes={panes}>
+                </Tab>
+
+            </div>
+        );
     }
 }
 

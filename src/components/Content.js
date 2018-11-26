@@ -16,7 +16,7 @@ import esc_sale from "./Sale/esc_sale";
 import frame_sale from "./Sale/frame_sale";
 import motor_sale from "./Sale/motor_sale";
 import wings_sale from "./Sale/wings_sale";
-const Content = () =>{
+const Content = (LogInData) =>{
     return(
         <Switch>
             <Route exact path="/" component={Home}/>
@@ -25,7 +25,7 @@ const Content = () =>{
             <Route path="/sale" component={Sale}/>
             <Route path="/qnaBoard" component={QnABoard}/>
             <Route path="/freeBoard" component={FreeBoard}/>
-            <Route path="/login" component={Login}/>
+            <Route path="/login" component={Login} LogInData={LogInData}/>
             <Route path="/sign_up" component={SignUp}/>
             <Route path="/pay" component={Pay}/>
             <Route path="/antenna_sale" component={antenna_sale}/>

@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import axios from "axios";
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import login_image from '../../image/drone.png';
-import {Link} from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 class Login extends Component{
     constructor(props){
         super(props);
         this.state = {
             id:'',
-            password:''
+            password:'',
         }
     }
 
@@ -24,7 +24,7 @@ class Login extends Component{
                     sessionStorage.setItem('dtoken',res.data.token);
                     console.log(sessionStorage.getItem('dtoken'));
                     /*여기에 로그인 성공시메인으로 자동  화면 전환 해야하는 코드 추가 할 것*/
-
+                    this.props.logInData(this.state.id, this.state.password);
                 }
             })
             .catch( res => {
@@ -41,14 +41,7 @@ class Login extends Component{
     render(){
         return(
             <div className='login-form'>
-                <style>{`
-      body > div,
-      body > div > div,
-      body > div > div > div.login-form {
-        height: 100%;
-      }
-    `}</style>
-                <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
+                <Grid textAlign='center' style={{ height: '100%' }}>
                     <Grid.Column style={{ maxWidth: 450 }}>
                         <Header as='h2' color='black' textAlign='center'>
                             <Image src={login_image} /> 네 맘대로 드론
@@ -65,7 +58,6 @@ class Login extends Component{
                                     type='password'
                                     onChange={this.handleChange}
                                 />
-
                                 <Button color='black' fluid size='large'>
                                     Login
                                 </Button>
