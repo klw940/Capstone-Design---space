@@ -10,8 +10,10 @@ import {
     Button,
     Segment,
     Divider,
-    Container
+    Container, Image
 } from 'semantic-ui-react';
+import custom_image from "../../image/drone.png";
+import DiyList from "./DiyList";
 
 const Parts = Record({
     name: '',
@@ -63,7 +65,7 @@ class Diy extends Component{
                     short_length: '',
                     store: '',
                     description: '',
-                    part: '',
+                    part: '7',
                     thrust: '',
                     HOU: '',
                     rating: '',
@@ -79,7 +81,7 @@ class Diy extends Component{
                     short_length: '',
                     store: '',
                     description: '',
-                    part: '',
+                    part: '2',
                     thrust: '',
                     HOU: '',
                     rating: '',
@@ -95,7 +97,7 @@ class Diy extends Component{
                     short_length: '',
                     store: '',
                     description: '',
-                    part: '',
+                    part: '1',
                     thrust: '',
                     HOU: '',
                     rating: '',
@@ -111,7 +113,7 @@ class Diy extends Component{
                     short_length: '',
                     store: '',
                     description: '',
-                    part: '',
+                    part: '3',
                     thrust: '',
                     HOU: '',
                     rating: '',
@@ -127,7 +129,7 @@ class Diy extends Component{
                     short_length: '',
                     store: '',
                     description: '',
-                    part: '',
+                    part: '4',
                     thrust: '',
                     HOU: '',
                     rating: '',
@@ -143,7 +145,7 @@ class Diy extends Component{
                     short_length: '',
                     store: '',
                     description: '',
-                    part: '',
+                    part: '5',
                     thrust: '',
                     HOU: '',
                     rating: '',
@@ -159,7 +161,7 @@ class Diy extends Component{
                     short_length: '',
                     store: '',
                     description: '',
-                    part: '',
+                    part: '6',
                     thrust: '',
                     HOU: '',
                     rating: '',
@@ -214,9 +216,11 @@ class Diy extends Component{
 
     postSelectParts = (input) => {
         axios.post(this.state.ServerAddr+'/drone', input)
-            .then( res => { this.setState({
+            .then( res => {
+                console.log(this.state.info);
+                this.setState({
                 info: res.data
-            })
+                })
             })
             .catch( res => { console.log(res) });
     }
@@ -230,46 +234,21 @@ class Diy extends Component{
             .then( res => {this.setState({
                 info: res.data
             })
+                console.log(this.state.info);
             })
             .catch( res => {
                 console.log("error");
             });
     }
-    nextShow1 = () => {
-        this.setState({ step1Show: true});
-    }
-
-    nextShow2 = () => {
-        this.setState({ step2Show: true });
-    }
-
-    nextShow3 = () => {
-        this.setState({ step3Show: true });
-    }
-
-    nextShow4 = () => {
-        this.setState({ step4Show: true });
-    }
-
-    nextShow5 = () => {
-        this.setState({ step5Show: true});
-    }
-
-    nextShow6 = () => {
-        this.setState({ step6Show: true});
-    }
-
-    nextShow7 = () => {
-        this.setState({ step7Show: true});
-    }
 
     render(){
         return(
                 <Container>
+                    <br/>
                     <Grid>
                         <Grid.Row Columns={1}>
                 <Grid.Column width={16}>
-                    <DiyModel/>
+                    <Image src={custom_image} size='medium' rounded centered/>
                 </Grid.Column>
                         </Grid.Row>
                 <Grid.Row Columns={2}>

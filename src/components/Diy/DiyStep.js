@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
 import {Step, Steps, Wizard} from 'react-albus';
 import DiyList from './DiyList';
-import { Collapse, } from 'reactstrap'
+//import { Collapse, } from 'reactstrap'
 import {
     Segment,
     Header,
     Icon,
-    Button,
+    Button, Image,
 } from 'semantic-ui-react';
 import {Link} from "react-router-dom";
+import custom_image from "../../image/drone.png";
 
 class DiyStep extends Component{
     constructor(props) {
@@ -83,15 +84,13 @@ class DiyStep extends Component{
                                     selectParts = {selectParts}
                                     show = {this.nextShow1}
                                 />
-                                <Collapse isOpen={this.state.step1Show}>
-                                    <Button onClick={() => {next(); postSelectParts(selectedParts.get('frame'))}}>Next</Button>
-                                </Collapse>
+                                <Button onClick={() => {next(); postSelectParts(selectedParts.get('frame'))}}>Next</Button>
                             </div>
                         )}
                     />
                     <Step
                         id="step2"
-                        render={({ next }) => (
+                        render={({ next, previous }) => (
                             <div>
                                 <DiyList
                                     category = {this.state.wings}
@@ -99,15 +98,15 @@ class DiyStep extends Component{
                                     selectParts = {selectParts}
                                     show = {this.nextShow2}
                                 />
-                                <Collapse isOpen={this.state.step2Show}>
+                                    <Button onClick={() => {previous(); postSelectParts(selectedParts.get('wings'))}}>Previous</Button>
                                     <Button onClick={() => {next(); postSelectParts(selectedParts.get('wings'))}}>Next</Button>
-                                </Collapse>
+
                             </div>
                         )}
                     />
                     <Step
                         id="step3"
-                        render={({ next }) => (
+                        render={({ next, previous }) => (
                             <div>
                                 <div>
                                     <DiyList
@@ -116,16 +115,15 @@ class DiyStep extends Component{
                                         selectParts = {selectParts}
                                         show = {this.nextShow3}
                                     />
-                                    <Collapse isOpen={this.state.step3Show}>
+                                        <Button onClick={() => {previous(); postSelectParts(selectedParts.get('controlBoard'))}}>Previous</Button>
                                         <Button onClick={() => {next(); postSelectParts(selectedParts.get('controlBoard'))}}>Next</Button>
-                                    </Collapse>
                                 </div>
                             </div>
                         )}
                     />
                     <Step
                         id="step4"
-                        render={({ next }) => (
+                        render={({ next, previous }) => (
                             <div>
                                 <DiyList
                                     category = {this.state.esc}
@@ -133,15 +131,14 @@ class DiyStep extends Component{
                                     selectParts = {selectParts}
                                     show = {this.nextShow4}
                                 />
-                                <Collapse isOpen={this.state.step4Show}>
+                                    <Button onClick={() => {previous(); postSelectParts(selectedParts.get('esc'))}}>Previous</Button>
                                     <Button onClick={() => {next(); postSelectParts(selectedParts.get('esc'))}}>Next</Button>
-                                </Collapse>
                             </div>
                         )}
                     />
                     <Step
                         id="step5"
-                        render={({ next }) => (
+                        render={({ next, previous }) => (
                             <div>
                                 <DiyList
                                     category = {this.state.battery}
@@ -149,15 +146,14 @@ class DiyStep extends Component{
                                     selectParts = {selectParts}
                                     show = {this.nextShow5}
                                 />
-                                <Collapse isOpen={this.state.step5Show}>
+                                    <Button onClick={() => {previous(); postSelectParts(selectedParts.get('battery'))}}>Previous</Button>
                                     <Button onClick={() => {next(); postSelectParts(selectedParts.get('battery'))}}>Next</Button>
-                                </Collapse>
                             </div>
                         )}
                     />
                     <Step
                         id="step6"
-                        render={({ next }) => (
+                        render={({ next, previous }) => (
                             <div>
                                 <DiyList
                                     category = {this.state.antenna}
@@ -165,15 +161,14 @@ class DiyStep extends Component{
                                     selectParts = {selectParts}
                                     show = {this.nextShow6}
                                 />
-                                <Collapse isOpen={this.state.step6Show}>
+                                    <Button onClick={() => {previous(); postSelectParts(selectedParts.get('antenna'))}}>Previous</Button>
                                     <Button onClick={() => {next(); postSelectParts(selectedParts.get('antenna'))}}>Next</Button>
-                                </Collapse>
                             </div>
                         )}
                     />
                     <Step
                         id="step7"
-                        render={({ next }) => (
+                        render={({ next, previous }) => (
                             <div>
                                 <DiyList
                                     category = {this.state.motor}
@@ -181,11 +176,10 @@ class DiyStep extends Component{
                                     selectParts = {selectParts}
                                     show = {this.nextShow7}
                                 />
-                                <Collapse isOpen={this.state.step7Show}>
+                                    <Button onClick={() => {previous(); postSelectParts(selectedParts.get('motor'))}}>Previous</Button>
                                     <Link to="/pay">
                                         <Button onClick={() => {postSelectParts(selectedParts.get('motor'))}}>선택 완료</Button>
                                     </Link>
-                                </Collapse>
                             </div>
                         )}
                     />

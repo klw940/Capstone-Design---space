@@ -3,6 +3,8 @@ import custom_image from '../../image/drone.png';
 import{
     Image,
 } from 'semantic-ui-react';
+import DiyList from "./DiyList";
+
 class DiyModel extends Component{
     render(){
         return(

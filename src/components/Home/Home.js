@@ -6,7 +6,6 @@ import {
     Button,
     Header,
     Icon,
-    Image,
     Segment,
 } from 'semantic-ui-react'
 import {CSSTransitionGroup} from "react-transition-group";
@@ -14,7 +13,6 @@ import {CSSTransitionGroup} from "react-transition-group";
 class Home extends Component {
     render(){
         return(
-
             <CSSTransitionGroup
                 transitionName="homeTransition"
                 transitionAppear={true}
@@ -23,9 +21,8 @@ class Home extends Component {
                 transitionLeave={false}>
                 <div>
                     <Segment
-                        inverted
                         textAlign='center'
-                        style={{ minHeight: 800, padding: '1em 0em' }}
+                        style={{ backgroundImage: 'url('+home_image+')', minHeight: 1000, padding: '1em 0em' }}
                         vertical
                     >
                         <Header
@@ -66,7 +63,6 @@ class Home extends Component {
                             </Button>
                         </Link>
                     </Segment>
-                    <Image src={home_image}/>
                 </div>
             </CSSTransitionGroup>
         )}

@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import { Container, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import axios from "axios";
 import { Link } from "react-router-dom"
+//import {Grid} from "semantic-ui-react";
 
 class SignUp extends Component{
     state = {
         userInfo:{
-            name: '',
-            email: '',
             id: '',
             password: '',
-            password2: '',
-            role: 1,
+            name: '',
+            email: '',
+            role: 'customer',
         },
+        password2: '',
         strCheckId: '',
         strCheckPassword: '',
         change: false,
@@ -27,7 +28,7 @@ class SignUp extends Component{
         return true
     }
     checkPassword(){
-        if(this.state.userInfo.password !== this.state.userInfo.password2){
+        if(this.state.userInfo.password !== this.state.password2){
             this.setState({strCheckPassword:"패스워드가 일치하지 않습니다."});
             return false
         }
@@ -41,13 +42,18 @@ class SignUp extends Component{
                 [e.target.name]:e.target.value}
         });
     };
+    handleChange2 = (e) => {
+        this.setState({
+                [e.target.name]: e.target.value
+            });
+    };
     handleSubmit = (e) => {
         e.preventDefault();
         console.log(this.state.userInfo);
-        this.checkId();
-        this.checkPassword();
+        if(!this.checkId()) return;
+        if(!this.checkPassword()) return;
         let serverAddr = "http://ec2-52-32-190-25.us-west-2.compute.amazonaws.com:3001";
-        axios.post(serverAddr+'/sign-up',this.state.userInfo)
+        axios.post(serverAddr+'/api/auth/register', this.state.userInfo)
             .then( res => {console.log(res);})
             .catch( res => {console.log(res);});
         this.setState({
@@ -56,7 +62,7 @@ class SignUp extends Component{
     };
     render() {
         return (
-            <Container>
+            <Container style={{ height: '100%', minHeight: 700, padding: '1em 0em' }}>
                 <div>
                     <Form onSubmit={this.handleSubmit}>
                         <h1>회원가입</h1>
@@ -71,7 +77,7 @@ class SignUp extends Component{
                         </FormGroup>
                         <FormGroup>
                             <Label for="password2">Password Check</Label>
-                            <Input type="password" name="password2" id="password2" placeholder="Password" onChange={this.handleChange}/>
+                            <Input type="password" name="password2" id="password2" placeholder="Password" onChange={this.handleChange2}/>
                             <h6 className="text-danger">{this.state.strCheckPassword}</h6>
                         </FormGroup>
                         <FormGroup>
@@ -85,8 +91,8 @@ class SignUp extends Component{
                         <FormGroup>
                             <Label for="role">Select</Label>
                             <Input type="select" name="role" id="role" onChange={this.handleChange}>
-                                <option>구매자</option>
-                                <option>판매자</option>
+                                <option value='customer'>구매자</option>
+                                <option value='seller'>판매자</option>
                             </Input>
                         </FormGroup>
                         <Button>{this.state.change && <Link to='/'/>}가입</Button>

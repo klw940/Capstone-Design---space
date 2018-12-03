@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from "axios";
 import FreeTableRow from './FreeBoardTable';
 import FreePageNumber from './FreeBoardPage';
+import {Container} from "semantic-ui-react";
 
 class FreeBoard extends Component{
     constructor(props){
@@ -36,6 +37,7 @@ class FreeBoard extends Component{
         );
         return(
             <div>
+                <br/>
                 <h3>자유게시판</h3>
                 <table class ="table table-hover">
                     <thead>
