@@ -18,6 +18,11 @@ class SignUp extends Component{
         strCheckPassword: '',
         change: false,
     }
+
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
+
     checkId(){
         let spe = this.state.userInfo.id.search(/['~!@@#$%^&*|\\\'\'';:\/?.,-_+=`]/);
         if(spe >= 0){
@@ -27,6 +32,7 @@ class SignUp extends Component{
         this.setState({strCheckId:""});
         return true
     }
+
     checkPassword(){
         if(this.state.userInfo.password !== this.state.password2){
             this.setState({strCheckPassword:"패스워드가 일치하지 않습니다."});
@@ -35,6 +41,7 @@ class SignUp extends Component{
         this.setState({strCheckPassword:""});
         return true
     }
+
     handleChange = (e) => {
         this.setState({
             userInfo:{
@@ -42,11 +49,13 @@ class SignUp extends Component{
                 [e.target.name]:e.target.value}
         });
     };
+
     handleChange2 = (e) => {
         this.setState({
                 [e.target.name]: e.target.value
             });
     };
+
     handleSubmit = (e) => {
         e.preventDefault();
         console.log(this.state.userInfo);
@@ -60,6 +69,7 @@ class SignUp extends Component{
             change: true,
         })
     };
+
     render() {
         return (
             <Container style={{ height: '100%', minHeight: 700, padding: '1em 0em' }}>

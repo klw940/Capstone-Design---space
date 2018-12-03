@@ -10,6 +10,9 @@ import antenna_image from '../../image/antenna-ex.jpg'
 import {Tabs, TabList, Tab, PanelList, Panel} from 'react-tabtab';
 
 class Sale extends Component{
+    componentDidMount() {
+        window.scrollTo(0, 0)
+    }
     render(){
         return(
             <Tabs>

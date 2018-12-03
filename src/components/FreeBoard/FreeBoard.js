@@ -19,6 +19,7 @@ class FreeBoard extends Component{
     }
 
     componentDidMount() {
+        window.scrollTo(0, 0);
         axios.get(this.state.ServerAddr+'/board_list')
             .then( res => {this.setState({TableData: res.data})
                 console.log(res);

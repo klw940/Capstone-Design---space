@@ -4,6 +4,10 @@ import Diy from "../Diy/Diy";
 import DiyChoice from "../Diy/DiyChoice";
 
 class Pay extends Component {
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
+
     render(){
         return(
             <Container>

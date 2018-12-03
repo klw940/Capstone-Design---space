@@ -17,7 +17,7 @@ class DiyList extends Component{
         const { category,
             selectParts,
             info,
-            show,
+            message,
         } = this.props;
 
         let frontIndex= this.state.pageCount*(this.state.activePage-1);
@@ -28,7 +28,6 @@ class DiyList extends Component{
                 key={info._id}
                 info={info}
                 selectParts={selectParts}
-                show = {show}
             />)
         );
 
@@ -46,6 +45,7 @@ class DiyList extends Component{
                     })()
                 }
                 {list}
+                <h6 className="text-danger">{message}</h6>
                 <div align="center">
                 <Pagination
                     defaultActivePage={1}

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Grid, Button, Header } from 'semantic-ui-react';
 class Recommend extends Component{
+    componentDidMount() {
+        window.scrollTo(0, 0)
+    }
     render(){
         return(
             <Grid container style={{ padding: '2em 0em' }}>

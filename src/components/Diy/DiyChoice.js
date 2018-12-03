@@ -5,9 +5,6 @@ import {
 } from 'semantic-ui-react';
 
 class DiyChoice extends Component{
-    static defaultProps = {
-        data: '',
-    }
     render(){
         const style = {
             border: '2px solid gray',

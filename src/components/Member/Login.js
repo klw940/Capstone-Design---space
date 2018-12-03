@@ -14,6 +14,9 @@ class Login extends Component{
             success: false
         }
     }
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
 
     login = (e) => {
         e.preventDefault();

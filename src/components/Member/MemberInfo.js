@@ -11,7 +11,9 @@ class MemberInfo extends Component{
             role:'',
         }
     }
+
     componentDidMount() {
+        window.scrollTo(0, 0);
         let ServerAddr = 'http://ec2-52-32-190-25.us-west-2.compute.amazonaws.com:3001';
         axios.get(ServerAddr+'/api/auth/check', { headers: {"x-access-token" : sessionStorage.getItem('dtoken')}}).then(res => {
             console.log(res.data.info);

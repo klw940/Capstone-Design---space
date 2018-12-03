@@ -25,10 +25,8 @@ class DiyInfo extends Component {
     selectPart = () => {
         const { info,
             selectParts,
-            show,
         } = this.props;
         selectParts(info.part, info);
-        show();
     }
 
     render() {

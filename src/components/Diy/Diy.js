@@ -56,118 +56,13 @@ class Diy extends Component{
                 }),
             ]),
             selectedParts: Map({
-                motor: Parts({
-                    name: '',
-                    image: '',
-                    price: '',
-                    weight: '',
-                    long_length: '',
-                    short_length: '',
-                    store: '',
-                    description: '',
-                    part: '7',
-                    thrust: '',
-                    HOU: '',
-                    rating: '',
-                    frameMaterial: '',
-                    wingMaterial: '',
-                }),
-                wings: Parts({
-                    name: '',
-                    image: '',
-                    price: '',
-                    weight: '',
-                    long_length: '',
-                    short_length: '',
-                    store: '',
-                    description: '',
-                    part: '2',
-                    thrust: '',
-                    HOU: '',
-                    rating: '',
-                    frameMaterial: '',
-                    wingMaterial: '',
-                }),
-                frame: Parts({
-                    name: '',
-                    image: '',
-                    price: '',
-                    weight: '',
-                    long_length: '',
-                    short_length: '',
-                    store: '',
-                    description: '',
-                    part: '1',
-                    thrust: '',
-                    HOU: '',
-                    rating: '',
-                    frameMaterial: '',
-                    wingMaterial: '',
-                }),
-                controlBoard: Parts({
-                    name: '',
-                    image: '',
-                    price: '',
-                    weight: '',
-                    long_length: '',
-                    short_length: '',
-                    store: '',
-                    description: '',
-                    part: '3',
-                    thrust: '',
-                    HOU: '',
-                    rating: '',
-                    frameMaterial: '',
-                    wingMaterial: '',
-                }),
-                esc: Parts({
-                    name: '',
-                    image: '',
-                    price: '',
-                    weight: '',
-                    long_length: '',
-                    short_length: '',
-                    store: '',
-                    description: '',
-                    part: '4',
-                    thrust: '',
-                    HOU: '',
-                    rating: '',
-                    frameMaterial: '',
-                    wingMaterial: '',
-                }),
-                battery: Parts({
-                    name: '',
-                    image: '',
-                    price: '',
-                    weight: '',
-                    long_length: '',
-                    short_length: '',
-                    store: '',
-                    description: '',
-                    part: '5',
-                    thrust: '',
-                    HOU: '',
-                    rating: '',
-                    frameMaterial: '',
-                    wingMaterial: '',
-                }),
-                antenna: Parts({
-                    name: '',
-                    image: '',
-                    price: '',
-                    weight: '',
-                    long_length: '',
-                    short_length: '',
-                    store: '',
-                    description: '',
-                    part: '6',
-                    thrust: '',
-                    HOU: '',
-                    rating: '',
-                    frameMaterial: '',
-                    wingMaterial: '',
-                }),
+                motor: '',
+                wings: '',
+                frame: '',
+                controlBoard: '',
+                esc: '',
+                battery: '',
+                antenna: '',
             }),
         }
     }
@@ -219,7 +114,18 @@ class Diy extends Component{
             .then( res => {
                 console.log(this.state.info);
                 this.setState({
-                info: res.data
+                    info: res.data
+                })
+            })
+            .catch( res => { console.log(res) });
+    }
+
+    postSelectParts = (input) => {
+        axios.post(this.state.ServerAddr+'/drone', input)
+            .then( res => {
+                console.log(this.state.info);
+                this.setState({
+                    info: res.data
                 })
             })
             .catch( res => { console.log(res) });
@@ -230,6 +136,7 @@ class Diy extends Component{
     }
 
     componentDidMount() {
+        window.scrollTo(0, 0);
         axios.get(this.state.ServerAddr+'/drone')
             .then( res => {this.setState({
                 info: res.data
