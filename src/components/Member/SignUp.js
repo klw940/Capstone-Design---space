@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import { Container, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import axios from "axios";
 import { Link } from "react-router-dom"
-//import {Grid} from "semantic-ui-react";
+import {Grid, Button, Form} from "semantic-ui-react";
+
+const options = [
+    {key: 'customer', value:'customer', text:'구매자'},
+    {key: 'seller', value:'seller', text:'판매자'}
+];
 
 class SignUp extends Component{
     state = {
@@ -11,7 +15,7 @@ class SignUp extends Component{
             password: '',
             name: '',
             email: '',
-            role: 'customer',
+            role: '',
         },
         password2: '',
         strCheckId: '',
@@ -46,14 +50,15 @@ class SignUp extends Component{
         this.setState({
             userInfo:{
                 ...this.state.userInfo,
-                [e.target.name]:e.target.value}
+                [e.target.name]:e.target.value
+            }
         });
     };
 
     handleChange2 = (e) => {
         this.setState({
-                [e.target.name]: e.target.value
-            });
+            [e.target.name]: e.target.value
+        });
     };
 
     handleSubmit = (e) => {
@@ -72,49 +77,34 @@ class SignUp extends Component{
 
     render() {
         return (
-            <Container style={{ height: '100%', minHeight: 700, padding: '1em 0em' }}>
-                <div>
+            <Grid centered columns={1} style={{height: '100%', minHeight: 700, padding: '2em 0em' }}>
+                <Grid.Column style={{ width: 700 }}>
                     <Form onSubmit={this.handleSubmit}>
                         <h1>회원가입</h1>
-                        <FormGroup>
-                            <Label for="ID">Id</Label>
-                            <Input type="text" name="id" id="ID" placeholder="ID" onChange={this.handleChange}/>
+                        <Form.Group>
+                            <Form.Input label="ID" name="id" placeholder="ID" onChange={this.handleChange}/>
                             <h6 className="text-danger">{this.state.strCheckId}</h6>
-                        </FormGroup>
-                        <FormGroup>
-                            <Label for="password">Password</Label>
-                            <Input type="password" name="password" id="password" placeholder="Password" onChange={this.handleChange}/>
-                        </FormGroup>
-                        <FormGroup>
-                            <Label for="password2">Password Check</Label>
-                            <Input type="password" name="password2" id="password2" placeholder="Password" onChange={this.handleChange2}/>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Input label="Password" type="password" name="password" placeholder="Password" onChange={this.handleChange}/>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Input label="Password Check" type="password" name="password2" placeholder="Password" onChange={this.handleChange2}/>
                             <h6 className="text-danger">{this.state.strCheckPassword}</h6>
-                        </FormGroup>
-                        <FormGroup>
-                            <Label for="name">Name</Label>
-                            <Input type="text" name="name" id="name" placeholder="name" onChange={this.handleChange}/>
-                        </FormGroup>
-                        <FormGroup>
-                            <Label for="email">Email</Label>
-                            <Input type="email" name="email" id="email" placeholder="예시) zongog@ajou.ac.kr" onChange={this.handleChange}/>
-                        </FormGroup>
-                        <FormGroup>
-                            <Label for="role">Select</Label>
-                            <Input type="select" name="role" id="role" onChange={this.handleChange}>
-                                <option value='customer'>구매자</option>
-                                <option value='seller'>판매자</option>
-                            </Input>
-                        </FormGroup>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Input label="Name" type="text" name="name" id="name" placeholder="name" onChange={this.handleChange}/>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Input label="E-Mail" type="email" name="email" id="email" placeholder="예시) zongog@ajou.ac.kr" onChange={this.handleChange}/>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Select label="유형" name="role" id="role" options={options} placeholder="유형" onChange={this.handleChange}/>
+                        </Form.Group>
                         <Button>{this.state.change && <Link to='/'/>}가입</Button>
-
                     </Form>
-                    { /*<h5>{this.state.id}</h5>
-                <h5>{this.state.password}</h5>
-                <h5>{this.state.name}</h5>
-                <h5>{this.state.email}</h5>
-                <h5>{this.state.role}</h5> */}
-                </div>
-            </Container>
+                </Grid.Column>
+            </Grid>
         );
     }
 }

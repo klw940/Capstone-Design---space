@@ -62,8 +62,8 @@ class Login extends Component{
             <div>
             {this.redirectMain()}
             <div className='login-form'>
-                <Grid textAlign='center' style={{ height: '100%', minHeight: 700, padding: '1em 0em' }} verticalAlign='middle'>
-                    <Grid.Column style={{ maxWidth: 450 }}>
+                <Grid textAlign='center' style={{ height: '100%', minHeight: 700, maxWidth: 450, padding: '1em 0em' }} verticalAlign='middle'>
+                    <Grid.Column>
                         <Header as='h2' color='black' textAlign='center'>
                             <Image src={login_image} /> 네 맘대로 드론
                         </Header>

@@ -44,7 +44,7 @@ class DesktopContainer extends Component {
                         <Menu.Item as={Link} to='/buy'>부품구매</Menu.Item>
                         {
                             ( () =>{
-                                if(sessionStorage.getItem('role') === 'customer') return (<Menu.Item disabled link='/sale'>부품판매</Menu.Item>);
+                                if(sessionStorage.getItem('role') === 'seller') return (<Menu.Item as={Link} to='/sale'>부품판매</Menu.Item>);
                             } )()
                         }
                         <Menu.Item as={Link} to='/freeBoard'>자유게시판</Menu.Item>
