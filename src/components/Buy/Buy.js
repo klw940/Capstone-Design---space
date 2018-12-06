@@ -155,6 +155,7 @@ class Buy extends Component{
     render(){
         const panes = [
             { menuItem: 'Motor', render: () =>
+<<<<<<< HEAD
                     <Tab.Pane><BuyList
                         category = {this.state.motor}
                         info = {this.state.info}
@@ -193,6 +194,7 @@ class Buy extends Component{
         ];
         return(
             <div>
+<<<<<<< HEAD
                 <Tab panes={panes}>
                 </Tab>
 
