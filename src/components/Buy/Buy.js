@@ -193,11 +193,9 @@ class Buy extends Component{
                 /></Tab.Pane> },
         ];
         return(
-            <div>
-<<<<<<< HEAD
+            <div>\
                 <Tab panes={panes}>
                 </Tab>
-
             </div>
         );
     }
