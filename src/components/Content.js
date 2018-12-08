@@ -14,7 +14,6 @@ import Pay from "./Pay/Pay";
 
 class Content extends Component{
     render() {
-        const {isAuthenticated} = this.props;
         return (
             <Switch>
                 <Route exact path="/" component={Home}/>
@@ -24,7 +23,7 @@ class Content extends Component{
                 <Route path="/sale" component={Sale}/>
                 <Route path="/qnaBoard" component={QnABoard}/>
                 <Route path="/freeBoard" component={FreeBoard}/>
-                <Route path="/login" render={(props) => <Login {...props} isAuthenticated={isAuthenticated}/>}/>
+                <Route path="/login" component = {Login} />
                 <Route path="/sign_up" component={SignUp}/>
                 <Route path="/profile" component={MemberInfo}/>
                 <Route path="/pay" component={Pay}/>

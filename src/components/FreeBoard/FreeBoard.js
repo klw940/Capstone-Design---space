@@ -1,68 +1,61 @@
-import React, { Component } from 'react';
-import axios from "axios";
-import FreeTableRow from './FreeBoardTable';
-import FreePageNumber from './FreeBoardPage';
-import {Container} from "semantic-ui-react";
+import React from 'react'
+import { Icon, Label, Menu, Table,Button } from 'semantic-ui-react'
+const FreeBoard = () => (
+    <Table celled>
 
-class FreeBoard extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            ServerAddr: "http://ec2-54-180-90-44.ap-northeast-2.compute.amazonaws.com:3001",
-            TableData: [
-                {number:'', title:'', writer:'', date:'', hits:''}
-                ],
-            PageNumber: [
-                {page_number:'1'}
-            ]
-        };
-    }
+        <Table.Header>
 
-    componentDidMount() {
-        window.scrollTo(0, 0);
-        axios.get(this.state.ServerAddr+'/board_list')
-            .then( res => {this.setState({TableData: res.data})
-                console.log(res);
-            })
-            .catch( res => { console.log("error");
-            });
-    }
+            <Table.Row>
+                <Table.HeaderCell>제목</Table.HeaderCell>
+                <Table.HeaderCell>작성자</Table.HeaderCell>
+                <Table.HeaderCell>조회수</Table.HeaderCell>
+                <Table.HeaderCell>등록일</Table.HeaderCell>
+            </Table.Row>
+        </Table.Header>
 
-    render(){
-        const TableData = this.state.TableData.map(
-            data => (
-                <FreeTableRow
-                    key={data.id}
-                    data={data}
-                />)
-        );
-        return(
-            <div>
-                <h3>자유게시판</h3>
-                <table class ="table table-hover">
-                    <thead>
-                    <tr>
-                        <th>번호</th>
-                        <th>제목</th>
-                        <th>작성자</th>
-                        <th>날짜</th>
-                        <th>조회수</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        {TableData}
-                    </tbody>
-                </table>
-                <div class="text-center">
-                    <div>
-                        {this.state.PageNumber.map((page, i) =>{
-                            return (<FreePageNumber page_number={page.page_number}/>);
-                        })}
-                    </div>
-                </div>
-            </div>
-        );
-    }
-}
+        <Table.Body>
+            <Table.Row>
+                <Table.Cell>암거나</Table.Cell>
+                <Table.Cell>네네</Table.Cell>
+                <Table.Cell>10</Table.Cell>
+                <Table.Cell>2018-12-09</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+                <Table.Cell>이거나</Table.Cell>
+                <Table.Cell>오키</Table.Cell>
+                <Table.Cell>15</Table.Cell>
+                <Table.Cell>2018-12-09</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+                <Table.Cell>저거나</Table.Cell>
+                <Table.Cell>응응</Table.Cell>
+                <Table.Cell>20</Table.Cell>
+                <Table.Cell>2018-12-09</Table.Cell>
+            </Table.Row>
+        </Table.Body>
 
-export default FreeBoard;
+        <Table.Footer>
+            <Table.Row>
+                <Table.HeaderCell colSpan='4'>
+                    <Button inverted color='pink'>
+                        글작성
+                    </Button>
+                    <Menu floated='right' pagination>
+                        <Menu.Item as='a' icon>
+                            <Icon name='chevron left' />
+                        </Menu.Item>
+                        <Menu.Item as='a'>1</Menu.Item>
+                        <Menu.Item as='a'>2</Menu.Item>
+                        <Menu.Item as='a'>3</Menu.Item>
+                        <Menu.Item as='a'>4</Menu.Item>
+                        <Menu.Item as='a' icon>
+                            <Icon name='chevron right' />
+                        </Menu.Item>
+                    </Menu>
+                </Table.HeaderCell>
+            </Table.Row>
+        </Table.Footer>
+    </Table>
+)
+
+export default FreeBoard

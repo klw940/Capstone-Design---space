@@ -13,12 +13,16 @@ class Login extends Component{
             message:'',
             success: false
         }
-        if (this.state.success) {
-            props.history.push('/')
-        }
     }
     componentDidMount() {
         window.scrollTo(0, 0);
+    }
+
+    isAuthenticated = () => {
+        let ServerAddr = 'http://ec2-54-180-90-44.ap-northeast-2.compute.amazonaws.com:3001';
+        axios.get(ServerAddr+'/api/auth/check', { headers: {"x-access-token" : sessionStorage.getItem('dtoken')}}).then(res => {
+            sessionStorage.setItem('role',res.data.info.role);
+        });
     }
 
     login = (e) => {
@@ -28,11 +32,10 @@ class Login extends Component{
             .then( res => {
                 if(res.data.success){
                     sessionStorage.setItem('dtoken',res.data.token);
-                    console.log(sessionStorage.getItem('dtoken'));
-                    this.props.isAuthenticated();
+                    this.isAuthenticated();
                     this.setState({
                         success: true
-                    });
+                    })
                 }
                 else{
                     this.setState({
@@ -49,7 +52,7 @@ class Login extends Component{
     }
 
     redirectMain = () => {
-        if(this.state.success){
+        if(sessionStorage.getItem('role') && this.state.success){
             return <Redirect to='/' />
         }
     }
@@ -62,8 +65,8 @@ class Login extends Component{
 
     render(){
         return(
-            <div>
             <div className='login-form'>
+                {this.redirectMain()}
                 <Grid textAlign='center' style={{ height: '100%', minHeight: 700,  padding: '1em 0em' }} verticalAlign='middle'>
                     <Grid.Column style={{maxWidth: 450}}>
                         <Header as='h2' color='black' textAlign='center'>
@@ -92,7 +95,6 @@ class Login extends Component{
                         </Message>
                     </Grid.Column>
                 </Grid>
-            </div>
             </div>
         );
     }

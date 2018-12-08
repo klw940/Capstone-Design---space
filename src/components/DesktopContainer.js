@@ -8,31 +8,33 @@ import {
     Image,
     Menu,
 } from 'semantic-ui-react';
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 
 class DesktopContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            logout: false
         }
     }
 
-    isAuthenticated = () => {
-        let ServerAddr = 'http://ec2-54-180-90-44.ap-northeast-2.compute.amazonaws.com:3001';
-        console.log('isAuthenticated');
-        axios.get(ServerAddr+'/api/auth/check', { headers: {"x-access-token" : sessionStorage.getItem('dtoken')}}).then(res => {
-            sessionStorage.setItem('role',res.data.info.role);
-        })
+    redirectMain = () => {
+        if(this.state.logout){
+            this.setState({logout: false});
+            return <Redirect to='/' />
+        }
     }
 
     logout = () => {
         sessionStorage.removeItem('dtoken');
         sessionStorage.removeItem('role');
+        this.setState({logout: true});
     }
 
     render() {
         return (
             <div>
+                {this.redirectMain()}
                 <Menu inverted fixed='top'>
                     <Container>
                         <Menu.Item inverted as={Link} to='/' header>
@@ -76,7 +78,7 @@ class DesktopContainer extends Component {
                     </Container>
                 </Menu>
                 <div style={{ marginTop: '4em' }}>
-                    <Content isAuthenticated={this.isAuthenticated}/>
+                    <Content/>
                 </div>
             </div>
         )
