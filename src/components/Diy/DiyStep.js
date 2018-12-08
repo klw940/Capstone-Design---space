@@ -3,10 +3,8 @@ import {Step, Steps, Wizard} from 'react-albus';
 import DiyList from './DiyList';
 //import { Collapse, } from 'reactstrap'
 import {
-    Segment,
-    Header,
     Icon,
-    Button, Image,
+    Button,
 } from 'semantic-ui-react';
 import {Link} from "react-router-dom";
 
@@ -49,7 +47,9 @@ class DiyStep extends Component{
                                     info = {info}
                                     selectParts = {selectParts}
                                 />
-                                <Button onClick={() => {if(!selectedParts.get('frame')){this.setState({
+                                <Button onClick={() => {
+                                    window.scrollTo(0, 0);
+                                    if(!selectedParts.get('frame')){this.setState({
                                     message: '부품을 선택해주세요.'
                                 })} else{next(); postSelectParts(selectedParts.get('frame')); this.setState({
                                     message: ''
@@ -67,8 +67,12 @@ class DiyStep extends Component{
                                     info = {info}
                                     selectParts = {selectParts}
                                 />
-                                    <Button onClick={() => {previous(); postSelectParts({part: this.state.wings}); selectParts(this.state.wings, ''); }}>Previous</Button>
-                                    <Button onClick={() => {if(!selectedParts.get('wings')){this.setState({
+                                    <Button onClick={() => {
+                                        window.scrollTo(0, 0);
+                                        previous(); postSelectParts({part: this.state.wings}); selectParts(this.state.wings, ''); this.setState({message: ''}) }}>Previous</Button>
+                                    <Button onClick={() => {
+                                        window.scrollTo(0, 0);
+                                        if(!selectedParts.get('wings')){this.setState({
                                         message: '부품을 선택해주세요.'
                                     })} else{next(); postSelectParts(selectedParts.get('wings')); this.setState({
                                         message: ''
@@ -88,8 +92,12 @@ class DiyStep extends Component{
                                         info = {info}
                                         selectParts = {selectParts}
                                     />
-                                        <Button onClick={() => {previous(); postSelectParts({part: this.state.cb, short_length: 0}); selectParts(this.state.cb, ''); }}>Previous</Button>
-                                    <Button onClick={() => {if(!selectedParts.get('controlBoard')){this.setState({
+                                        <Button onClick={() => {
+                                            window.scrollTo(0, 0);
+                                            previous(); postSelectParts({part: this.state.cb, short_length: 0}); selectParts(this.state.cb, ''); this.setState({message: ''}) }}>Previous</Button>
+                                    <Button onClick={() => {
+                                        window.scrollTo(0, 0);
+                                        if(!selectedParts.get('controlBoard')){this.setState({
                                     message: '부품을 선택해주세요.'
                                 })} else{next(); postSelectParts(selectedParts.get('controlBoard')); this.setState({
                                     message: ''
@@ -108,8 +116,12 @@ class DiyStep extends Component{
                                     info = {info}
                                     selectParts = {selectParts}
                                 />
-                                    <Button onClick={() => {previous(); postSelectParts({part: this.state.esc}); selectParts(this.state.esc, ''); }}>Previous</Button>
-                                <Button onClick={() => {if(!selectedParts.get('esc')){this.setState({
+                                    <Button onClick={() => {
+                                        window.scrollTo(0, 0);
+                                        previous(); postSelectParts({part: this.state.esc}); selectParts(this.state.esc, ''); this.setState({message: ''})}}>Previous</Button>
+                                <Button onClick={() => {
+                                    window.scrollTo(0, 0);
+                                    if(!selectedParts.get('esc')){this.setState({
                                     message: '부품을 선택해주세요.'
                                 })} else{next(); postSelectParts(selectedParts.get('esc')); this.setState({
                                     message: ''
@@ -127,8 +139,14 @@ class DiyStep extends Component{
                                     info = {info}
                                     selectParts = {selectParts}
                                 />
-                                    <Button onClick={() => {previous(); postSelectParts({part: this.state.battery}); selectParts(this.state.battery, ''); }}>Previous</Button>
-                                <Button onClick={() => {if(!selectedParts.get('battery')){this.setState({
+                                    <Button onClick={() => {
+                                        window.scrollTo(0, 0);
+                                        previous(); postSelectParts({part: this.state.battery}); selectParts(this.state.battery, ''); this.setState({
+                                            message: ''
+                                        })}}>Previous</Button>
+                                <Button onClick={() => {
+                                    window.scrollTo(0, 0);
+                                    if(!selectedParts.get('battery')){this.setState({
                                     message: '부품을 선택해주세요.'
                                 })} else{next(); postSelectParts(selectedParts.get('battery')); this.setState({
                                     message: ''
@@ -146,8 +164,14 @@ class DiyStep extends Component{
                                     info = {info}
                                     selectParts = {selectParts}
                                 />
-                                    <Button onClick={() => {previous(); postSelectParts({part: this.state.antenna, weight: 0}); selectParts(this.state.antenna, ''); }}>Previous</Button>
-                                <Button onClick={() => {if(!selectedParts.get('antenna')){this.setState({
+                                    <Button onClick={() => {
+                                        window.scrollTo(0, 0);
+                                        previous(); postSelectParts({part: this.state.antenna, weight: 0}); selectParts(this.state.antenna, ''); this.setState({
+                                            message: ''
+                                        })}}>Previous</Button>
+                                <Button onClick={() => {
+                                    window.scrollTo(0, 0);
+                                    if(!selectedParts.get('antenna')){this.setState({
                                     message: '부품을 선택해주세요.'
                                 })} else{next(); postSelectParts(selectedParts.get('antenna')); this.setState({
                                     message: ''
@@ -165,7 +189,7 @@ class DiyStep extends Component{
                                     info = {info}
                                     selectParts = {selectParts}
                                 />
-                                    <Button onClick={() => {previous(); postSelectParts({part: this.state.motor, weight: 0, price: 0}); selectParts(this.state.motor, ''); }}>Previous</Button>
+                                    <Button onClick={() => {previous(); postSelectParts({part: this.state.motor, weight: 0, price: 0}); selectParts(this.state.motor, ''); this.setState({message: ''}) }}>Previous</Button>
                                     <Link to="/pay">
                                         <Button onClick={() => {if(!selectedParts.get('motor')){this.setState({
                                             message: '부품을 선택해주세요.'

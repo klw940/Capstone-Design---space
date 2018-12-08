@@ -17,8 +17,7 @@ const Parts = Record({
     thrust: '',
     HOU: '',
     rating: '',
-    frameMaterial: '',
-    wingMaterial: '',
+    material: ''
 });
 
 class Buy extends Component{
@@ -32,14 +31,7 @@ class Buy extends Component{
             battery: 5,
             antenna: 6,
             motor: 7,
-            step1Show: false,
-            step2Show: false,
-            step3Show: false,
-            step4Show: false,
-            step5Show: false,
-            step6Show: false,
-            step7Show: false,
-            ServerAddr: "http://ec2-52-32-190-25.us-west-2.compute.amazonaws.com:3001",
+            ServerAddr: "http://ec2-54-180-90-44.ap-northeast-2.compute.amazonaws.com:3001",
             info: List([
                 Parts({
                     name: '',
@@ -54,8 +46,7 @@ class Buy extends Component{
                     thrust: '',
                     HOU: '',
                     rating: '',
-                    frameMaterial: '',
-                    wingMaterial: '',
+                    material: ''
                 }),
             ]),
         }
@@ -114,7 +105,9 @@ class Buy extends Component{
             .then( res => { console.log(res) })
             .catch( res => { console.log(res) });
     }
+
     componentDidMount() {
+        window.scrollTo(0, 0);
         axios.get(this.state.ServerAddr+'/buy')
             .then( res => {this.setState({
                 info: res.data
@@ -123,33 +116,6 @@ class Buy extends Component{
             .catch( res => {
                 console.log("error");
             });
-    }
-    nextShow1 = () => {
-        this.setState({ step1Show: true});
-    }
-
-    nextShow2 = () => {
-        this.setState({ step2Show: true });
-    }
-
-    nextShow3 = () => {
-        this.setState({ step3Show: true });
-    }
-
-    nextShow4 = () => {
-        this.setState({ step4Show: true });
-    }
-
-    nextShow5 = () => {
-        this.setState({ step5Show: true});
-    }
-
-    nextShow6 = () => {
-        this.setState({ step6Show: true});
-    }
-
-    nextShow7 = () => {
-        this.setState({ step7Show: true});
     }
 
     render(){

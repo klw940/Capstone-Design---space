@@ -8,7 +8,7 @@ class FreeBoard extends Component{
     constructor(props){
         super(props);
         this.state = {
-            ServerAddr: "http://ec2-52-32-190-25.us-west-2.compute.amazonaws.com:3001",
+            ServerAddr: "http://ec2-54-180-90-44.ap-northeast-2.compute.amazonaws.com:3001",
             TableData: [
                 {number:'', title:'', writer:'', date:'', hits:''}
                 ],
@@ -38,7 +38,6 @@ class FreeBoard extends Component{
         );
         return(
             <div>
-                <br/>
                 <h3>자유게시판</h3>
                 <table class ="table table-hover">
                     <thead>

@@ -41,7 +41,7 @@ class DiyList extends Component{
                         else if(category === 4) return(<h1>ESC List</h1>);
                         else if(category === 5) return(<h1>Battery List</h1>);
                         else if(category === 6) return(<h1>Antenna List</h1>);
-                        else if(category === 7) return(<h1>Motor List</h1>)
+                        else if(category === 7) return(<h1>Motor List</h1>);
                     })()
                 }
                 {list}

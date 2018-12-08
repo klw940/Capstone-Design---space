@@ -17,7 +17,6 @@ class BuyList extends Component{
         const { category,
             selectParts,
             info,
-            show,
         } = this.props;
 
         let frontIndex= this.state.pageCount*(this.state.activePage-1);

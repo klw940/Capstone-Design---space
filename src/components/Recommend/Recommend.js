@@ -10,11 +10,11 @@ class Recommend extends Component{
                 <Grid.Row>
                     <Grid.Column>
                         <Header as='h1'>드론 추천</Header>
-                        <Button as='a' tabindex='0' color='green'>
-                            농업
-                        </Button>
                         <Button as='a' tabindex='0' color='red'>
                             레이싱
+                        </Button>
+                        <Button as='a' tabindex='0' color='green'>
+                            농업
                         </Button>
                         <Button as='a' tabindex='0' color='blue'>
                             촬영

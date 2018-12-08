@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import DiyChoice from './DiyChoice';
-import DiyModel from './DiyModel';
 import DiyStep from './DiyStep'
 import axios from "axios";
 import { Map, List, Record} from 'immutable';
@@ -8,13 +7,9 @@ import { Map, List, Record} from 'immutable';
 import {
     Grid,
     Button,
-    Segment,
-    Divider,
     Container, Image
 } from 'semantic-ui-react';
 import custom_image from "../../image/drone.png";
-import DiyList from "./DiyList";
-
 const Parts = Record({
     name: '',
     image: '',
@@ -28,15 +23,14 @@ const Parts = Record({
     thrust: '',
     HOU: '',
     rating: '',
-    frameMaterial: '',
-    wingMaterial: '',
+    material: '',
 });
 
 class Diy extends Component{
     constructor() {
         super();
         this.state = {
-            ServerAddr: "http://ec2-52-32-190-25.us-west-2.compute.amazonaws.com:3001",
+            ServerAddr: "http://ec2-54-180-90-44.ap-northeast-2.compute.amazonaws.com:3001",
             info: List([
                 Parts({
                     name: '',
@@ -51,8 +45,7 @@ class Diy extends Component{
                     thrust: '',
                     HOU: '',
                     rating: '',
-                    frameMaterial: '',
-                    wingMaterial: '',
+                    material: '',
                 }),
             ]),
             selectedParts: Map({
@@ -106,8 +99,10 @@ class Diy extends Component{
                     selectedParts: selectedParts.set('motor', input)
                 })
                 break;
+            default:
+                break;
         }
-    }
+    };
 
     postSelectParts = (input) => {
         axios.post(this.state.ServerAddr+'/drone', input)
@@ -118,22 +113,11 @@ class Diy extends Component{
                 })
             })
             .catch( res => { console.log(res) });
-    }
-
-    postSelectParts = (input) => {
-        axios.post(this.state.ServerAddr+'/drone', input)
-            .then( res => {
-                console.log(this.state.info);
-                this.setState({
-                    info: res.data
-                })
-            })
-            .catch( res => { console.log(res) });
-    }
+    };
 
     refreshPage(){
         window.location.reload();
-    }
+    };
 
     componentDidMount() {
         window.scrollTo(0, 0);

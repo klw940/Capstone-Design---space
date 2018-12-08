@@ -8,7 +8,7 @@ import {
     Image,
     Menu,
 } from 'semantic-ui-react';
-import {Link, Redirect} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 class DesktopContainer extends Component {
     constructor(props) {
@@ -18,7 +18,7 @@ class DesktopContainer extends Component {
     }
 
     isAuthenticated = () => {
-        let ServerAddr = 'http://ec2-52-32-190-25.us-west-2.compute.amazonaws.com:3001';
+        let ServerAddr = 'http://ec2-54-180-90-44.ap-northeast-2.compute.amazonaws.com:3001';
         console.log('isAuthenticated');
         axios.get(ServerAddr+'/api/auth/check', { headers: {"x-access-token" : sessionStorage.getItem('dtoken')}}).then(res => {
             sessionStorage.setItem('role',res.data.info.role);
@@ -44,7 +44,7 @@ class DesktopContainer extends Component {
                         <Menu.Item as={Link} to='/buy'>부품구매</Menu.Item>
                         {
                             ( () =>{
-                                if(sessionStorage.getItem('role') === 'seller') return (<Menu.Item as={Link} to='/sale'>부품판매</Menu.Item>);
+                                if(sessionStorage.getItem('role') === 'seller') return (<Menu.Item as={Link} to='/sale'>부품판매등록</Menu.Item>);
                             } )()
                         }
                         <Menu.Item as={Link} to='/freeBoard'>자유게시판</Menu.Item>

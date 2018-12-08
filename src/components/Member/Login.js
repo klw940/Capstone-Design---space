@@ -13,6 +13,9 @@ class Login extends Component{
             message:'',
             success: false
         }
+        if (this.state.success) {
+            props.history.push('/')
+        }
     }
     componentDidMount() {
         window.scrollTo(0, 0);
@@ -20,7 +23,7 @@ class Login extends Component{
 
     login = (e) => {
         e.preventDefault();
-        let ServerAddr = 'http://ec2-52-32-190-25.us-west-2.compute.amazonaws.com:3001';
+        let ServerAddr = 'http://ec2-54-180-90-44.ap-northeast-2.compute.amazonaws.com:3001';
         axios.post(ServerAddr+'/api/auth/login',this.state)
             .then( res => {
                 if(res.data.success){
@@ -60,10 +63,9 @@ class Login extends Component{
     render(){
         return(
             <div>
-            {this.redirectMain()}
             <div className='login-form'>
-                <Grid textAlign='center' style={{ height: '100%', minHeight: 700, maxWidth: 450, padding: '1em 0em' }} verticalAlign='middle'>
-                    <Grid.Column>
+                <Grid textAlign='center' style={{ height: '100%', minHeight: 700,  padding: '1em 0em' }} verticalAlign='middle'>
+                    <Grid.Column style={{maxWidth: 450}}>
                         <Header as='h2' color='black' textAlign='center'>
                             <Image src={login_image} /> 네 맘대로 드론
                         </Header>
