@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import {Link, Redirect} from "react-router-dom"
-import {Grid, Button, Form} from "semantic-ui-react";
+import {Grid, Button, Form } from "semantic-ui-react";
 
 const options = [
     {key: 'customer', value:'customer', text:'구매자'},
@@ -33,13 +33,10 @@ class SignUp extends Component{
     }
 
     checkId(){
-        let spe = this.state.userInfo.id.search(/['~!@@#$%^&*|\\\'\'';:\/?.,-_+=`]/);
+        let spe = this.state.userInfo.id.search(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/);
         if(spe >= 0){
             this.setState({strCheckId:"아이디는 영문과 숫자로만 이루어져야 합니다."});
             return false
-        }
-        if(this.state.userInfo.id){
-            //id 중복 확인 검사
         }
         this.setState({strCheckId:""});
         return true
@@ -73,19 +70,12 @@ class SignUp extends Component{
     handleSelectChange = (e, {value}) => {
         this.setState({
                 userInfo: {
+                    ...this.state.userInfo,
                     role: value
                 }
         })
     };
 
-    checkUniqueId = () => {
-        axios.post(this.state.serverAddr+'/api/auth/checkId', this.state.userInfo.id)
-            .then( res => {console.log(res);})
-            .catch( res => {console.log(res);});
-        this.setState({
-            change: true,
-        })
-    };
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -93,11 +83,16 @@ class SignUp extends Component{
         if(!this.checkId()) return;
         if(!this.checkPassword()) return;
         axios.post(this.state.serverAddr+'/api/auth/register', this.state.userInfo)
-            .then( res => {console.log(res);})
-            .catch( res => {console.log(res);});
-        this.setState({
-            change: true,
-        })
+            .then( res => {
+                console.log(res);
+                this.setState({
+                    change: true,
+                })
+            })
+            .catch( res => {
+                    this.setState({strCheckId:"아이디가 이미 존재합니다."});
+                    console.log(res);
+                });
     };
 
     redirectMain = () => {
@@ -112,7 +107,7 @@ class SignUp extends Component{
         return (
             <Grid centered columns={1} style={{height: '100%', minHeight: 700, padding: '2em 0em' }}>
                 {this.redirectMain()}
-                <Grid.Column style={{ maxWidth: 700 }}>
+                <Grid.Column style={{ maxWidth: 1000 }}>
                     <Form onSubmit={this.handleSubmit}>
                         <h1>회원가입</h1>
                         <Form.Group>

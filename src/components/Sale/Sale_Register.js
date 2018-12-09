@@ -44,7 +44,7 @@ class Sale_Register extends Component{
         data.append('thrust',this.state.info.thrust);
         data.append('HOU',this.state.info.HOU);
         data.append('rating',this.state.info.rating);
-        data.append('frameMaterial',this.state.info.material);
+        data.append('material',this.state.info.material);
         axios.post(this.state.ServerAddr+'/part_sale', data)
             .then( res => {
                     if(res.data) this.setState({message: '등록 완료'}); // res 에 등록 성공인지 아닌지 확인해주는 데이터 넣어줌.
@@ -76,7 +76,6 @@ class Sale_Register extends Component{
                 img: e.target.files[0]
             }
         })
-        console.log(this.state.info.img)
     }
 
     componentDidMount() {
@@ -112,32 +111,30 @@ class Sale_Register extends Component{
                         </Table.Row>
                         <Table.Row>
                             <Table.Cell>가격</Table.Cell>
-                            <Table.Cell><Form.Input name="price" placeholder="가격" onChange={this.handleChange}/></Table.Cell>
+                            <Table.Cell><Form.Input name="price" placeholder="가격(원)" onChange={this.handleChange}/></Table.Cell>
                         </Table.Row>
                         <Table.Row>
                             <Table.Cell>무게</Table.Cell>
-                            <Table.Cell><Form.Input name="weight" placeholder="무게" onChange={this.handleChange}/></Table.Cell>
-                        </Table.Row>
-                        <Table.Row>
-                            <Table.Cell>추력</Table.Cell>
-                            <Table.Cell><Form.Input name="thrust" placeholder="추력" onChange={this.handleChange}/></Table.Cell>
+                            <Table.Cell><Form.Input name="weight" placeholder="무게(g)" onChange={this.handleChange}/></Table.Cell>
                         </Table.Row>
                         <Table.Row>
                             <Table.Cell>길이(가로)</Table.Cell>
-                            <Table.Cell><Form.Input name="long_length" placeholder="길이(가로)" onChange={this.handleChange}/></Table.Cell>
+                            <Table.Cell><Form.Input name="long_length" placeholder="가로길이(cm)" onChange={this.handleChange}/></Table.Cell>
                         </Table.Row>
                         <Table.Row>
                             <Table.Cell>길이(세로)</Table.Cell>
-                            <Table.Cell><Form.Input name="short_length" placeholder="길이(세로)" onChange={this.handleChange}/></Table.Cell>
+                            <Table.Cell><Form.Input name="short_length" placeholder="세로길이(cm)" onChange={this.handleChange}/></Table.Cell>
                         </Table.Row>
-
-
+                        <Table.Row>
+                            <Table.Cell>높이</Table.Cell>
+                            <Table.Cell><Form.Input name="height" placeholder="높이(cm)" onChange={this.handleChange}/></Table.Cell>
+                        </Table.Row>
                         {
                             (() => {
                                 if(part === 7) return(
                                     <Table.Row>
                                         <Table.Cell>추력</Table.Cell>
-                                        <Table.Cell><Form.Input name="thrust" placeholder="추력" onChange={this.handleChange}/></Table.Cell>
+                                        <Table.Cell><Form.Input name="thrust" placeholder="추력(g)" onChange={this.handleChange}/></Table.Cell>
                                     </Table.Row>
                                 );
                             })()
@@ -147,7 +144,7 @@ class Sale_Register extends Component{
                                 if(part === 5) return(
                                     <Table.Row>
                                         <Table.Cell>배터리 가용시간</Table.Cell>
-                                        <Table.Cell><Form.Input name="HOU" placeholder="가용시간" onChange={this.handleChange}/></Table.Cell>
+                                        <Table.Cell><Form.Input name="HOU" placeholder="가용시간(분)" onChange={this.handleChange}/></Table.Cell>
                                     </Table.Row>
                                 );
                             })()
@@ -157,7 +154,7 @@ class Sale_Register extends Component{
                                 if(part === 6) return(
                                     <Table.Row>
                                         <Table.Cell>수신거리</Table.Cell>
-                                        <Table.Cell><Form.Input name="rating" placeholder="수신거리" onChange={this.handleChange}/></Table.Cell>
+                                        <Table.Cell><Form.Input name="rating" placeholder="수신거리(m)" onChange={this.handleChange}/></Table.Cell>
                                     </Table.Row>
                                 );
                             })()
@@ -167,14 +164,14 @@ class Sale_Register extends Component{
                                 if(part === 1 || part === 2) return(
                                     <Table.Row>
                                         <Table.Cell>재질</Table.Cell>
-                                        <Table.Cell><Form.Input name="frameMaterial" placeholder="재질" onChange={this.handleChange}/></Table.Cell>
+                                        <Table.Cell><Form.Input name="material" placeholder="재질" onChange={this.handleChange}/></Table.Cell>
                                     </Table.Row>
                                 );
                             })()
                         }
                         <Table.Row>
                             <Table.Cell>재고</Table.Cell>
-                            <Table.Cell><Form.Input name="store" placeholder="재고" onChange={this.handleChange}/></Table.Cell>
+                            <Table.Cell><Form.Input name="store" placeholder="재고(개)" onChange={this.handleChange}/></Table.Cell>
                         </Table.Row>
                         <Table.Row>
                             <Table.Cell>상세설명</Table.Cell>
