@@ -48,6 +48,9 @@ class MemberInfo extends Component{
                         <Button>{this.state.change && <Link to='/'/>}수정하기</Button>
                     </Form>
                 </Grid.Column>
+                <Grid.Column style={{ maxWidth: 700 }}>
+
+                </Grid.Column>
             </Grid>
         );
     }

@@ -11,6 +11,7 @@ import Login from "./Member/Login"
 import SignUp from "./Member/SignUp";
 import MemberInfo from "./Member/MemberInfo";
 import Pay from "./Pay/Pay";
+import Depositless from "./Pay/Depositless";
 
 class Content extends Component{
     render() {
@@ -26,6 +27,7 @@ class Content extends Component{
                 <Route path="/login" component = {Login} />
                 <Route path="/sign_up" component={SignUp}/>
                 <Route path="/profile" component={MemberInfo}/>
+                <Route path="/pay/depositless" component={Depositless}/>
                 <Route path="/pay" component={Pay}/>
             </Switch>
         )

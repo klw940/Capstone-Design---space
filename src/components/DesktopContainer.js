@@ -41,27 +41,59 @@ class DesktopContainer extends Component {
                             <Image size='mini' src={menu_image} style={{ marginRight: '1.5em' }} />
                             DiY Drone
                         </Menu.Item>
-                        <Menu.Item as={Link} to='/diy'>드론견적</Menu.Item>
-                        <Menu.Item as={Link} to='/recommend'>드론추천</Menu.Item>
-                        <Menu.Item as={Link} to='/buy'>부품구매</Menu.Item>
                         {
                             ( () =>{
-                                if(sessionStorage.getItem('role') === 'seller') return (<Menu.Item as={Link} to='/sale'>부품판매등록</Menu.Item>);
+                                if(sessionStorage.getItem('role')) return (
+                                    <Menu.Item as={Link} to='/diy'>드론견적</Menu.Item>
+                                )
                             } )()
                         }
-                        <Menu.Item as={Link} to='/freeBoard'>자유게시판</Menu.Item>
-                        <Menu.Item as={Link} to='/qnaBoard'>QnA게시판</Menu.Item>
+                        {
+                            ( () =>{
+                                if(sessionStorage.getItem('role')) return (
+                                    <Menu.Item as={Link} to='/recommend'>드론추천</Menu.Item>
+                                )
+                            } )()
+                        }
+                        {
+                            ( () =>{
+                                if(sessionStorage.getItem('role')) return (
+                                    <Menu.Item as={Link} to='/buy'>부품구매</Menu.Item>
+                                )
+                            } )()
+                        }
+                        {
+                            ( () =>{
+                                if(sessionStorage.getItem('role')) return (
+                                    <Menu.Item as={Link} to='/sale'>부품판매등록</Menu.Item>
+                                )
+                            } )()
+                        }
+                        {
+                            ( () =>{
+                                if(sessionStorage.getItem('role')) return (
+                                    <Menu.Item as={Link} to='/freeBoard'>자유게시판</Menu.Item>
+                                )
+                            } )()
+                        }
+                        {
+                            ( () =>{
+                                if(sessionStorage.getItem('role')) return (
+                                    <Menu.Item as={Link} to='/qnaBoard'>QnA게시판</Menu.Item>
+                                )
+                            } )()
+                        }
                         <Menu.Item position='right'>
                             {
                                 ( () =>{
                                     if(!sessionStorage.getItem('dtoken')) return (
                                         <div>
-                                        <Button as={Link} to='/login'>
-                                            Log in
-                                        </Button>
-                                        <Button as={Link} to='/sign_up' style={{ marginLeft: '1em' }}>
-                                    Sign Up
-                                        </Button>
+                                            <Button as={Link} to='/login'>
+                                                Log in
+                                            </Button>
+                                            <Button as={Link} to='/sign_up' style={{ marginLeft: '1em' }}>
+                                                Sign Up
+                                            </Button>
                                         </div>);
                                     else{
                                         return (

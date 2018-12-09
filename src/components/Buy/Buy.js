@@ -51,6 +51,7 @@ class Buy extends Component{
             ]),
         }
     }
+
     selectParts = (select, input) => {
         const { selectedParts } = this.state;
 

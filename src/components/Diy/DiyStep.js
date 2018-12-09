@@ -24,7 +24,7 @@ class DiyStep extends Component{
     }
 
     render(){
-        const { info, selectParts, postSelectParts, selectedParts} = this.props;
+        const { info, selectParts, postSelectParts, selectedParts, step} = this.props;
         return(
             <Wizard align="center">
                 <Steps>
@@ -33,7 +33,10 @@ class DiyStep extends Component{
                         render={({ next }) => (
                             <div>
                                 <h1><Icon name='search' />DiY Drone</h1>
-                                <Button onClick={next} primary>시작하기</Button>
+                                <Button onClick={() =>{
+                                    next();
+                                    step(1);
+                                }} primary>시작하기</Button>
                             </div>
                         )}
                     />
@@ -51,7 +54,7 @@ class DiyStep extends Component{
                                     window.scrollTo(0, 0);
                                     if(!selectedParts.get('frame')){this.setState({
                                     message: '부품을 선택해주세요.'
-                                })} else{next(); postSelectParts(selectedParts.get('frame')); this.setState({
+                                })} else{next(); step(2); postSelectParts(selectedParts.get('frame')); this.setState({
                                     message: ''
                                 })}}}>Next</Button>
                             </div>
@@ -69,12 +72,14 @@ class DiyStep extends Component{
                                 />
                                     <Button onClick={() => {
                                         window.scrollTo(0, 0);
-                                        previous(); postSelectParts({part: this.state.wings}); selectParts(this.state.wings, ''); this.setState({message: ''}) }}>Previous</Button>
+                                        previous();
+                                        step(1); postSelectParts({part: this.state.wings}); selectParts(this.state.wings, ''); this.setState({message: ''}) }}>Previous</Button>
                                     <Button onClick={() => {
                                         window.scrollTo(0, 0);
                                         if(!selectedParts.get('wings')){this.setState({
                                         message: '부품을 선택해주세요.'
-                                    })} else{next(); postSelectParts(selectedParts.get('wings')); this.setState({
+                                    })} else{next();
+                                            step(3); postSelectParts(selectedParts.get('wings')); this.setState({
                                         message: ''
                                     })}}}>Next</Button>
 
@@ -94,12 +99,14 @@ class DiyStep extends Component{
                                     />
                                         <Button onClick={() => {
                                             window.scrollTo(0, 0);
-                                            previous(); postSelectParts({part: this.state.cb, short_length: 0}); selectParts(this.state.cb, ''); this.setState({message: ''}) }}>Previous</Button>
+                                            previous();
+                                            step(2); postSelectParts({part: this.state.cb, short_length: 0}); selectParts(this.state.cb, ''); this.setState({message: ''}) }}>Previous</Button>
                                     <Button onClick={() => {
                                         window.scrollTo(0, 0);
                                         if(!selectedParts.get('controlBoard')){this.setState({
                                     message: '부품을 선택해주세요.'
-                                })} else{next(); postSelectParts(selectedParts.get('controlBoard')); this.setState({
+                                })} else{next();
+                                            step(4); postSelectParts(selectedParts.get('controlBoard')); this.setState({
                                     message: ''
                                 })}}}>Next</Button>
                                 </div>
@@ -118,12 +125,14 @@ class DiyStep extends Component{
                                 />
                                     <Button onClick={() => {
                                         window.scrollTo(0, 0);
-                                        previous(); postSelectParts({part: this.state.esc}); selectParts(this.state.esc, ''); this.setState({message: ''})}}>Previous</Button>
+                                        previous();
+                                        step(3); postSelectParts({part: this.state.esc}); selectParts(this.state.esc, ''); this.setState({message: ''})}}>Previous</Button>
                                 <Button onClick={() => {
                                     window.scrollTo(0, 0);
                                     if(!selectedParts.get('esc')){this.setState({
                                     message: '부품을 선택해주세요.'
-                                })} else{next(); postSelectParts(selectedParts.get('esc')); this.setState({
+                                })} else{next();
+                                        step(5); postSelectParts(selectedParts.get('esc')); this.setState({
                                     message: ''
                                 })}}}>Next</Button>
                             </div>
@@ -141,14 +150,16 @@ class DiyStep extends Component{
                                 />
                                     <Button onClick={() => {
                                         window.scrollTo(0, 0);
-                                        previous(); postSelectParts({part: this.state.battery}); selectParts(this.state.battery, ''); this.setState({
+                                        previous();
+                                        step(4); postSelectParts({part: this.state.battery}); selectParts(this.state.battery, ''); this.setState({
                                             message: ''
                                         })}}>Previous</Button>
                                 <Button onClick={() => {
                                     window.scrollTo(0, 0);
                                     if(!selectedParts.get('battery')){this.setState({
                                     message: '부품을 선택해주세요.'
-                                })} else{next(); postSelectParts(selectedParts.get('battery')); this.setState({
+                                })} else{next();
+                                        step(6); postSelectParts(selectedParts.get('battery')); this.setState({
                                     message: ''
                                 })}}}>Next</Button>
                             </div>
@@ -166,14 +177,16 @@ class DiyStep extends Component{
                                 />
                                     <Button onClick={() => {
                                         window.scrollTo(0, 0);
-                                        previous(); postSelectParts({part: this.state.antenna, weight: 0}); selectParts(this.state.antenna, ''); this.setState({
+                                        previous();
+                                        step(5); postSelectParts({part: this.state.antenna, weight: 0}); selectParts(this.state.antenna, ''); this.setState({
                                             message: ''
                                         })}}>Previous</Button>
                                 <Button onClick={() => {
                                     window.scrollTo(0, 0);
                                     if(!selectedParts.get('antenna')){this.setState({
                                     message: '부품을 선택해주세요.'
-                                })} else{next(); postSelectParts(selectedParts.get('antenna')); this.setState({
+                                })} else{next();
+                                        step(7); postSelectParts(selectedParts.get('antenna')); this.setState({
                                     message: ''
                                 })}}}>Next</Button>
                             </div>
@@ -189,7 +202,8 @@ class DiyStep extends Component{
                                     info = {info}
                                     selectParts = {selectParts}
                                 />
-                                    <Button onClick={() => {previous(); postSelectParts({part: this.state.motor, weight: 0, price: 0}); selectParts(this.state.motor, ''); this.setState({message: ''}) }}>Previous</Button>
+                                    <Button onClick={() => {previous();
+                                        step(6); postSelectParts({part: this.state.motor, weight: 0, price: 0}); selectParts(this.state.motor, ''); this.setState({message: ''}) }}>Previous</Button>
                                     <Link to="/pay">
                                         <Button onClick={() => {if(!selectedParts.get('motor')){this.setState({
                                             message: '부품을 선택해주세요.'

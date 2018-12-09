@@ -5,22 +5,34 @@ import {
     Button,
     Divider,
 } from 'semantic-ui-react';
+import {Link} from "react-router-dom";
 
 class BuyInfo extends Component {
     constructor(props) {
         super(props);
         this.toggle = this.toggle.bind(this);
-        this.state = { collapse: false };
+        this.state = {
+            collapse: false,
+            num: 0,
+        };
     }
 
     toggle() {
         this.setState({ collapse: !this.state.collapse });
     }
 
-    openInNewTab = () => {
-        var win = window.open('http://localhost:3000', '_blank');
-        win.focus();
+    plus() {
+        this.setState = {
+            num: this.state.num + 1,
+        }
     }
+
+    minus() {
+        this.setState = {
+            num: this.state.num - 1,
+        }
+    }
+
     render() {
         const style = {
             border: '2px solid gray',
@@ -63,6 +75,14 @@ class BuyInfo extends Component {
                                 }
                             </Collapse>
                         </Item.Description>
+                        <Item.Extra>
+                            <Link to={{ pathname: '/pay', state: {info: info, num: this.state.num}}}>
+                                <Button>구매하기</Button>
+                            </Link>
+                            {this.state.num}
+                            <Button floated='right' onclick={this.plus}>-</Button>
+                            <Button floated='right' onclick={this.minus}>+</Button>
+                        </Item.Extra>
                     </Item.Content>
                 </Item>
             </Item.Group>
