@@ -4,6 +4,7 @@ import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui
 import login_image from '../../image/drone.png';
 import { Redirect } from 'react-router-dom'
 import { ServerAddr } from "../Constants";
+import {CSSTransitionGroup} from "react-transition-group";
 
 class Login extends Component{
     constructor(props){
@@ -67,37 +68,44 @@ class Login extends Component{
 
     render(){
         return(
-            <div className='login-form'>
-                {this.redirectMain()}
-                <Grid textAlign='center' style={{ height: '100%', minHeight: 700,  padding: '1em 0em' }} verticalAlign='middle'>
-                    <Grid.Column style={{maxWidth: 450}}>
-                        <Header as='h2' color='black' textAlign='center'>
-                            <Image src={login_image} /> 네 맘대로 드론
-                        </Header>
-                        <Form size='large' onSubmit={this.login}>
-                            <Segment stacked>
-                                <Form.Input fluid icon='user' name="id" iconPosition='left' placeholder='ID' onChange={this.handleChange}/>
-                                <Form.Input
-                                    fluid
-                                    name="password"
-                                    icon='lock'
-                                    iconPosition='left'
-                                    placeholder='Password'
-                                    type='password'
-                                    onChange={this.handleChange}
-                                />
-                                <Button color='black' fluid size='large'>
-                                    Login
-                                </Button>
-                                <h6 className="text-danger">{this.state.message}</h6>
-                            </Segment>
-                        </Form>
-                        <Message>
-                            처음이신가요?<br/><a href='/sign_up'>Sign Up</a>
-                        </Message>
-                    </Grid.Column>
-                </Grid>
-            </div>
+            <CSSTransitionGroup
+                transitionName="homeTransition"
+                transitionAppear={true}
+                transitionAppearTimeout={500}
+                transitionEnter={false}
+                transitionLeave={false}>
+                <div className='login-form'>
+                    {this.redirectMain()}
+                    <Grid textAlign='center' style={{ height: '100%', minHeight: 700,  padding: '1em 0em' }} verticalAlign='middle'>
+                        <Grid.Column style={{maxWidth: 450}}>
+                            <Header as='h2' color='black' textAlign='center'>
+                                <Image src={login_image} /> 네 맘대로 드론
+                            </Header>
+                            <Form size='large' onSubmit={this.login}>
+                                <Segment stacked>
+                                    <Form.Input fluid icon='user' name="id" iconPosition='left' placeholder='ID' onChange={this.handleChange}/>
+                                    <Form.Input
+                                        fluid
+                                        name="password"
+                                        icon='lock'
+                                        iconPosition='left'
+                                        placeholder='Password'
+                                        type='password'
+                                        onChange={this.handleChange}
+                                    />
+                                    <Button color='black' fluid size='large'>
+                                        Login
+                                    </Button>
+                                    <h6 className="text-danger">{this.state.message}</h6>
+                                </Segment>
+                            </Form>
+                            <Message>
+                                처음이신가요?<br/><a href='/sign_up'>Sign Up</a>
+                            </Message>
+                        </Grid.Column>
+                    </Grid>
+                </div>
+            </CSSTransitionGroup>
         );
     }
 }

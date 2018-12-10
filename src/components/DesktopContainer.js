@@ -45,14 +45,14 @@ class DesktopContainer extends Component {
                         </Menu.Item>
                         {
                             ( () =>{
-                                if(sessionStorage.getItem('role')) return (
+                                if(sessionStorage.getItem('role')==='user') return (
                                     <Menu.Item as={Link} to='/diy'>드론견적</Menu.Item>
                                 )
                             } )()
                         }
                         {
                             ( () =>{
-                                if(sessionStorage.getItem('role')) return (
+                                if(sessionStorage.getItem('role')==='user') return (
                                     <Menu.Item as={Link} to='/recommend'>드론추천</Menu.Item>
                                 )
                             } )()
@@ -66,22 +66,29 @@ class DesktopContainer extends Component {
                         }
                         {
                             ( () =>{
-                                if(sessionStorage.getItem('role')) return (
-                                    <Menu.Item as={Link} to='/sale'>부품판매등록</Menu.Item>
-                                )
-                            } )()
-                        }
-                        {
-                            ( () =>{
-                                if(sessionStorage.getItem('role')) return (
+                                if(sessionStorage.getItem('role')==='user') return (
                                     <Menu.Item as={Link} to='/freeBoard'>자유게시판</Menu.Item>
                                 )
                             } )()
                         }
                         {
                             ( () =>{
-                                if(sessionStorage.getItem('role')) return (
+                                if(sessionStorage.getItem('role')==='user') return (
                                     <Menu.Item as={Link} to='/qnaBoard'>QnA게시판</Menu.Item>
+                                )
+                            } )()
+                        }
+                        {
+                            ( () =>{
+                                if(sessionStorage.getItem('role')==='admin') return (
+                                    <Menu.Item as={Link} to='/sale'>부품등록</Menu.Item>
+                                )
+                            } )()
+                        }
+                        {
+                            ( () =>{
+                                if(sessionStorage.getItem('role')==='admin') return (
+                                    <Menu.Item as={Link} to='/buyManage'>구매관리</Menu.Item>
                                 )
                             } )()
                         }

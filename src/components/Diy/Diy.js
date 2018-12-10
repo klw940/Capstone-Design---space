@@ -18,7 +18,7 @@ import {
     Button,
     Container, Image
 } from 'semantic-ui-react';
-import custom_image from "../../image/drone.png";
+
 const Parts = Record({
     name: '',
     image: '',

@@ -12,6 +12,7 @@ import SignUp from "./Member/SignUp";
 import MemberInfo from "./Member/MemberInfo";
 import Pay from "./Pay/Pay";
 import Depositless from "./Pay/Depositless";
+import BuyMange from "./BuyManage/BuyMange";
 
 class Content extends Component{
     render() {
@@ -21,6 +22,7 @@ class Content extends Component{
                 <Route path="/diy" component={Diy}/>
                 <Route path="/recommend" component={Recommend}/>
                 <Route path="/buy" component={Buy}/>
+                <Route path="/buyManage" component={BuyMange}/>
                 <Route path="/sale" component={Sale}/>
                 <Route path="/qnaBoard" component={QnABoard}/>
                 <Route path="/freeBoard" component={FreeBoard}/>

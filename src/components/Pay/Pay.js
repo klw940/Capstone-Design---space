@@ -23,19 +23,12 @@ class Pay extends Component {
         await this.state.buyList.map(
             part => {
                 this.setState({price: this.state.price + (part.info.price * part.num)})
-                this.setState({
-                    ...part.info,
-                    store: part.info.store-part.num
-                })
-                console.log(part.info.store-part.num)
+                part.info.store = part.info.store - part.num;
             }
         );
     }
 
     postBuyList = () => {
-        console.log(this.state.buyList);
-    }
-        /*
         axios.post(ServerAddr+'/buy_list',{name: sessionStorage.getItem('name'), email: sessionStorage.getItem('email'),list: this.state.buyList, address: this.state.address})
             .then( res => {
                 console.log(res.data);
@@ -43,7 +36,7 @@ class Pay extends Component {
             .catch( res => {
             });
     }
-*/
+
     handleChange = (e) => {
         this.setState({
             address: e.target.value

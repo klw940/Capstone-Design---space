@@ -6,7 +6,10 @@ import {
     Divider,
     Segment,
 } from 'semantic-ui-react';
+import axios from "axios";
 import {Link} from "react-router-dom";
+import {Menu} from "semantic-ui-react/dist/commonjs/collections/Menu/Menu";
+import { ServerAddr } from "../Constants";
 
 class BuyInfo extends Component {
     constructor(props) {
@@ -29,6 +32,16 @@ class BuyInfo extends Component {
 
     minus = () => {
         if(this.state.num > 1) this.setState({num: this.state.num - 1});
+    }
+
+    removeItem = () => {
+        axios.post(ServerAddr+'/drone_delete', {_id: this.props.info._id})
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch(res =>{
+                console.log('removeItemError')
+            })
     }
 
     render() {
@@ -74,13 +87,34 @@ class BuyInfo extends Component {
                             </Collapse>
                         </Item.Description>
                         <Item.Extra>
-                                <Link to={{ pathname: '/pay', state: {buyList: [{info: info, num: this.state.num}]}}}>
-                                    <Button>구매하기</Button>
-                                </Link>
-                                <Segment floated='right' compact>수량: {this.state.num}
-                                    <Button floated='right' onClick={this.minus}>-</Button>
-                                    <Button floated='right' onClick={this.plus}>+</Button>
-                                </Segment>
+                            {
+                                ( () =>{
+                                    if(sessionStorage.getItem('role')==='admin') return (
+                                        <Button onClick={this.removeItem}>삭제하기</Button>
+                                    );
+                                    else if(sessionStorage.getItem('role')==='user') return(
+                                        <Link to={{ pathname: '/pay', state: {buyList: [{info: info, num: this.state.num}]}}}>
+                                            <Button>구매하기</Button>
+                                        </Link>
+                                    )
+                                } )()
+                            }
+                            {
+                                ( () =>{
+                                    if(sessionStorage.getItem('role')==='admin') return (
+                                        <Segment floated='right' compact>수량: {this.state.num}
+                                            <Button floated='right' onClick={this.minus}>-</Button>
+                                            <Button floated='right' onClick={this.plus}>+</Button>
+                                        </Segment>
+                                    );
+                                    else if(sessionStorage.getItem('role')==='user') return (
+                                        <Segment floated='right' compact>수량: {this.state.num}
+                                            <Button floated='right' onClick={this.minus}>-</Button>
+                                            <Button floated='right' onClick={this.plus}>+</Button>
+                                        </Segment>
+                                    );
+                                } )()
+                            }
                         </Item.Extra>
                     </Item.Content>
                 </Item>

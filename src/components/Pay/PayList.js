@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { Collapse } from 'reactstrap'
-import {
-    Item,
-    Divider,
-    Segment,
-} from 'semantic-ui-react';
+import {Item, Divider, Segment} from 'semantic-ui-react';
 
 class PayList extends Component {
     constructor(props) {
@@ -13,10 +9,6 @@ class PayList extends Component {
         this.state = {
             collapse: false,
         };
-    }
-
-    componentDidMount() {
-        window.scrollTo(0, 0);
     }
 
     toggle = () => {

@@ -19,6 +19,7 @@ class SignUp extends Component{
             password2: '',
             strCheckId: '',
             strCheckPassword: '',
+            message: '',
             change: false,
         }
     }
@@ -28,21 +29,25 @@ class SignUp extends Component{
     }
 
     checkId(){
-        let spe = this.state.userInfo.id.search(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/);
+        let spe = this.state.userInfo.id.search(/[\W]/);
         if(spe >= 0){
             this.setState({strCheckId:"아이디는 영문과 숫자로만 이루어져야 합니다."});
+            this.setState({message: ""});
             return false
         }
         this.setState({strCheckId:""});
+        this.setState({message: ""});
         return true
     }
 
     checkPassword(){
         if(this.state.userInfo.password !== this.state.password2){
             this.setState({strCheckPassword:"패스워드가 일치하지 않습니다."});
+            this.setState({message: ""});
             return false
         }
         this.setState({strCheckPassword:""});
+        this.setState({message: ""});
         return true
     }
 
@@ -62,12 +67,16 @@ class SignUp extends Component{
         }
     };
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(this.state.userInfo);
-        if(!this.checkId()) return;
-        if(!this.checkPassword()) return;
-        axios.post(ServerAddr+'/api/auth/register', this.state.userInfo)
+    handleSubmit = async (e) => {
+        const { userInfo, password2 } = this.state;
+        await e.preventDefault();
+        if( !userInfo.id || !userInfo.name || !userInfo.password || !userInfo.email || !password2){
+            this.setState({message: "가입정보를 모두 기입해주세요"});
+            return;
+        }
+        else if(!this.checkId()) return;
+        else if(!this.checkPassword()) return;
+        await axios.post(ServerAddr+'/api/auth/register', this.state.userInfo)
             .then( res => {
                 this.setState({
                     change: true,
@@ -106,6 +115,7 @@ class SignUp extends Component{
                         <Form.Group>
                             <Form.Input label="E-Mail" type="email" name="email" id="email" placeholder="예시) zongog@ajou.ac.kr" onChange={this.handleChange}/>
                         </Form.Group>
+                        <h6 className="text-danger">{this.state.message}</h6>
                         <Button>가입</Button>
                     </Form>
                 </Grid.Column>
@@ -115,4 +125,3 @@ class SignUp extends Component{
 }
 
 export default SignUp;
-
