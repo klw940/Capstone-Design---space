@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from "axios";
 import QnATableRow from './QnABoardTable';
 import QnAPageNumber from './QnABoardPage';
+import { ServerAddr } from "../Constants";
 
 class QnABoard extends Component{
     constructor(props){
@@ -19,7 +20,7 @@ class QnABoard extends Component{
 
     componentDidMount() {
         window.scrollTo(0, 0);
-        axios.get(this.state.ServerAddr+'/board_list')
+        axios.get(ServerAddr+'/board_list')
             .then( res => {this.setState({TableData: res.data})
 
             })

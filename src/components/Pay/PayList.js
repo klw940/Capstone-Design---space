@@ -1,34 +1,26 @@
 import React, { Component } from 'react';
-import { Collapse} from 'reactstrap'
+import { Collapse } from 'reactstrap'
 import {
     Item,
-    Button,
     Divider,
     Segment,
 } from 'semantic-ui-react';
-import {Link} from "react-router-dom";
 
-class BuyInfo extends Component {
+class PayList extends Component {
     constructor(props) {
         super(props);
         this.toggle = this.toggle.bind(this);
-        this.plus = this.plus.bind(this);
         this.state = {
             collapse: false,
-            num: 1,
         };
+    }
+
+    componentDidMount() {
+        window.scrollTo(0, 0);
     }
 
     toggle = () => {
         this.setState({ collapse: !this.state.collapse });
-    }
-
-    plus = () => {
-        if(this.state.num < this.props.info.store) this.setState({num: this.state.num + 1});
-    }
-
-    minus = () => {
-        if(this.state.num > 1) this.setState({num: this.state.num - 1});
     }
 
     render() {
@@ -43,13 +35,13 @@ class BuyInfo extends Component {
             cursor: 'pointer',
         };
 
-        const { info } = this.props;
+        const { info, num } = this.props;
 
         return (
             <Item.Group style={style}>
-                <Item >
+                <Item>
                     <Item.Image  src={info.image} size='tiny'/>
-                    <Item.Content >
+                    <Item.Content>
                         <Item.Header style={select} onClick={this.toggle}><b>{info.name}</b> </Item.Header>
                         <Item.Description style={select} onClick={this.toggle}>{info.price}원<br/>{info.description}
                             <Divider fitted />
@@ -74,13 +66,7 @@ class BuyInfo extends Component {
                             </Collapse>
                         </Item.Description>
                         <Item.Extra>
-                                <Link to={{ pathname: '/pay', state: {buyList: [{info: info, num: this.state.num}]}}}>
-                                    <Button>구매하기</Button>
-                                </Link>
-                                <Segment floated='right' compact>수량: {this.state.num}
-                                    <Button floated='right' onClick={this.minus}>-</Button>
-                                    <Button floated='right' onClick={this.plus}>+</Button>
-                                </Segment>
+                            <Segment floated='right' compact>수량: {num}</Segment>
                         </Item.Extra>
                     </Item.Content>
                 </Item>
@@ -89,4 +75,4 @@ class BuyInfo extends Component {
     }
 }
 
-export default BuyInfo;
+export default PayList;

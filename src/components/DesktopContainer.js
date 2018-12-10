@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import menu_image from '../image/menu_image.png'
 import Content from './Content';
-import axios from 'axios';
+
 import {
     Button,
     Container,
@@ -28,6 +28,8 @@ class DesktopContainer extends Component {
     logout = () => {
         sessionStorage.removeItem('dtoken');
         sessionStorage.removeItem('role');
+        sessionStorage.removeItem('name');
+        sessionStorage.removeItem('email');
         this.setState({logout: true});
     }
 

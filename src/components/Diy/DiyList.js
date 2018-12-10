@@ -53,6 +53,7 @@ class DiyList extends Component{
                     lastItem={{ content: <Icon name='angle double right' />, icon: true }}
                     prevItem={{ content: <Icon name='angle left' />, icon: true }}
                     nextItem={{ content: <Icon name='angle right' />, icon: true }}
+                    ellipsisItem={null}
                     onPageChange={this.handlePaginationChange}
                     totalPages={Math.ceil(info.filter(info => info.part === category).length/5)}
                     style = {{marginLeft: 'auto', marginRight: 'auto'}}

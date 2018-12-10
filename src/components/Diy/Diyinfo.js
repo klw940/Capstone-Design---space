@@ -63,8 +63,8 @@ class DiyInfo extends Component {
                                 {
                                     ( () =>{
                                         if(info.part === 7) return (<div>추력 : {info.thrust} g</div>);
-                                        else if(info.part === 1) return (<div>프레임재질 : {info.frameMaterial}</div>);
-                                        else if(info.part === 2) return (<div>날개재질 : {info.wingMaterial}</div>);
+                                        else if(info.part === 1) return (<div>프레임재질 : {info.material}</div>);
+                                        else if(info.part === 2) return (<div>날개재질 : {info.material}</div>);
                                         else if(info.part === 5) return (<div>사용시간 : {info.HOU} 분</div>);
                                         else if(info.part === 6) return (<div>수신거리 : {info.rating} m</div>);
                                     } )()

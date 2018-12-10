@@ -3,6 +3,7 @@ import axios from "axios";
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import login_image from '../../image/drone.png';
 import { Redirect } from 'react-router-dom'
+import { ServerAddr } from "../Constants";
 
 class Login extends Component{
     constructor(props){
@@ -19,15 +20,15 @@ class Login extends Component{
     }
 
     isAuthenticated = () => {
-        let ServerAddr = 'http://ec2-54-180-90-44.ap-northeast-2.compute.amazonaws.com:3001';
         axios.get(ServerAddr+'/api/auth/check', { headers: {"x-access-token" : sessionStorage.getItem('dtoken')}}).then(res => {
             sessionStorage.setItem('role',res.data.info.role);
+            sessionStorage.setItem('name',res.data.info.name);
+            sessionStorage.setItem('email',res.data.info.email);
         });
     }
 
     login = (e) => {
         e.preventDefault();
-        let ServerAddr = 'http://ec2-54-180-90-44.ap-northeast-2.compute.amazonaws.com:3001';
         axios.post(ServerAddr+'/api/auth/login',this.state)
             .then( res => {
                 if(res.data.success){
@@ -51,8 +52,9 @@ class Login extends Component{
             });
     }
 
+
     redirectMain = () => {
-        if(sessionStorage.getItem('role') && this.state.success){
+        if(this.state.success){
             return <Redirect to='/' />
         }
     }

@@ -11,6 +11,7 @@ import battery_image from '../../image/step_image/(5)battery.jpg';
 import antenna_image from '../../image/step_image/(6)antenna.jpg';
 import motor_image from '../../image/step_image/(7)motor.jpg';
 import { Map, List, Record} from 'immutable';
+import { ServerAddr } from "../Constants";
 
 import {
     Grid,
@@ -38,7 +39,6 @@ class Diy extends Component{
     constructor() {
         super();
         this.state = {
-            ServerAddr: "http://ec2-54-180-90-44.ap-northeast-2.compute.amazonaws.com:3001",
             info: List([
                 Parts({
                     name: '',
@@ -114,14 +114,13 @@ class Diy extends Component{
     };
 
     postSelectParts = (input) => {
-        axios.post(this.state.ServerAddr+'/drone', input)
+        axios.post(ServerAddr+'/drone', input)
             .then( res => {
-                console.log(this.state.info);
                 this.setState({
                     info: res.data
                 })
             })
-            .catch( res => { console.log(res) });
+            .catch( res => { console.log("postSelectPartsError") });
     };
 
     setStep = (input)=>{
@@ -136,14 +135,13 @@ class Diy extends Component{
 
     componentDidMount() {
         window.scrollTo(0, 0);
-        axios.get(this.state.ServerAddr+'/drone')
+        axios.get(ServerAddr+'/drone')
             .then( res => {this.setState({
                 info: res.data
-            })
-                console.log(this.state.info);
+                })
             })
             .catch( res => {
-                console.log("error");
+                console.log("droneGetError");
             });
     }
 

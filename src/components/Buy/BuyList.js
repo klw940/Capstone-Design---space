@@ -11,13 +11,18 @@ class BuyList extends Component{
         };
     };
 
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
+
     handlePaginationChange = (e, { activePage }) => this.setState({ activePage })
 
+    setDefaultPage = () => {
+        this.setState({ activePage: 1})
+    }
+
     render(){
-        const { category,
-            selectParts,
-            info,
-        } = this.props;
+        const { category, info } = this.props;
 
         let frontIndex= this.state.pageCount*(this.state.activePage-1);
         let backIndex = this.state.pageCount*this.state.activePage;
@@ -39,7 +44,7 @@ class BuyList extends Component{
                         else if(category === 4) return(<h1>ESC List</h1>);
                         else if(category === 5) return(<h1>Battery List</h1>);
                         else if(category === 6) return(<h1>Antenna List</h1>);
-                        else if(category === 7) return(<h1>Motor List</h1>)
+                        else if(category === 7) return(<h1>Motor List</h1>);
                     })()
                 }
                 {list}
@@ -50,6 +55,7 @@ class BuyList extends Component{
                         lastItem={{ content: <Icon name='angle double right' />, icon: true }}
                         prevItem={{ content: <Icon name='angle left' />, icon: true }}
                         nextItem={{ content: <Icon name='angle right' />, icon: true }}
+                        ellipsisItem={null}
                         onPageChange={this.handlePaginationChange}
                         totalPages={Math.ceil(info.filter(info => info.part === category).length/5)}
                         style = {{marginLeft: 'auto', marginRight: 'auto'}}

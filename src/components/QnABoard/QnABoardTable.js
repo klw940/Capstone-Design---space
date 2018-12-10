@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
+import { ServerAddr } from "../Constants";
 
 class QnATableRow extends Component{
     constructor(props){
@@ -12,7 +13,7 @@ class QnATableRow extends Component{
     }
     handleShow(){
         if(this.state.showBoard){
-            axios.get(this.props.ServerAddr+'/board_detail', {
+            axios.get(ServerAddr+'/board_detail', {
                 params: {number:"1"}
             })
                 .then( res => {console.log(res)})

@@ -204,7 +204,14 @@ class DiyStep extends Component{
                                 />
                                     <Button onClick={() => {previous();
                                         step(6); postSelectParts({part: this.state.motor, weight: 0, price: 0}); selectParts(this.state.motor, ''); this.setState({message: ''}) }}>Previous</Button>
-                                    <Link to="/pay">
+                                    <Link to={{ pathname: '/pay', state: {buyList: [
+                                                {info: selectedParts.get('frame'), num: 1},
+                                                {info: selectedParts.get('wings'), num: 1},
+                                                {info: selectedParts.get('controlBoard'), num: 1},
+                                                {info: selectedParts.get('esc'), num: 1},
+                                                {info: selectedParts.get('battery'), num: 1},
+                                                {info: selectedParts.get('antenna'), num: 1},
+                                                {info: selectedParts.get('motor'), num: 1}]}}}>
                                         <Button onClick={() => {if(!selectedParts.get('motor')){this.setState({
                                             message: '부품을 선택해주세요.'
                                         })} else{next(); postSelectParts(selectedParts.get('motor')); this.setState({

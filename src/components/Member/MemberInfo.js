@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from "axios";
 import {Button, Grid, Form} from "semantic-ui-react";
 import {Link} from "react-router-dom";
-
+import { ServerAddr } from "../Constants";
 class MemberInfo extends Component{
     constructor(props) {
         super(props);
@@ -16,7 +16,6 @@ class MemberInfo extends Component{
 
     componentDidMount() {
         window.scrollTo(0, 0);
-        let ServerAddr = 'http://ec2-54-180-90-44.ap-northeast-2.compute.amazonaws.com:3001';
         axios.get(ServerAddr+'/api/auth/check', { headers: {"x-access-token" : sessionStorage.getItem('dtoken')}}).then(res => {
             console.log(res.data.info);
          this.setState(res.data.info);

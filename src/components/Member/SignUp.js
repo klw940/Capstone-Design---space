@@ -2,24 +2,19 @@ import React, { Component } from 'react';
 import axios from "axios";
 import {Link, Redirect} from "react-router-dom"
 import {Grid, Button, Form } from "semantic-ui-react";
-
-const options = [
-    {key: 'customer', value:'customer', text:'구매자'},
-    {key: 'seller', value:'seller', text:'판매자'}
-];
+import { ServerAddr } from "../Constants";
 
 class SignUp extends Component{
 
     constructor(props) {
         super(props);
         this.state = {
-            serverAddr: "http://ec2-54-180-90-44.ap-northeast-2.compute.amazonaws.com:3001",
             userInfo:{
                 id: '',
                 password: '',
                 name: '',
                 email: '',
-                role: '',
+                role: 'user',
             },
             password2: '',
             strCheckId: '',
@@ -67,31 +62,19 @@ class SignUp extends Component{
         }
     };
 
-    handleSelectChange = (e, {value}) => {
-        this.setState({
-                userInfo: {
-                    ...this.state.userInfo,
-                    role: value
-                }
-        })
-    };
-
-
     handleSubmit = (e) => {
         e.preventDefault();
         console.log(this.state.userInfo);
         if(!this.checkId()) return;
         if(!this.checkPassword()) return;
-        axios.post(this.state.serverAddr+'/api/auth/register', this.state.userInfo)
+        axios.post(ServerAddr+'/api/auth/register', this.state.userInfo)
             .then( res => {
-                console.log(res);
                 this.setState({
                     change: true,
                 })
             })
             .catch( res => {
                     this.setState({strCheckId:"아이디가 이미 존재합니다."});
-                    console.log(res);
                 });
     };
 
@@ -102,8 +85,6 @@ class SignUp extends Component{
     }
 
     render() {
-        const { value } = this.state;
-
         return (
             <Grid centered columns={1} style={{height: '100%', minHeight: 700, padding: '2em 0em' }}>
                 {this.redirectMain()}
@@ -125,10 +106,7 @@ class SignUp extends Component{
                         <Form.Group>
                             <Form.Input label="E-Mail" type="email" name="email" id="email" placeholder="예시) zongog@ajou.ac.kr" onChange={this.handleChange}/>
                         </Form.Group>
-                        <Form.Group>
-                            <Form.Select label="유형" value={value} options={options} placeholder="유형" onChange={this.handleSelectChange}/>
-                        </Form.Group>
-                        <Button>{this.state.change && <Link to='/'/>}가입</Button>
+                        <Button>가입</Button>
                     </Form>
                 </Grid.Column>
             </Grid>

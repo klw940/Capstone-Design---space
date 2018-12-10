@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Button, Table, Form, Popup} from 'semantic-ui-react';
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 class Sale_Register extends Component{
     constructor(props){
@@ -174,12 +175,14 @@ class Sale_Register extends Component{
                             <Table.Cell><Form.Input name="store" placeholder="재고(개)" onChange={this.handleChange}/></Table.Cell>
                         </Table.Row>
                         <Table.Row>
-                            <Table.Cell>상세설명</Table.Cell>
-                            <Table.Cell><Form.Input name="description" placeholder="상세설명" onChange={this.handleChange}/></Table.Cell>
+                            <Table.Cell width="2">상세설명</Table.Cell>
+                            <Table.Cell width="10"><Form.TextArea autoHeight name="description" placeholder="상세설명" onChange={this.handleChange}/></Table.Cell>
                         </Table.Row>
                     </Table.Body>
                 </Table>
-                <Button onClick={this.postSellPart}>등록</Button>
+                <Link to='/'>
+                    <Button onClick={this.postSellPart}>등록</Button>
+                </Link>
             </div>
         );
     }
