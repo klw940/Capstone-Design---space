@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Grid, Button, Header } from 'semantic-ui-react';
 import axios from 'axios';
 import { ServerAddr } from "../Constants";
-import {Redirect} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import RecommendList from "./RecommendList";
 
 class Recommend extends Component{
@@ -68,16 +68,56 @@ class Recommend extends Component{
                             </Button>
                         </Grid.Column>
                     </Grid.Row>
-                <Grid.Row>
-                    {
-                        (()=>{
-                            if (this.state.class === 1) return(<div>{redList}</div>)
-                            else if (this.state.class === 2) return(<div>{greenList}</div>)
-                            else if (this.state.class === 3) return(<div>{blueList}</div>)
-                        })()
-                    }
-                </Grid.Row>
-
+                    <Grid.Row Columns={2}>
+                    <Grid.Column width={8}>
+                        {
+                            (()=>{
+                                if (this.state.class === 1) return(<div>{redList}</div>)
+                                else if (this.state.class === 2) return(<div>{greenList}</div>)
+                                else if (this.state.class === 3) return(<div>{blueList}</div>)
+                            })()
+                        }
+                    </Grid.Column>
+                        <Grid.Column width={8}>
+                            {
+                                (()=>{
+                                   if (this.state.class === 1) return(
+                                        <Link to={{ pathname: '/pay', state: {buyList: [
+                                                    {info: this.state.race[0], num: 1},
+                                                    {info: this.state.race[1], num: 1},
+                                                    {info: this.state.race[2], num: 1},
+                                                    {info: this.state.race[3], num: 1},
+                                                    {info: this.state.race[4], num: 1},
+                                                    {info: this.state.race[5], num: 1},
+                                                    {info: this.state.race[6], num: 1}]}}}>
+                                            <Button primary>구매하기</Button>
+                                        </Link>)
+                                    else if (this.state.class === 2) return(
+                                       <Link to={{ pathname: '/pay', state: {buyList: [
+                                                   {info: this.state.farm[0], num: 1},
+                                                   {info: this.state.farm[1], num: 1},
+                                                   {info: this.state.farm[2], num: 1},
+                                                   {info: this.state.farm[3], num: 1},
+                                                   {info: this.state.farm[4], num: 1},
+                                                   {info: this.state.farm[5], num: 1},
+                                                   {info: this.state.farm[6], num: 1}]}}}>
+                                           <Button primary>구매하기</Button>
+                                       </Link>)
+                                    else if (this.state.class === 3) return(
+                                       <Link to={{ pathname: '/pay', state: {buyList: [
+                                                   {info: this.state.camera[0], num: 1},
+                                                   {info: this.state.camera[1], num: 1},
+                                                   {info: this.state.camera[2], num: 1},
+                                                   {info: this.state.camera[3], num: 1},
+                                                   {info: this.state.camera[4], num: 1},
+                                                   {info: this.state.camera[5], num: 1},
+                                                   {info: this.state.camera[6], num: 1}]}}}>
+                                           <Button primary>구매하기</Button>
+                                       </Link>)
+                                })()
+                            }
+                        </Grid.Column>
+                    </Grid.Row>
                 </Grid>
             );
     }
