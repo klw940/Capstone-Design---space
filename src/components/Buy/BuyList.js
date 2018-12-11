@@ -18,7 +18,7 @@ class BuyList extends Component{
     handlePaginationChange = (e, { activePage }) => this.setState({ activePage })
 
     setDefaultPage = () => {
-        this.setState({ activePage: 1})
+        this.setState({ activePage: 1 })
     }
 
     render(){
@@ -48,21 +48,107 @@ class BuyList extends Component{
                     })()
                 }
                 {list}
-                <div align="center">
-                    <Pagination
-                        defaultActivePage={1}
-                        firstItem={{ content: <Icon name='angle double left' />, icon: true }}
-                        lastItem={{ content: <Icon name='angle double right' />, icon: true }}
-                        prevItem={{ content: <Icon name='angle left' />, icon: true }}
-                        nextItem={{ content: <Icon name='angle right' />, icon: true }}
-                        ellipsisItem={null}
-                        onPageChange={this.handlePaginationChange}
-                        totalPages={Math.ceil(info.filter(info => info.part === category).length/5)}
-                        style = {{marginLeft: 'auto', marginRight: 'auto'}}
-                    />
+                <div align="center">{
+                    ( () => {
+                        if(category === 1) return(
+                            <Pagination
+                                defaultActivePage={this.state.activePage = 1}
+                                firstItem={{ content: <Icon name='angle double left' />, icon: true }}
+                                lastItem={{ content: <Icon name='angle double right' />, icon: true }}
+                                prevItem={{ content: <Icon name='angle left' />, icon: true }}
+                                nextItem={{ content: <Icon name='angle right' />, icon: true }}
+                                ellipsisItem={null}
+                                onPageChange={this.handlePaginationChange}
+                                totalPages={Math.ceil(info.filter(info => info.part === category).length/5)}
+                                style = {{marginLeft: 'auto', marginRight: 'auto'}}
+                            />)
+                    })()}{
+                    ( () => {
+                        if(category === 2) return(
+                            <Pagination
+                                defaultActivePage={this.state.activePage = 1}
+                                firstItem={{ content: <Icon name='angle double left' />, icon: true }}
+                                lastItem={{ content: <Icon name='angle double right' />, icon: true }}
+                                prevItem={{ content: <Icon name='angle left' />, icon: true }}
+                                nextItem={{ content: <Icon name='angle right' />, icon: true }}
+                                ellipsisItem={null}
+                                onPageChange={this.handlePaginationChange}
+                                totalPages={Math.ceil(info.filter(info => info.part === category).length/5)}
+                                style = {{marginLeft: 'auto', marginRight: 'auto'}}
+                            />)
+                    })()}{
+                    ( () => {
+                        if(category === 3) return(
+                            <Pagination
+                                defaultActivePage={this.state.activePage = 1}
+                                firstItem={{ content: <Icon name='angle double left' />, icon: true }}
+                                lastItem={{ content: <Icon name='angle double right' />, icon: true }}
+                                prevItem={{ content: <Icon name='angle left' />, icon: true }}
+                                nextItem={{ content: <Icon name='angle right' />, icon: true }}
+                                ellipsisItem={null}
+                                onPageChange={this.handlePaginationChange}
+                                totalPages={Math.ceil(info.filter(info => info.part === category).length/5)}
+                                style = {{marginLeft: 'auto', marginRight: 'auto'}}
+                            />)
+                    })()}{
+                    ( () => {
+                        if(category === 4) return(
+                            <Pagination
+                                defaultActivePage={this.state.activePage = 1}
+                                firstItem={{ content: <Icon name='angle double left' />, icon: true }}
+                                lastItem={{ content: <Icon name='angle double right' />, icon: true }}
+                                prevItem={{ content: <Icon name='angle left' />, icon: true }}
+                                nextItem={{ content: <Icon name='angle right' />, icon: true }}
+                                ellipsisItem={null}
+                                onPageChange={this.handlePaginationChange}
+                                totalPages={Math.ceil(info.filter(info => info.part === category).length/5)}
+                                style = {{marginLeft: 'auto', marginRight: 'auto'}}
+                            />)
+                    })()}{
+                    ( () => {
+                        if(category === 5) return(
+                            <Pagination
+                                defaultActivePage={this.state.activePage = 1}
+                                firstItem={{ content: <Icon name='angle double left' />, icon: true }}
+                                lastItem={{ content: <Icon name='angle double right' />, icon: true }}
+                                prevItem={{ content: <Icon name='angle left' />, icon: true }}
+                                nextItem={{ content: <Icon name='angle right' />, icon: true }}
+                                ellipsisItem={null}
+                                onPageChange={this.handlePaginationChange}
+                                totalPages={Math.ceil(info.filter(info => info.part === category).length/5)}
+                                style = {{marginLeft: 'auto', marginRight: 'auto'}}
+                            />)
+                    })()}{
+                    ( () => {
+                        if(category === 6) return(
+                            <Pagination
+                                defaultActivePage={this.state.activePage = 1}
+                                firstItem={{ content: <Icon name='angle double left' />, icon: true }}
+                                lastItem={{ content: <Icon name='angle double right' />, icon: true }}
+                                prevItem={{ content: <Icon name='angle left' />, icon: true }}
+                                nextItem={{ content: <Icon name='angle right' />, icon: true }}
+                                ellipsisItem={null}
+                                onPageChange={this.handlePaginationChange}
+                                totalPages={Math.ceil(info.filter(info => info.part === category).length/5)}
+                                style = {{marginLeft: 'auto', marginRight: 'auto'}}
+                            />)
+                    })()}{
+                    ( () => {
+                        if(category === 7) return(
+                            <Pagination
+                                defaultActivePage={this.state.activePage = 1}
+                                firstItem={{ content: <Icon name='angle double left' />, icon: true }}
+                                lastItem={{ content: <Icon name='angle double right' />, icon: true }}
+                                prevItem={{ content: <Icon name='angle left' />, icon: true }}
+                                nextItem={{ content: <Icon name='angle right' />, icon: true }}
+                                ellipsisItem={null}
+                                onPageChange={this.handlePaginationChange}
+                                totalPages={Math.ceil(info.filter(info => info.part === category).length/5)}
+                                style = {{marginLeft: 'auto', marginRight: 'auto'}}
+                            />)
+                    })()}
                 </div>
             </div>
-
         );
     }
 }
