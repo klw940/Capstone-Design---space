@@ -43,55 +43,12 @@ class DesktopContainer extends Component {
                             <Image size='mini' src={menu_image} style={{ marginRight: '1.5em' }} />
                             DiY Drone
                         </Menu.Item>
-                        {
-                            ( () =>{
-                                if(sessionStorage.getItem('role')==='user') return (
-                                    <Menu.Item as={Link} to='/diy'>드론견적</Menu.Item>
-                                )
-                            } )()
-                        }
-                        {
-                            ( () =>{
-                                if(sessionStorage.getItem('role')==='user') return (
-                                    <Menu.Item as={Link} to='/recommend'>드론추천</Menu.Item>
-                                )
-                            } )()
-                        }
-                        {
-                            ( () =>{
-                                if(sessionStorage.getItem('role')) return (
-                                    <Menu.Item as={Link} to='/buy'>부품구매</Menu.Item>
-                                )
-                            } )()
-                        }
-                        {
-                            ( () =>{
-                                if(sessionStorage.getItem('role')==='user') return (
-                                    <Menu.Item as={Link} to='/freeBoard'>자유게시판</Menu.Item>
-                                )
-                            } )()
-                        }
-                        {
-                            ( () =>{
-                                if(sessionStorage.getItem('role')==='user') return (
-                                    <Menu.Item as={Link} to='/qnaBoard'>QnA게시판</Menu.Item>
-                                )
-                            } )()
-                        }
-                        {
-                            ( () =>{
-                                if(sessionStorage.getItem('role')==='admin') return (
-                                    <Menu.Item as={Link} to='/sale'>부품등록</Menu.Item>
-                                )
-                            } )()
-                        }
-                        {
-                            ( () =>{
-                                if(sessionStorage.getItem('role')==='admin') return (
-                                    <Menu.Item as={Link} to='/buyManage'>구매관리</Menu.Item>
-                                )
-                            } )()
-                        }
+                        {sessionStorage.getItem('role')==='user' && <Menu.Item as={Link} to='/diy'>드론견적</Menu.Item>}
+                        {sessionStorage.getItem('role')==='user' && <Menu.Item as={Link} to='/recommend'>드론추천</Menu.Item>}
+                        {sessionStorage.getItem('role') && <Menu.Item as={Link} to='/buy'>부품구매</Menu.Item>}
+                        {sessionStorage.getItem('role')==='user' &&  <Menu.Item as={Link} to='/freeBoard'>게시판</Menu.Item>}
+                        {sessionStorage.getItem('role')==='admin' && <Menu.Item as={Link} to='/sale'>부품등록</Menu.Item>}
+                        {sessionStorage.getItem('role')==='admin' && <Menu.Item as={Link} to='/buyManage'>구매관리</Menu.Item>}
                         <Menu.Item position='right'>
                             {
                                 ( () =>{

@@ -4,6 +4,7 @@ import axios from "axios";
 import BuyList from './BuyList';
 import {List, Map, Record} from "immutable/dist/immutable";
 import { ServerAddr } from "../Constants";
+import {Redirect} from "react-router-dom";
 
 const Parts = Record({
     name: '',
@@ -96,12 +97,16 @@ class Buy extends Component{
                     info = {this.state.info}
                 /></Tab.Pane> },
         ];
-        return(
-            <div>
-                <Tab panes={panes}>
-                </Tab>
-            </div>
-        );
+        if(!sessionStorage.getItem('dtoken')){
+            return(<Redirect to='/' />)
+        }
+        else
+            return(
+                <div>
+                    <Tab panes={panes}>
+                    </Tab>
+                </div>
+            );
     }
 }
 

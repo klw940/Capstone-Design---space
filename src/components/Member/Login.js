@@ -56,7 +56,6 @@ class Login extends Component{
 
     redirectMain = () => {
         if(this.state.success){
-            return <Redirect to='/' />
         }
     }
 
@@ -67,6 +66,8 @@ class Login extends Component{
     }
 
     render(){
+        if(sessionStorage.getItem('role') && this.state.success)
+            return <Redirect to='/' />;
         return(
             <CSSTransitionGroup
                 transitionName="homeTransition"
@@ -75,7 +76,6 @@ class Login extends Component{
                 transitionEnter={false}
                 transitionLeave={false}>
                 <div className='login-form'>
-                    {this.redirectMain()}
                     <Grid textAlign='center' style={{ height: '100%', minHeight: 700,  padding: '1em 0em' }} verticalAlign='middle'>
                         <Grid.Column style={{maxWidth: 450}}>
                             <Header as='h2' color='black' textAlign='center'>

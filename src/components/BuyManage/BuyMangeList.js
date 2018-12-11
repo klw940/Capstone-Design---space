@@ -36,7 +36,7 @@ class BuyMangeList extends Component{
                 <Item.Group style={style}>
                     {info}
                 </Item.Group>
-                    {check ? {} : <Button onClick={setCheck}>거래완료</Button>}
+                    {check ? <></> : <Button onClick={setCheck}>거래완료</Button>}
                 {check}
             </div>
         );

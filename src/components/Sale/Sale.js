@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Tab} from 'semantic-ui-react';
 import SaleRegister from "./Sale_Register";
+import {Redirect} from "react-router-dom";
 
 class Sale extends Component{
     constructor() {
@@ -28,12 +29,16 @@ class Sale extends Component{
             { menuItem: 'Antenna', render: () => <Tab.Pane><SaleRegister part={this.state.antenna}/></Tab.Pane> },
             { menuItem: 'Motor', render: () => <Tab.Pane><SaleRegister part={this.state.motor}/></Tab.Pane> },
         ];
-        return(
-            <div>
-                <Tab panes={panes}>
-                </Tab>
-            </div>
-        );
+        if(!sessionStorage.getItem('dtoken')){
+            return(<Redirect to='/' />)
+        }
+        else
+            return(
+                <div>
+                    <Tab panes={panes}>
+                    </Tab>
+                </div>
+            );
     }
 }
 

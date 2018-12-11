@@ -17,11 +17,6 @@ class DiyInfo extends Component {
         this.setState({ collapse: !this.state.collapse });
     }
 
-    openInNewTab = () => {
-        var win = window.open('http://localhost:3000', '_blank');
-        win.focus();
-    }
-
     selectPart = () => {
         const { info,
             selectParts,
@@ -73,7 +68,6 @@ class DiyInfo extends Component {
                         </Item.Description>
                         <Item.Extra>
                             <Button onClick={this.selectPart}>선택</Button>
-                            <Button onClick={this.openInNewTab}>리뷰</Button>
                         </Item.Extra>
                     </Item.Content>
                 </Item>

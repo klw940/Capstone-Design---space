@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Grid, Button, Container, Segment, Form} from "semantic-ui-react";
 import PayList from "./PayList";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import axios from "axios";
 import {ServerAddr} from "../Constants";
+import {CSSTransitionGroup} from "react-transition-group";
 
 class Pay extends Component {
     constructor(props) {
@@ -60,45 +61,56 @@ class Pay extends Component {
             }
         );
 
-        return(
-            <Container>
-                <br/>
-                <Grid>
-                    <Grid.Row Columns={2}>
-                        <Grid.Column width = "10">
-                            <h3>구매 목록</h3>
-                            {list}
-                            <Segment size="large" floated="right"><b>가격: {this.state.price}원</b></Segment>
-                        </Grid.Column>
-                        <Grid.Column width = "6">
-                            <h2>결제 정보</h2>
-                            <Form>
-                                <Form.Group>
-                                    <Form.Input label='주소' placeholder='주소' onChange={this.handleChange}/>
-                                </Form.Group>
-                                <Form.Group>
-                                    <Form.Select placeholder="결제 방법" options={[{key: '1', value: '1', text: '무통장 입금'}]} value={this.state.payMethod} onChange={this.handleSelectChange}/>
-                                </Form.Group>
-                            </Form>
-                            <h6 className="text-danger">{this.state.message}</h6>
-                        </Grid.Column>
-                    </Grid.Row>
-                    <Grid.Row Columns={1}>
-                        <Grid.Column>
-                            {
-                                (()=>{
-                                    if(!this.state.payMethod || !this.state.address) return(<Button onClick={() => {this.setState({message: '결제 정보를 모두 입력해주세요'})}}>결제하기</Button>);
-                                    else return(
-                                        <Link to={{ pathname: '/pay/depositless', state: { price: this.state.price, address: this.state.address}}}>
-                                            <Button onClick={this.postBuyList}>결제하기</Button>
-                                        </Link>);
-                                })()
-                            }
-                        </Grid.Column>
-                    </Grid.Row>
-                </Grid>
-            </Container>
-        );
+        if(!sessionStorage.getItem('dtoken')){
+            return(<Redirect to='/' />)
+        }
+        else
+            return(
+                <CSSTransitionGroup
+                    transitionName="homeTransition"
+                    transitionAppear={true}
+                    transitionAppearTimeout={500}
+                    transitionEnter={false}
+                    transitionLeave={false}>
+                    <Container>
+                        <br/>
+                        <Grid>
+                            <Grid.Row Columns={2}>
+                                <Grid.Column width = "10">
+                                    <h3>구매 목록</h3>
+                                    {list}
+                                    <Segment size="large" floated="right"><b>가격: {this.state.price}원</b></Segment>
+                                </Grid.Column>
+                                <Grid.Column width = "6">
+                                    <h2>결제 정보</h2>
+                                    <Form>
+                                        <Form.Group>
+                                            <Form.Input label='주소' placeholder='주소' onChange={this.handleChange}/>
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Select placeholder="결제 방법" options={[{key: '1', value: '1', text: '무통장 입금'}]} value={this.state.payMethod} onChange={this.handleSelectChange}/>
+                                        </Form.Group>
+                                    </Form>
+                                    <h6 className="text-danger">{this.state.message}</h6>
+                                </Grid.Column>
+                            </Grid.Row>
+                            <Grid.Row Columns={1}>
+                                <Grid.Column>
+                                    {
+                                        (()=>{
+                                            if(!this.state.payMethod || !this.state.address) return(<Button onClick={() => {this.setState({message: '결제 정보를 모두 입력해주세요'})}}>결제하기</Button>);
+                                            else return(
+                                                <Link to={{ pathname: '/pay/depositless', state: { price: this.state.price, address: this.state.address}}}>
+                                                    <Button onClick={this.postBuyList}>결제하기</Button>
+                                                </Link>);
+                                        })()
+                                    }
+                                </Grid.Column>
+                            </Grid.Row>
+                        </Grid>
+                    </Container>
+                </CSSTransitionGroup>
+            );
     }
 }
 

@@ -50,37 +50,44 @@ class Home extends Component {
                                 marginTop: '1.5em',
                             }}
                         />
-                        <Header
-                            as='h2'
-                            content='자신만의 드론을 만들어 보세요'
-                            inverted
-                            style={{
-                                fontSize: '1.7em',
-                                fontWeight: 'normal',
-                                marginTop: '1.5em',
-                            }}
-                        />
                         {
-                            ( () =>{
-                                if(sessionStorage.getItem('role')) return (
-                                    <Link to='/diy'>
-                                        <Button primary size='huge'>
-                                            자신만의 드론 만들기
-                                            <Icon name='right arrow' />
-                                        </Button>
-                                    </Link>
-                                )
-                                else return (
-                                    <Link to='/login'>
-                                        <Button primary size='huge'>
-                                            자신만의 드론 만들기
-                                            <Icon name='right arrow' />
-                                        </Button>
-                                    </Link>
-                                )
-                            } )()
-                        }
+                            (()=> {
+                                if (sessionStorage.getItem('role') === 'admin')
+                                    return (
+                                        <Header
+                                            as='h2'
+                                            content='관리자 페이지'
+                                            inverted
+                                            style={{
+                                                fontSize: '1.7em',
+                                                fontWeight: 'normal',
+                                                marginTop: '1.5em',
+                                            }}
+                                        />)
+                                else
+                                    return (
+                                        <Header
+                                            as='h2'
+                                            content='자신만의 드론을 만들어 보세요'
+                                            inverted
+                                            style={{
+                                                fontSize: '1.7em',
+                                                fontWeight: 'normal',
+                                                marginTop: '1.5em',
+                                            }}
+                                        />)
+                            })()
 
+                        }
+                        {
+                            !(sessionStorage.getItem('role')==='admin') &&
+                            <Link to='/diy'>
+                                <Button primary size='huge'>
+                                    자신만의 드론 만들기
+                                    <Icon name='right arrow'/>
+                                </Button>
+                            </Link>
+                        }
                     </Segment>
                 </div>
             </CSSTransitionGroup>

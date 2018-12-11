@@ -5,6 +5,7 @@ import {
     Button,
     Divider,
     Segment,
+    Input,
 } from 'semantic-ui-react';
 import axios from "axios";
 import {Link} from "react-router-dom";
@@ -19,6 +20,7 @@ class BuyInfo extends Component {
         this.state = {
             collapse: false,
             num: 1,
+            newStore: 0,
         };
     }
 
@@ -34,6 +36,22 @@ class BuyInfo extends Component {
         if(this.state.num > 1) this.setState({num: this.state.num - 1});
     }
 
+    plusOne = () => {
+        this.setState({newStore: this.state.newStore + 1});
+    }
+
+    minusOne = () => {
+        if(this.state.newStore > 1) this.setState({newStore: this.state.newStore - 1});
+    }
+
+    plusTen = () => {
+        this.setState({newStore: this.state.newStore + 10});
+    }
+
+    minusTen = () => {
+        if(this.state.newStore > 11) this.setState({newStore: this.state.newStore - 10});
+    }
+
     removeItem = () => {
         axios.post(ServerAddr+'/drone_delete', {_id: this.props.info._id})
             .then(res => {
@@ -42,6 +60,18 @@ class BuyInfo extends Component {
             .catch(res =>{
                 console.log('removeItemError')
             })
+         window.location.reload();
+    }
+
+    changeStore = async () => {
+        await axios.post(ServerAddr+'/change_store', {_id: this.props.info._id, store: this.state.newStore})
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch(res =>{
+                console.log('change store Error')
+            });
+        await window.location.reload();
     }
 
     render() {
@@ -102,9 +132,13 @@ class BuyInfo extends Component {
                             {
                                 ( () =>{
                                     if(sessionStorage.getItem('role')==='admin') return (
-                                        <Segment floated='right' compact>수량: {this.state.num}
-                                            <Button floated='right' onClick={this.minus}>-</Button>
-                                            <Button floated='right' onClick={this.plus}>+</Button>
+                                        <Segment floated='right' compact>
+                                            재고량 변경: {this.state.newStore}
+                                            <Button floated='right' onClick={this.changeStore}>적용하기</Button>
+                                            <Button floated='right' onClick={this.minusTen}>-10</Button>
+                                            <Button floated='right' onClick={this.minusOne}>-1</Button>
+                                            <Button floated='right' onClick={this.plusOne}>+1</Button>
+                                            <Button floated='right' onClick={this.plusTen}>+10</Button>
                                         </Segment>
                                     );
                                     else if(sessionStorage.getItem('role')==='user') return (

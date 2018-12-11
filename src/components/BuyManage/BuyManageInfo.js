@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Divider, Segment, Item} from "semantic-ui-react";
+import {Divider, Item} from "semantic-ui-react";
 
 class BuyMangeInfo extends Component{
     constructor(props) {

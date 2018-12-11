@@ -3,6 +3,7 @@ import axios from "axios";
 import { ServerAddr } from "../Constants";
 import {Container, Divider, Grid} from 'semantic-ui-react'
 import BuyMangeList from "./BuyMangeList";
+import {Redirect} from "react-router-dom";
 
 class BuyMange extends Component{
     constructor() {
@@ -17,7 +18,6 @@ class BuyMange extends Component{
         axios.get(ServerAddr+'/buy_list')
             .then( res => {
                 this.setState({buyList: res.data});
-                console.log(res.data);
             })
             .catch( res => {
                 console.log('error');
@@ -33,13 +33,9 @@ class BuyMange extends Component{
                     address={part.address}
                     name={part.name}
                     email={part.email}
-                    setCheck={()=>{axios.post(ServerAddr+'/buy_list_check',{_id: part._id})
-                        .then( res => {
-                            console.log(res.data);
-                        })
-                        .catch( res => {
-                            console.log('post check error');
-                        })}}
+                    check={part.check}
+                    setCheck={()=>{ axios.post(ServerAddr+'/buy_list_check',{_id: part._id});
+                        window.location.reload();}}
                 />)
             }
         );
@@ -52,28 +48,34 @@ class BuyMange extends Component{
                     address={part.address}
                     name={part.name}
                     email={part.email}
+                    check={part.check}
                     setCheck={()=>{}}
                 />)
             }
         );
-        return(
-            <Container>
-                <br/>
-                <Grid Columns={2} relaxed='very'>
-                    <Grid.Row>
-                        <Grid.Column width={8}>
-                            <h1>거래 대기 품목</h1>
-                            {beforeList}
-                        </Grid.Column>
-                        <Grid.Column width={8}>
-                            <h1>거래 완료 품목</h1>
-                            {afterList}
-                        </Grid.Column>
-                    </Grid.Row>
-                </Grid>
-                <Divider vertical/>
-            </Container>
-        );
+
+        if(!sessionStorage.getItem('dtoken')){
+            return(<Redirect to='/' />)
+        }
+        else
+            return(
+                <Container>
+                    <br/>
+                    <Grid Columns={2} relaxed='very'>
+                        <Grid.Row>
+                            <Grid.Column width={8}>
+                                <h1>거래 대기 품목</h1>
+                                {beforeList}
+                            </Grid.Column>
+                            <Grid.Column width={8}>
+                                <h1>거래 완료 품목</h1>
+                                {afterList}
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
+                    <Divider vertical/>
+                </Container>
+            );
     }
 }
 

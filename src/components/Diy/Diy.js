@@ -18,6 +18,8 @@ import {
     Button,
     Container, Image
 } from 'semantic-ui-react';
+import {Redirect} from "react-router-dom";
+import {CSSTransitionGroup} from "react-transition-group";
 
 const Parts = Record({
     name: '',
@@ -138,7 +140,7 @@ class Diy extends Component{
         axios.get(ServerAddr+'/drone')
             .then( res => {this.setState({
                 info: res.data
-                })
+            })
             })
             .catch( res => {
                 console.log("droneGetError");
@@ -146,65 +148,76 @@ class Diy extends Component{
     }
 
     render(){
-        return(
-            <Container>
-                <br/>
-                <Grid>
-                    <Grid.Row Columns={1}>
-                        <Grid.Column width={16}>
-                            {
-                                (() => {
-                                    if(this.state.step === 0) return(
-                                        <Image src={origin_image} size="large" rounded centered/>
-                                    );
-                                    else if(this.state.step === 1) return(
-                                        <Image src={frame_image} size="large" rounded centered/>
-                                    );
-                                    else if(this.state.step === 2) return(
-                                        <Image src={wing_image} size="large" rounded centered/>
-                                    );
-                                    else if(this.state.step === 3) return(
-                                        <Image src={controlboard_image} size="large" rounded centered/>
-                                    );
-                                    else if(this.state.step === 4) return(
-                                        <Image src={ESC_image} size="large" rounded centered/>
-                                    );
-                                    else if(this.state.step === 5) return(
-                                        <Image src={battery_image} size="large" rounded centered/>
-                                    );
-                                    else if(this.state.step === 6) return(
-                                        <Image src={antenna_image} size="large" rounded centered/>
-                                    );
-                                    else if(this.state.step === 7) return(
-                                        <Image src={motor_image} size="large" rounded centered/>
-                                    );
+        if(!sessionStorage.getItem('dtoken')){
+            return(<Redirect to='/' />)
+        }
+        else
+            return(
+                <CSSTransitionGroup
+                    transitionName="homeTransition"
+                    transitionAppear={true}
+                    transitionAppearTimeout={500}
+                    transitionEnter={false}
+                    transitionLeave={false}>
+                    <Container>
+                        <br/>
+                        <Grid>
+                            <Grid.Row Columns={1}>
+                                <Grid.Column width={16}>
+                                    {
+                                        (() => {
+                                            if(this.state.step === 0) return(
+                                                <Image src={origin_image} size="large" rounded centered/>
+                                            );
+                                            else if(this.state.step === 1) return(
+                                                <Image src={frame_image} size="large" rounded centered/>
+                                            );
+                                            else if(this.state.step === 2) return(
+                                                <Image src={wing_image} size="large" rounded centered/>
+                                            );
+                                            else if(this.state.step === 3) return(
+                                                <Image src={controlboard_image} size="large" rounded centered/>
+                                            );
+                                            else if(this.state.step === 4) return(
+                                                <Image src={ESC_image} size="large" rounded centered/>
+                                            );
+                                            else if(this.state.step === 5) return(
+                                                <Image src={battery_image} size="large" rounded centered/>
+                                            );
+                                            else if(this.state.step === 6) return(
+                                                <Image src={antenna_image} size="large" rounded centered/>
+                                            );
+                                            else if(this.state.step === 7) return(
+                                                <Image src={motor_image} size="large" rounded centered/>
+                                            );
 
-                                })()
-                            }
-                        </Grid.Column>
-                    </Grid.Row>
-                    <Grid.Row Columns={2}>
-                        <Grid.Column width = "10">
-                            <DiyStep
-                                info = {this.state.info}
-                                selectParts = {this.selectParts}
-                                selectedParts = {this.state.selectedParts}
-                                postSelectParts = {this.postSelectParts}
-                                step = {this.setStep}
-                            />
-                        </Grid.Column>
-                        <Grid.Column width = "6">
-                            <Button primary floated="right" onClick = {this.refreshPage} >다시하기</Button>
-                            <br/>
-                            <br/>
-                            <DiyChoice
-                                selectedParts = {this.state.selectedParts}
-                            />
-                        </Grid.Column>
-                    </Grid.Row>
-                </Grid>
-            </Container>
-        );
+                                        })()
+                                    }
+                                </Grid.Column>
+                            </Grid.Row>
+                            <Grid.Row Columns={2}>
+                                <Grid.Column width = "10">
+                                    <DiyStep
+                                        info = {this.state.info}
+                                        selectParts = {this.selectParts}
+                                        selectedParts = {this.state.selectedParts}
+                                        postSelectParts = {this.postSelectParts}
+                                        step = {this.setStep}
+                                    />
+                                </Grid.Column>
+                                <Grid.Column width = "6">
+                                    <Button primary floated="right" onClick = {this.refreshPage} >다시하기</Button>
+                                    <br/>
+                                    <br/>
+                                    <DiyChoice
+                                        selectedParts = {this.state.selectedParts}
+                                    />
+                                </Grid.Column>
+                            </Grid.Row>
+                        </Grid>
+                    </Container>
+                </CSSTransitionGroup>
+            );
     }
 }
 
