@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Icon, Label, Menu, Table, Button, Container, Pagination} from 'semantic-ui-react'
+import {Icon, Table, Button, Container, Pagination} from 'semantic-ui-react'
 import {Redirect} from "react-router-dom";
 import FreeBoardTable from "./FreeBoardTable"
 import axios from "axios";

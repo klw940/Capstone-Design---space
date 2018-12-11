@@ -9,7 +9,6 @@ import {
     Segment,
 } from 'semantic-ui-react'
 import {CSSTransitionGroup} from "react-transition-group";
-import {Menu} from "semantic-ui-react/dist/commonjs/collections/Menu/Menu";
 
 class Home extends Component {
     componentDidMount() {

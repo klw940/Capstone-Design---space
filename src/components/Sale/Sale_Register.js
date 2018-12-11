@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Button, Table, Form, Popup} from 'semantic-ui-react';
+import {Button, Table, Form} from 'semantic-ui-react';
 import axios from "axios";
 import {Link} from "react-router-dom";
 

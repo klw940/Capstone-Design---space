@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import {Divider, Item} from "semantic-ui-react";
 
 class BuyMangeInfo extends Component{
-    constructor(props) {
-        super(props);
-    }
-
     render() {
 
         const { info, num } = this.props;

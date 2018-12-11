@@ -3,9 +3,6 @@ import { Item, Button} from "semantic-ui-react";
 import BuyMangeInfo from "./BuyManageInfo";
 
 class BuyMangeList extends Component{
-    constructor(props) {
-        super(props);
-    }
     componentDidMount() {
         window.scrollTo(0, 0);
     }

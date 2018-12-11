@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import {Link, Redirect} from "react-router-dom"
+import {Redirect} from "react-router-dom"
 import {Grid, Button, Form } from "semantic-ui-react";
 import { ServerAddr } from "../Constants";
 

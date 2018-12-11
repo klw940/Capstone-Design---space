@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import {Button, Grid, Form} from "semantic-ui-react";
-import {Link, Redirect} from "react-router-dom";
+import {Grid, Form} from "semantic-ui-react";
+import {Redirect} from "react-router-dom";
 import { ServerAddr } from "../Constants";
 class MemberInfo extends Component{
     constructor(props) {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import {Button, Tab} from 'semantic-ui-react';
+import {Tab} from 'semantic-ui-react';
 import axios from "axios";
 import BuyList from './BuyList';
-import {List, Map, Record} from "immutable/dist/immutable";
+import {List, Record} from "immutable/dist/immutable";
 import { ServerAddr } from "../Constants";
 import {Redirect} from "react-router-dom";
 

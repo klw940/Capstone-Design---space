@@ -52,7 +52,7 @@ class BuyList extends Component{
                     ( () => {
                         if(category === 1) return(
                             <Pagination
-                                defaultActivePage={this.state.activePage = 1}
+                                defaultActivePage={this.setState({activePage: 1})}
                                 firstItem={{ content: <Icon name='angle double left' />, icon: true }}
                                 lastItem={{ content: <Icon name='angle double right' />, icon: true }}
                                 prevItem={{ content: <Icon name='angle left' />, icon: true }}
@@ -66,7 +66,7 @@ class BuyList extends Component{
                     ( () => {
                         if(category === 2) return(
                             <Pagination
-                                defaultActivePage={this.state.activePage = 1}
+                                defaultActivePage={this.setState({activePage: 1})}
                                 firstItem={{ content: <Icon name='angle double left' />, icon: true }}
                                 lastItem={{ content: <Icon name='angle double right' />, icon: true }}
                                 prevItem={{ content: <Icon name='angle left' />, icon: true }}
@@ -80,7 +80,7 @@ class BuyList extends Component{
                     ( () => {
                         if(category === 3) return(
                             <Pagination
-                                defaultActivePage={this.state.activePage = 1}
+                                defaultActivePage={this.setState({activePage: 1})}
                                 firstItem={{ content: <Icon name='angle double left' />, icon: true }}
                                 lastItem={{ content: <Icon name='angle double right' />, icon: true }}
                                 prevItem={{ content: <Icon name='angle left' />, icon: true }}
@@ -94,7 +94,7 @@ class BuyList extends Component{
                     ( () => {
                         if(category === 4) return(
                             <Pagination
-                                defaultActivePage={this.state.activePage = 1}
+                                defaultActivePage={this.setState({activePage: 1})}
                                 firstItem={{ content: <Icon name='angle double left' />, icon: true }}
                                 lastItem={{ content: <Icon name='angle double right' />, icon: true }}
                                 prevItem={{ content: <Icon name='angle left' />, icon: true }}
@@ -108,7 +108,7 @@ class BuyList extends Component{
                     ( () => {
                         if(category === 5) return(
                             <Pagination
-                                defaultActivePage={this.state.activePage = 1}
+                                defaultActivePage={this.setState({activePage: 1})}
                                 firstItem={{ content: <Icon name='angle double left' />, icon: true }}
                                 lastItem={{ content: <Icon name='angle double right' />, icon: true }}
                                 prevItem={{ content: <Icon name='angle left' />, icon: true }}
@@ -122,7 +122,7 @@ class BuyList extends Component{
                     ( () => {
                         if(category === 6) return(
                             <Pagination
-                                defaultActivePage={this.state.activePage = 1}
+                                defaultActivePage={this.setState({activePage: 1})}
                                 firstItem={{ content: <Icon name='angle double left' />, icon: true }}
                                 lastItem={{ content: <Icon name='angle double right' />, icon: true }}
                                 prevItem={{ content: <Icon name='angle left' />, icon: true }}
@@ -136,7 +136,7 @@ class BuyList extends Component{
                     ( () => {
                         if(category === 7) return(
                             <Pagination
-                                defaultActivePage={this.state.activePage = 1}
+                                defaultActivePage={this.setState({activePage: 1})}
                                 firstItem={{ content: <Icon name='angle double left' />, icon: true }}
                                 lastItem={{ content: <Icon name='angle double right' />, icon: true }}
                                 prevItem={{ content: <Icon name='angle left' />, icon: true }}

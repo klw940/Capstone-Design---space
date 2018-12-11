@@ -5,11 +5,9 @@ import {
     Button,
     Divider,
     Segment,
-    Input,
 } from 'semantic-ui-react';
 import axios from "axios";
 import {Link} from "react-router-dom";
-import {Menu} from "semantic-ui-react/dist/commonjs/collections/Menu/Menu";
 import { ServerAddr } from "../Constants";
 
 class BuyInfo extends Component {

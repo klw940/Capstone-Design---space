@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Collapse } from 'reactstrap'
-import {Item, Divider, Segment} from 'semantic-ui-react';
+import {Item, Divider} from 'semantic-ui-react';
 
 class RecommendList extends Component {
     constructor(props) {
