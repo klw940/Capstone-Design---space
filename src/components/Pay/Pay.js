@@ -98,7 +98,8 @@ class Pay extends Component {
                                 <Grid.Column>
                                     {
                                         (()=>{
-                                            if(!this.state.payMethod || !this.state.address) return(<Button onClick={() => {this.setState({message: '결제 정보를 모두 입력해주세요'})}}>결제하기</Button>);
+                                            if(!this.state.payMethod || !this.state.address) return(<Button onClick={() => {
+                                                window.scrollTo(0, 0); this.setState({message: '결제 정보를 모두 입력해주세요'})}}>결제하기</Button>);
                                             else return(
                                                 <Link to={{ pathname: '/pay/depositless', state: { price: this.state.price, address: this.state.address}}}>
                                                     <Button onClick={this.postBuyList}>결제하기</Button>
