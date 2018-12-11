@@ -79,13 +79,24 @@ class Home extends Component {
 
                         }
                         {
-                            !(sessionStorage.getItem('role')==='admin') &&
-                            <Link to='/diy'>
-                                <Button primary size='huge'>
-                                    자신만의 드론 만들기
-                                    <Icon name='right arrow'/>
-                                </Button>
-                            </Link>
+                            (()=>{
+                                if(!sessionStorage.getItem('role')) return(
+                                    <Link to='/login'>
+                                        <Button primary size='huge'>
+                                            자신만의 드론 만들기
+                                            <Icon name='right arrow'/>
+                                        </Button>
+                                    </Link>
+                                )
+                                else if(sessionStorage.getItem('role')==='user') return(
+                                    <Link to='/diy'>
+                                        <Button primary size='huge'>
+                                            자신만의 드론 만들기
+                                            <Icon name='right arrow'/>
+                                        </Button>
+                                    </Link>
+                                );
+                            })()
                         }
                     </Segment>
                 </div>
