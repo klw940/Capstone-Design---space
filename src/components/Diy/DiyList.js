@@ -35,13 +35,13 @@ class DiyList extends Component{
             <div>
                 {
                     ( () => {
-                        if(category === 1) return(<h1>Frame List</h1>);
-                        else if(category === 2) return(<h1>Wings List</h1>);
-                        else if(category === 3) return(<h1>ControlBoard List</h1>);
-                        else if(category === 4) return(<h1>ESC List</h1>);
-                        else if(category === 5) return(<h1>Battery List</h1>);
-                        else if(category === 6) return(<h1>Antenna List</h1>);
-                        else if(category === 7) return(<h1>Motor List</h1>);
+                        if(category === 1) return(<h1>Step1: Frame List</h1>);
+                        else if(category === 2) return(<h1>Step2: Wings List</h1>);
+                        else if(category === 3) return(<h1>Step3: ControlBoard List</h1>);
+                        else if(category === 4) return(<h1>Step4: ESC List</h1>);
+                        else if(category === 5) return(<h1>Step5: Battery List</h1>);
+                        else if(category === 6) return(<h1>Step6: Antenna List</h1>);
+                        else if(category === 7) return(<h1>Step7: Motor List</h1>);
                     })()
                 }
                 {list}

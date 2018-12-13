@@ -10,7 +10,7 @@ class FreeBoard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            pageCount: 20,
+            pageCount: 10,
             activePage: 1,
             freeboard: [],
         }
@@ -77,7 +77,7 @@ class FreeBoard extends Component {
                                         nextItem={{ content: <Icon name='angle right' />, icon: true }}
                                         ellipsisItem={null}
                                         onPageChange={this.handlePaginationChange}
-                                        totalPages={Math.ceil(this.state.freeboard.length/20)}
+                                        totalPages={Math.ceil(this.state.freeboard.length/10)}
                                         style = {{marginLeft: 'auto', marginRight: 'auto'}}
                                     />
                                 </Table.HeaderCell>

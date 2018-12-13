@@ -10,7 +10,7 @@ class FreeBoardTable extends Component {
             <Table.Row>
                 <Table.Cell>{posts.number}</Table.Cell>
                 <Table.Cell>
-                    <Link to={{ pathname: '/freeBoard/view', state: {title: posts.title, contents: posts.contents}}}>
+                    <Link to={{ pathname: '/freeBoard/view', state: {number: posts.number, title: posts.title, contents: posts.contents}}}>
                         {posts.title}
                     </Link>
                 </Table.Cell>
